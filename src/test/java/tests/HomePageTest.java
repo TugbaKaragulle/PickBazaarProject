@@ -2,6 +2,7 @@ package tests;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -11,9 +12,11 @@ import utilities.Driver;
 
 import static utilities.Driver.setupBrowser;
 
-public class PickBazarHomePageTest {
+public class HomePageTest {
 
-    Logger logger = LogManager.getLogger(PickBazarHomePageTest.class);
+    Logger logger = LogManager.getLogger(HomePageTest.class);
+    WebDriver driver;
+
 
     @Test(priority = 1, groups = "smoke")
     public void TC_001_01(ITestContext context) throws InterruptedException {
@@ -24,9 +27,10 @@ public class PickBazarHomePageTest {
         SoftAssert softAssert = new SoftAssert();//??
 
         Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        driver=Driver.getDriver();
         logger.info("http://shop.clarusway.net/   sayfası açıldı");
 
-        softAssert.assertTrue(page.pickBazarHomePage().isPickBazarLogoDisplayed(), "Logo görüntülenemedi");
+        softAssert.assertTrue(page.pickBazarHomePage().isPickBazarLogoDisplayed(driver), "Logo görüntülenemedi");
         logger.info("PickBazar logosu görüntülendi");
 
         softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuDisplayed(), "Drop down menu görüntülenemedi.");
@@ -40,7 +44,6 @@ public class PickBazarHomePageTest {
 
 
         Thread.sleep(3000);
-
 
         // Tüm soft assertion'ları kontrol eder
         softAssert.assertAll();
