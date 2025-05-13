@@ -2,21 +2,26 @@ package tests;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import static utilities.Driver.setupBrowser;
+
 public class PickBazarHomePageTest {
 
     Logger logger = LogManager.getLogger(PickBazarHomePageTest.class);
 
-    @Test
-    public void TC_001_01() throws InterruptedException {
+    @Test(priority = 1, groups = "smoke")
+    public void TC_001_01(ITestContext context) throws InterruptedException {
+
+        setupBrowser(context);
 
         AllPages page = new AllPages();
-        SoftAssert softAssert = new SoftAssert();
+        SoftAssert softAssert = new SoftAssert();//??
 
         Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         logger.info("http://shop.clarusway.net/   sayfası açıldı");
@@ -44,8 +49,11 @@ public class PickBazarHomePageTest {
         Driver.closeDriver();
     }
 
-    @Test
-    public void TC_001_02() {
+    @Test(priority = 1, groups = "smoke")
+    public void TC_001_02(ITestContext context) {
+
+        setupBrowser(context);
+
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
 

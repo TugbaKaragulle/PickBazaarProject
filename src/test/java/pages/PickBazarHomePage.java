@@ -73,9 +73,11 @@ public class PickBazarHomePage {
     public boolean isGrocerySelectedDropDownValue() {
         return dropDownMenu.getText().equals("Grocery");
     }
+
     public boolean isShopsButtonDisplayed() {
         return shopsButton.isDisplayed();
     }
+
     public void clickElement(WebElement element) {
         element.click();
     }
