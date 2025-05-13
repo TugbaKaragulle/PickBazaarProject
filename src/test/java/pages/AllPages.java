@@ -8,6 +8,9 @@ public class AllPages {
     private ContactListHomePage contactListHomePage;
     private ContactListPage contactListPage;
     private HomePage pickBazarHomePage;
+    private BasketPage basketPage;
+    private  MakeUpPage makeUpPage;
+    private CheckoutPage checkoutPage;
     private Logger logger;
 
     //-------------------------------------------------
@@ -33,10 +36,6 @@ public class AllPages {
     }
 
 
-
-
-
-
     public HomePage pickBazarHomePage(){
         if(pickBazarHomePage == null){
             pickBazarHomePage=new HomePage();
@@ -44,6 +43,25 @@ public class AllPages {
         return pickBazarHomePage;
     }
 
+    public BasketPage basketPage(){
+        if(basketPage == null){
+            basketPage = new BasketPage();
+        }
+        return basketPage;
+    }
 
+    public CheckoutPage checkoutPage(){
+        if(checkoutPage == null){
+            checkoutPage = new CheckoutPage();
+        }
+        return checkoutPage;
+    }
+
+    public MakeUpPage makeUpPage(){
+        if (makeUpPage == null){
+            makeUpPage =new MakeUpPage();
+        }
+        return makeUpPage;
+    }
 
 }
