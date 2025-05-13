@@ -3,13 +3,11 @@ package pages;
 
 import org.apache.logging.log4j.Logger;
 
-import java.nio.file.attribute.UserDefinedFileAttributeView;
-
 public class AllPages {
 
     private ContactListHomePage contactListHomePage;
     private ContactListPage contactListPage;
-    private PickBazarHomePage pickBazarHomePage;
+    private HomePage pickBazarHomePage;
     private Logger logger;
 
     //-------------------------------------------------
@@ -39,9 +37,9 @@ public class AllPages {
 
 
 
-    public PickBazarHomePage pickBazarHomePage(){
+    public HomePage pickBazarHomePage(){
         if(pickBazarHomePage == null){
-            pickBazarHomePage=new PickBazarHomePage();
+            pickBazarHomePage=new HomePage();
         }
         return pickBazarHomePage;
     }
