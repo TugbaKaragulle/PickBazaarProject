@@ -3,6 +3,8 @@ package pages;
 
 import org.apache.logging.log4j.Logger;
 
+import java.nio.file.attribute.UserDefinedFileAttributeView;
+
 public class AllPages {
 
     private ContactListHomePage contactListHomePage;
@@ -10,6 +12,11 @@ public class AllPages {
     private PickBazarHomePage pickBazarHomePage;
     private Logger logger;
 
+    //-------------------------------------------------
+
+
+
+    //
     public ContactListHomePage contactListHomePage() {
         if (contactListHomePage == null) {
             contactListHomePage = new ContactListHomePage();
@@ -17,12 +24,20 @@ public class AllPages {
         return contactListHomePage;
     }
 
+
+
+
     public ContactListPage contactListPage() {
         if (contactListPage == null) {
             contactListPage = new ContactListPage();
         }
         return contactListPage;
     }
+
+
+
+
+
 
     public PickBazarHomePage pickBazarHomePage(){
         if(pickBazarHomePage == null){
