@@ -62,6 +62,9 @@ public class HomePage {
         return dropDownMenu;
     }
 
+    public WebElement getSearhAreaFrame() {
+        return searhAreaFrame;
+    }
 
     public boolean isPickBazarLogoDisplayed(WebDriver driver){
 
