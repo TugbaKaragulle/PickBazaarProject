@@ -41,6 +41,8 @@ public class HomePage {
     private WebElement h1TagText;    //Groceries Delivered in 90 Minute
     @FindBy(css = "div>p.text-sm.text-heading")
     private WebElement pTagText;    //Get your healthy foods & snacks delivered at your doorsteps all day everyday
+    @FindBy(xpath ="//div[@class='relative flex rounded md:rounded-lg h-14 shadow-900']")
+    private WebElement searhAreaFrame;
     @FindBy(css = "div>input.search")
     private WebElement searchTextInput;
     @FindBy(xpath = "//div/button[text()=\"Search\"]")
