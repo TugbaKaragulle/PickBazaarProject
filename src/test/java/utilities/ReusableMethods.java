@@ -11,6 +11,10 @@ import java.util.List;
 
 public class ReusableMethods {
 
+    ////BU method waitForVisibility methodunu çağırırken sadece element parametresiyle çağırma amaçlı eklendi
+    public static boolean isWebElementDisplayed(WebElement element) {
+        return ReusableMethods.waitForVisibility(Driver.getDriver(), element, 10).isDisplayed();
+    }
     // Waits for the visibility of a specific element
     public static WebElement waitForVisibility(WebDriver driver, WebElement element, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
@@ -29,6 +33,15 @@ public class ReusableMethods {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    //BU method waitForElementToBeClickable methodunu çağırırken sadece element parametresiyle çağırma amaçlı eklendi
+    public static boolean waitForClickability(WebElement element) {
+        try {
+            ReusableMethods.waitForClickability(Driver.getDriver(), element, 10);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     // Waits until a specific element located by a locator is clickable
     public static WebElement waitForElementToBeClickable(WebDriver driver, By by, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
