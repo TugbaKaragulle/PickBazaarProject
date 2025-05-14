@@ -24,7 +24,7 @@ public class AllPages {
     private CustomerLoginPage customerLoginPage;
     private DailyNeedsPage dailyNeedsPage;
     private GroceryPage groceryPage;
-    private LoginProfile loginProfile;
+    private LoginProfilePage loginProfilePage;
     private BooksPage booksPage;
 
 
@@ -163,12 +163,14 @@ public class AllPages {
         return groceryPage;
     }
 
-    public LoginProfile loginProfile(){
-        if (loginProfile == null){
-            loginProfile =new LoginProfile();
+    public LoginProfilePage loginProfilePage(){
+        if (loginProfilePage == null){
+            loginProfilePage =new LoginProfilePage();
         }
-        return loginProfile;
+        return loginProfilePage;
     }
+
+
 
     public BooksPage booksPage(){
         if (booksPage == null){
