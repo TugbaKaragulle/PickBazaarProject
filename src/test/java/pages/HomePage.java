@@ -9,6 +9,8 @@ import utilities.ReusableMethods;
 
 import java.util.List;
 
+import static utilities.ReusableMethods.isWebElementDisplayed;
+
 public class HomePage {
 
 
@@ -67,9 +69,14 @@ public class HomePage {
     }
 
     public boolean isPickBazarLogoDisplayed(WebDriver driver){
-
         return isWebElementDisplayed(pickBazarLogo);
+    }
 
+    public boolean isSearchTextInputDisplayed(WebDriver driver){
+        return  isWebElementDisplayed(searchTextInput);
+    }
+    public boolean isSearchButtonDisplayed(WebDriver driver){
+        return isWebElementDisplayed(searchButton);
     }
 
     public boolean isDropDownMenuDisplayed() {
@@ -89,19 +96,10 @@ public class HomePage {
     }
 
 
-    public boolean isWebElementDisplayed(WebElement element) {
-        return ReusableMethods.waitForVisibility(Driver.getDriver(), element, 10).isDisplayed();
+
+
+
+    public WebElement getShopsButton() {
+        return shopsButton;
     }
-
-    public boolean waitForClickability(WebElement element) {
-        try {
-            ReusableMethods.waitForClickability(Driver.getDriver(), element, 10);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-
-
 }
