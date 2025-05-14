@@ -5,11 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
-import utilities.ReusableMethods;
 
 import java.util.List;
 
+import static utilities.ReusableMethods.clickElement;
 import static utilities.ReusableMethods.isWebElementDisplayed;
+
 
 public class HomePage {
 
@@ -72,6 +73,35 @@ public class HomePage {
         return isWebElementDisplayed(pickBazarLogo);
     }
 
+    public void clickShopsButton(){
+        clickElement(shopsButton);
+    }
+    public void clickFAQButton(){
+        clickElement(FAQButton);
+    }
+    public void clickOffersButton(){
+        clickElement(offersButton);
+    }
+    public void clickContactButton(){
+        clickElement(contactButton);
+    }
+    public void clickJoinButton(){
+        clickElement(joinButton);
+    }
+    public void clickDropDownMenu(){
+        clickElement(dropDownMenu);
+    }
+    public void clickPickBazarLogo(){
+        clickElement(pickBazarLogo);
+    }
+    public void clickSearchButton(){
+        clickElement(searchButton);
+    }
+    public void sendKeysSearchTextArea(String text){
+        searchTextInput.sendKeys(text);
+    }
+
+
     public boolean isSearchTextInputDisplayed(WebDriver driver){
         return  isWebElementDisplayed(searchTextInput);
     }
@@ -91,13 +121,54 @@ public class HomePage {
         return shopsButton.isDisplayed();
     }
 
-    public void clickElement(WebElement element) {
-        element.click();
+
+    public WebElement getOffersButton() {
+        return offersButton;
     }
 
+    public WebElement getFAQButton() {
+        return FAQButton;
+    }
 
+    public WebElement getContactButton() {
+        return contactButton;
+    }
 
+    public WebElement getBecomeASellerButton() {
+        return becomeASellerButton;
+    }
 
+    public WebElement getJoinButton() {
+        return joinButton;
+    }
+
+    public WebElement getH1TagText() {
+        return h1TagText;
+    }
+
+    public WebElement getpTagText() {
+        return pTagText;
+    }
+
+    public WebElement getSearchTextInput() {
+        return searchTextInput;
+    }
+
+    public WebElement getSearchButton() {
+        return searchButton;
+    }
+
+    public WebElement getExpressDeliveryImage() {
+        return expressDeliveryImage;
+    }
+
+    public WebElement getCashOnDeliveryImage() {
+        return cashOnDeliveryImage;
+    }
+
+    public List<WebElement> getDeliveryImagesList() {
+        return deliveryImagesList;
+    }
 
     public WebElement getShopsButton() {
         return shopsButton;

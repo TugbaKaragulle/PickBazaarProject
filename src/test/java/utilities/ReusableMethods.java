@@ -27,21 +27,18 @@ public class ReusableMethods {
         return wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
+//---------------------------------------------------------------------------
+    public static void clickElement(WebElement element) {
+        ReusableMethods.waitForClickability(element,10).click();
+    }
     // Waits until a specific element is clickable
-    public static WebElement waitForClickability(WebDriver driver, WebElement element, int timeoutSeconds) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
+    public static WebElement waitForClickability( WebElement element, int timeoutSeconds) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeoutSeconds));
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
+//-------------------------------------------------------------------------------------------
 
-    //BU method waitForElementToBeClickable methodunu çağırırken sadece element parametresiyle çağırma amaçlı eklendi
-    public static boolean waitForClickability(WebElement element) {
-        try {
-            ReusableMethods.waitForClickability(Driver.getDriver(), element, 10);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
     // Waits until a specific element located by a locator is clickable
     public static WebElement waitForElementToBeClickable(WebDriver driver, By by, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
@@ -73,4 +70,16 @@ public class ReusableMethods {
             System.err.println("Sleep was interrupted");
         }
     }
+
+
+    //BU method waitForElementToBeClickable methodunu çağırırken sadece element parametresiyle çağırma amaçlı eklendi
+    public static boolean waitForClickability(WebElement element) {
+        try {
+            ReusableMethods.waitForClickability(element, 10);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
