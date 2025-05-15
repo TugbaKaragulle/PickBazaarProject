@@ -7,12 +7,12 @@ public class AllPages {
 
     private ContactListHomePage contactListHomePage;
     private ContactListPage contactListPage;
-    private HomePage pickBazarHomePage;
+    public HomePage pickBazarHomePage;
     private BasketPage basketPage;
     private  MakeUpPage makeUpPage;
     private CheckoutPage checkoutPage;
     private Logger logger;
-    private ShopsPage shopsPage;
+    public ShopsPage shopsPage;
     private OffersPage offersPage;
     private  FaqPage faqPage;
     private ContactPage contactPage;
