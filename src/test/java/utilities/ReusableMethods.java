@@ -1,6 +1,7 @@
 package utilities;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,12 +11,14 @@ import pages.HomePage;
 import java.time.Duration;
 import java.util.List;
 
+import static utilities.Driver.getDriver;
+
 public class ReusableMethods {
 
 //--------------------------------------------------------------
     ////BU method waitForVisibility methodunu çağırırken sadece element parametresiyle çağırır, isDisplayed methodunu true/false return eder
     public static boolean isWebElementDisplayed(WebElement element) {
-        return ReusableMethods.waitForVisibility(Driver.getDriver(), element, 10).isDisplayed();
+        return ReusableMethods.waitForVisibility(getDriver(), element, 10).isDisplayed();
     }
     // Waits for the visibility of a specific element
     public static WebElement waitForVisibility(WebDriver driver, WebElement element, int timeoutSeconds) {
@@ -39,7 +42,7 @@ public class ReusableMethods {
     }
     // Waits until a specific element is clickable
     public static WebElement waitForClickability( WebElement element, int timeoutSeconds) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeoutSeconds));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds));
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 //-------------------------------------------------------------------------------------------
@@ -80,6 +83,7 @@ public class ReusableMethods {
         }
     }
 
+
 //---------------------------------------------------------------------------------------
     //BU method waitForElementToBeClickable methodunu çağırırken sadece element parametresiyle çağırma amaçlı eklendi
     public static boolean waitForClickability(WebElement element) {
@@ -93,13 +97,12 @@ public class ReusableMethods {
 
 //---------------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
+    public static boolean waitForUrlContains(String data) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        try {
+            return wait.until(ExpectedConditions.urlContains(data));
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
 }
