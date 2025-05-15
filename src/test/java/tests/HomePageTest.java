@@ -12,8 +12,12 @@ import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
+import java.util.Objects;
+
 import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
+import static utilities.ReusableMethods.waitForSeconds;
+import static utilities.ReusableMethods.waitForUrlContains;
 
 public class HomePageTest {
 
@@ -29,7 +33,7 @@ public class HomePageTest {
 
         String optionName="Grocery";
         page.pickBazarHomePage().clickDropDownMenuOption(optionName);
-        softAssert.assertTrue(ReusableMethods.waitForUrlContains(optionName));
+        softAssert.assertTrue(waitForUrlContains(optionName));
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -50,24 +54,24 @@ public class HomePageTest {
         };
     }
 
-    @Test(dataProvider = "urlData", groups = {"smoke","US_002"})
-    public void TC_002_01(ITestContext context) {
+    @Test(dataProvider = "urlData", groups = {"US_002"})
+    public void TC_002_01(ITestContext context,String data) {
 
         setupBrowser(context);
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
-
-        Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-        logger.info("http://shop.clarusway.net/   sayfası açıldı");
+        Driver.getDriver().get(ConfigReader.getProperty(data));
 
         logger.info("Ana ekranda PickBazar butonuna basilir ve Home Page ekranina gidilir. ");
         page.pickBazarHomePage().getPickBazarLogo().click();
+        String url = Driver.getDriver().getCurrentUrl();
+        System.out.println("url = " + url);
+        waitForSeconds(3);
+        String url2= ConfigReader.getProperty("pickbazar_url");
+        System.out.println("url2 = " + url2);
+        softAssert.assertTrue(url.equals(url2));
 
-
-        // Tüm soft assertion'ları kontrol eder
         softAssert.assertAll();
-
-
         Driver.closeDriver();
     }
     @Test(groups = {"US_001"})
@@ -151,7 +155,7 @@ public class HomePageTest {
 
         String optionName="Bags";
         page.pickBazarHomePage().clickDropDownMenuOption(optionName);
-        softAssert.assertTrue(ReusableMethods.waitForUrlContains(optionName));
+        softAssert.assertTrue(waitForUrlContains(optionName));
 
         softAssert.assertAll();
         Driver.closeDriver();

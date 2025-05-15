@@ -238,6 +238,50 @@ public class HomePage {
         return offersButton;
     }
 
+    public WebElement getGroceryOptionInDropDownMenu() {
+        return groceryOptionInDropDownMenu;
+    }
+
+    public WebElement getBakeryOptionInDropDownMenu() {
+        return bakeryOptionInDropDownMenu;
+    }
+
+    public WebElement getMakeupOptionInDropDownMenu() {
+        return makeupOptionInDropDownMenu;
+    }
+
+    public WebElement getBagsOptionInDropDownMenu() {
+        return bagsOptionInDropDownMenu;
+    }
+
+    public WebElement getClothingOptionInDropDownMenu() {
+        return clothingOptionInDropDownMenu;
+    }
+
+    public WebElement getFurnitureOptionInDropDownMenu() {
+        return furnitureOptionInDropDownMenu;
+    }
+
+    public WebElement getDailyNeedsOptionInDropDownMenu() {
+        return dailyNeedsOptionInDropDownMenu;
+    }
+
+    public WebElement getBooksOptionInDropDownMenu() {
+        return booksOptionInDropDownMenu;
+    }
+
+    public WebElement getGiftVoucherImage() {
+        return giftVoucherImage;
+    }
+
+    public WebElement getGroceryProductFrame() {
+        return groceryProductFrame;
+    }
+
+    public WebElement getGroceryMenuFrame() {
+        return groceryMenuFrame;
+    }
+
     public WebElement getFAQButton() {
         return FAQButton;
     }
