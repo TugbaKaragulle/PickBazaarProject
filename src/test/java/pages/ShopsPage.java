@@ -7,66 +7,82 @@ import utilities.Driver;
 
 public class ShopsPage {
 
-
     public ShopsPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    @FindBy(xpath = "//a[contains(@href, '/shops/furniture-shop')]")
+    public WebElement furnitureShopLink;
 
-    @FindBy(xpath = "//span[text()='Furniture Shop']")
-    private WebElement furnitureShop;
+    @FindBy(xpath = "//a[contains(@href, '/shops/clothing-shop')]")
+    public WebElement clothingShopLink;
 
-    @FindBy(xpath = "//span[text()='Clothing Shop']")
-    private WebElement clothingShop;
+    @FindBy(xpath = "//a[contains(@href, '/shops/bags-shop')]")
+    public WebElement bagsShopLink;
 
-    @FindBy(xpath = "//span[text()='Bags Shop']")
-    private WebElement bagsShop;
+    @FindBy(xpath = "//a[contains(@href, '/shops/makeup-shop')]")
+    public WebElement makeupShopLink;
 
-    @FindBy(xpath = "//span[text()='Makeup Shop']")
-    private WebElement makeupShop;
+    @FindBy(xpath = "//a[contains(@href, '/shops/bakery-shop')]")
+    public WebElement bakeryShopLink;
 
-    @FindBy(xpath = "//span[text()='Bakery Shop']")
-    private WebElement bakeryShop;
+    @FindBy(xpath = "//a[contains(@href, '/shops/grocery-shop')]")
+    public WebElement groceryShopLink;
 
-    @FindBy(xpath = "//span[text()='Grocery Shop']")
-    private WebElement groceryShop;
-
-    @FindBy(xpath = "//span[text()='Books Shop']")
-    private WebElement booksShop;
+    @FindBy(xpath = "//a[contains(@href, '/shops/books-shop')]")
+    public WebElement booksShopLink;
 
 
-    public WebElement getShopElement(String shopName) {
-        switch (shopName) {
-            case "Furniture Shop":
-                return furnitureShop;
-            case "Clothing Shop":
-                return clothingShop;
-            case "Bags Shop":
-                return bagsShop;
-            case "Makeup Shop":
-                return makeupShop;
-            case "Bakery Shop":
-                return bakeryShop;
-            case "Grocery Shop":
-                return groceryShop;
-            case "Books Shop":
-                return booksShop;
-            default:
-                throw new IllegalArgumentException("Shop with name " + shopName + " not found!");
-        }
+    // Sayfa başlıkları (sayfa yüklendiğinde görünür olması beklenen)
+
+    @FindBy(xpath = "(//h3[contains(text(), 'Furniture Shop')])[2]")
+    public WebElement furnitureShopTitle;
+
+    @FindBy(xpath = "(//h3[contains(text(), 'Clothing Shop')])[2]")
+    public WebElement clothingShopTitle;
+
+    @FindBy(xpath = "(//h3[contains(text(), 'Bags Shop')])[2]")
+    public WebElement bagsShopTitle;
+
+    @FindBy(xpath = "(//h3[contains(text(), 'Makeup Shop')])[2]")
+    public WebElement makeupShopTitle;
+
+    @FindBy(xpath = "(//h3[contains(text(), 'Bakery Shop')])[2]")
+    public WebElement bakeryShopTitle;
+
+    @FindBy(xpath = "(//h3[contains(text(), 'Grocery Shop')])[2]")
+    public WebElement groceryShopTitle;
+
+    @FindBy(xpath = "(//h3[contains(text(), 'Books Shop')])[2]")
+    public WebElement booksShopTitle;
+
+
+    // Tıklama metotları
+    public void clickFurnitureShop() {
+        furnitureShopLink.click();
     }
 
-
-    public boolean isShopVisible(String shopName) {
-        try {
-            return getShopElement(shopName).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+    public void clickClothingShop() {
+        clothingShopLink.click();
     }
 
+    public void clickBagsShop() {
+        bagsShopLink.click();
+    }
 
-    public void clickShopByName(String shopName) {
-        getShopElement(shopName).click();
+    public void clickMakeupShop() {
+        makeupShopLink.click();
+    }
+
+    public void clickBakeryShop() {
+        bakeryShopLink.click();
+    }
+
+    public void clickGroceryShop() {
+        groceryShopLink.click();
+    }
+
+    public void clickBooksShop() {
+        booksShopLink.click();
     }
 }

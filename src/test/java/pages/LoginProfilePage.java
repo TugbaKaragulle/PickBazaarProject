@@ -99,18 +99,9 @@ private WebElement loginButton;
 
 //****************************************** My Reausable Methods ******************************************************
 
-public void loginMethod(String mail, String pass){ //Homepage'de login olmak icin kullanilacak olan method
-
-    getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-    ReusableMethods.clickElement(allPages.pickBazarHomePage().getJoinButton());
-    email.sendKeys(mail);
-    password.sendKeys(pass);
-    ReusableMethods.clickElement(loginButton);
-}
-
 
 public boolean isUrlContainsKeyWord(String keyword, WebElement element){
-    loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+    allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
 
     actions.click(profilSilueti).perform();
     ReusableMethods.waitForClickability(element);
@@ -122,7 +113,7 @@ public boolean isUrlContainsKeyWord(String keyword, WebElement element){
 //***************************************** Test Methods ***********************************************************
 
 public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
-    loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+    allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
     ReusableMethods.clickElement(profilSilueti);
     exceptedText ="0";
     ReusableMethods.waitForVisibility(getDriver(),points,10);
@@ -132,7 +123,7 @@ public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
 
 
     public boolean profileDropDownMenu(String data) {
-        loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+        allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
 
         WebElement element = null;
 
@@ -164,7 +155,7 @@ public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
     }
 
     public boolean verifyLogoutWorks(){ //TODO login methodu Sengul hnm'dan al
-        loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+        allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
         actions.click(profilSilueti).perform();
         ReusableMethods.waitForClickability(logout);
         actions.moveToElement(logout).click().perform();

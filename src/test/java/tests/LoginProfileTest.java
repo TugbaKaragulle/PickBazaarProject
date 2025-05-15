@@ -7,8 +7,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AllPages;
+import utilities.ConfigReader;
 import utilities.Driver;
 
+import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 
 public class LoginProfileTest {
@@ -19,9 +21,11 @@ public class LoginProfileTest {
 
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
+        Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         setupBrowser(context);
-
+        logger.info("Müsteri Points yazan yerde puanini görüntülüyor");
         softAssert.assertTrue(allPages.loginProfilePage().profilePoints());
+        logger.info("Müsteri Points yazan yerde puanini görüntüledi");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -32,6 +36,7 @@ public class LoginProfileTest {
 
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         try {
             setupBrowser(context);
             boolean isVisible = allPages.loginProfilePage().profileDropDownMenu(data);
@@ -40,7 +45,6 @@ public class LoginProfileTest {
         } finally {
             Driver.closeDriver();
         }
-
         softAssert.assertAll();
     }
 
@@ -59,7 +63,10 @@ public class LoginProfileTest {
         setupBrowser(context);
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
+        Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Logout'a tiklaninca join butonunun görünür oldugu dogrulaniyor");
         softAssert.assertTrue(allPages.loginProfilePage().verifyLogoutWorks());
+        logger.info("Logout'a tiklaninca join butonunun görünür oldugu dogrulandi");
         softAssert.assertAll();
         Driver.closeDriver();
     }
