@@ -5,9 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
-import utilities.ReusableMethods;
 
 import java.util.List;
+
+import static utilities.ReusableMethods.clickElement;
+import static utilities.ReusableMethods.isWebElementDisplayed;
+
 
 public class HomePage {
 
@@ -41,6 +44,8 @@ public class HomePage {
     private WebElement h1TagText;    //Groceries Delivered in 90 Minute
     @FindBy(css = "div>p.text-sm.text-heading")
     private WebElement pTagText;    //Get your healthy foods & snacks delivered at your doorsteps all day everyday
+    @FindBy(xpath ="//div[@class='relative flex rounded md:rounded-lg h-14 shadow-900']")
+    private WebElement searhAreaFrame;
     @FindBy(css = "div>input.search")
     private WebElement searchTextInput;
     @FindBy(xpath = "//div/button[text()=\"Search\"]")
@@ -60,11 +65,48 @@ public class HomePage {
         return dropDownMenu;
     }
 
+    public WebElement getSearhAreaFrame() {
+        return searhAreaFrame;
+    }
 
     public boolean isPickBazarLogoDisplayed(WebDriver driver){
-
         return isWebElementDisplayed(pickBazarLogo);
+    }
 
+    public void clickShopsButton(){
+        clickElement(shopsButton);
+    }
+    public void clickFAQButton(){
+        clickElement(FAQButton);
+    }
+    public void clickOffersButton(){
+        clickElement(offersButton);
+    }
+    public void clickContactButton(){
+        clickElement(contactButton);
+    }
+    public void clickJoinButton(){
+        clickElement(joinButton);
+    }
+    public void clickDropDownMenu(){
+        clickElement(dropDownMenu);
+    }
+    public void clickPickBazarLogo(){
+        clickElement(pickBazarLogo);
+    }
+    public void clickSearchButton(){
+        clickElement(searchButton);
+    }
+    public void sendKeysSearchTextArea(String text){
+        searchTextInput.sendKeys(text);
+    }
+
+
+    public boolean isSearchTextInputDisplayed(WebDriver driver){
+        return  isWebElementDisplayed(searchTextInput);
+    }
+    public boolean isSearchButtonDisplayed(WebDriver driver){
+        return isWebElementDisplayed(searchButton);
     }
 
     public boolean isDropDownMenuDisplayed() {
@@ -79,24 +121,56 @@ public class HomePage {
         return shopsButton.isDisplayed();
     }
 
-    public void clickElement(WebElement element) {
-        element.click();
+
+    public WebElement getOffersButton() {
+        return offersButton;
     }
 
-
-    public boolean isWebElementDisplayed(WebElement element) {
-        return ReusableMethods.waitForVisibility(Driver.getDriver(), element, 10).isDisplayed();
+    public WebElement getFAQButton() {
+        return FAQButton;
     }
 
-    public boolean waitForClickability(WebElement element) {
-        try {
-            ReusableMethods.waitForClickability(Driver.getDriver(), element, 10);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public WebElement getContactButton() {
+        return contactButton;
     }
 
+    public WebElement getBecomeASellerButton() {
+        return becomeASellerButton;
+    }
 
+    public WebElement getJoinButton() {
+        return joinButton;
+    }
 
+    public WebElement getH1TagText() {
+        return h1TagText;
+    }
+
+    public WebElement getpTagText() {
+        return pTagText;
+    }
+
+    public WebElement getSearchTextInput() {
+        return searchTextInput;
+    }
+
+    public WebElement getSearchButton() {
+        return searchButton;
+    }
+
+    public WebElement getExpressDeliveryImage() {
+        return expressDeliveryImage;
+    }
+
+    public WebElement getCashOnDeliveryImage() {
+        return cashOnDeliveryImage;
+    }
+
+    public List<WebElement> getDeliveryImagesList() {
+        return deliveryImagesList;
+    }
+
+    public WebElement getShopsButton() {
+        return shopsButton;
+    }
 }

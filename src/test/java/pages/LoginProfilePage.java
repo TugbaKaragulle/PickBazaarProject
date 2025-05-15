@@ -3,7 +3,12 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.ConfigReader;
+import utilities.ReusableMethods;
+
+import java.time.Duration;
 
 import static utilities.Driver.getDriver;
 
@@ -12,6 +17,8 @@ public class LoginProfilePage {
     public LoginProfilePage() {
         PageFactory.initElements(getDriver(), this);
     }
+
+    //***************************************** @FindBy *********************************************************************
 
 @FindBy(xpath = "//button[.='Join']")
     private WebElement joinButton;
@@ -22,40 +29,55 @@ public class LoginProfilePage {
 @FindBy(id = "password")
     private  WebElement password;
 
-@FindBy(xpath = "//button[@class='inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 bg-accent text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 h-11 w-full sm:h-12']")
+@FindBy(xpath = "//button[text()='Login']")
 private WebElement loginButton;
 
 @FindBy (xpath = "//img[@alt='user name']")
     private WebElement profilSilueti;
 
-@FindBy(id = "headlessui-menu-item-31")
+@FindBy(id = "headlessui-menu-item-11")
     private WebElement points;
 
-@FindBy(xpath = "//button[@class='block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-none ltr:text-left rtl:text-right text-accent']")
+@FindBy(xpath = "//button[text()='Profile']")
     private WebElement profile;
 
-@FindBy(xpath = "//button[.='Profile']")
+@FindBy(xpath = "//button[text()='My Orders']")
     private WebElement myOrders;
 
-@FindBy(xpath = "//button[@class='block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-none ltr:text-left rtl:text-right text-accent']")
+@FindBy(xpath = "//button[text()='My Wishlists']")
     private WebElement myWishlist;
 
-@FindBy(xpath = "//button[@class='block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-none ltr:text-left rtl:text-right text-accent']")
+@FindBy(xpath = "//button[text()='Checkout']")
     private WebElement checkout;
 
-@FindBy(xpath = "//button[@class='block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-none ltr:text-left rtl:text-right']")
+@FindBy(xpath = "//button[text()='Logout']")
     private WebElement logout;
 
+//**************************************** Class Level Variables*********************************************+
 
+    String exceptedText;
+    String actualText;
+    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+
+//****************************************** Methods ******************************************************
 
 public void loginMethod(String mail, String pass){
 
-    getDriver().get(ConfigReader.getProperty("Pb_url"));
+    getDriver().get(ConfigReader.getProperty("pickbazar_url"));
     joinButton.click();
     email.sendKeys(mail);
     password.sendKeys(pass);
     loginButton.click();
 
+}
+
+public boolean profilePoints() {
+    loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+    profilSilueti.click();
+    exceptedText ="0";
+    ReusableMethods.waitForVisibility(getDriver(),points,10);
+    actualText= points.getText();
+    return actualText.contains(exceptedText);
 }
 
 
