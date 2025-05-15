@@ -227,7 +227,6 @@ public class HomePage {
 
     }
 
-
 //-------------------------------End of Click Methods--------------------------------------------------------------//
 
 
@@ -261,10 +260,10 @@ public class HomePage {
         searchTextInput.sendKeys(text);
     }
 
-
     public boolean isGrocerySelectedDropDownValue() {
         return dropDownMenu.getText().equals("Grocery");
     }
+
 
 
     //-------------------------------getter Methods--------------------------------------------------------------//
