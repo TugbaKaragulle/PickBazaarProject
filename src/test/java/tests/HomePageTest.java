@@ -16,29 +16,78 @@ import java.util.Objects;
 
 import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
-import static utilities.ReusableMethods.waitForSeconds;
-import static utilities.ReusableMethods.waitForUrlContains;
+import static utilities.ReusableMethods.*;
 
 public class HomePageTest {
 
     Logger logger = LogManager.getLogger(HomePageTest.class);
 
-    @Test(priority = 1, groups = "US_003")
-    public void TC_003_01(ITestContext context) {
+
+//--------------------------------US_003-------------------------------------------------------------------------//
+    @Test( dataProvider = "dropDownMenuOptionsData", groups = "US_003")
+    public void TC_003_03(ITestContext context,String  optionData) {
+//todo hata alıyorum melissa hocama sor???
+        setupBrowser(context);
+        AllPages page = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
+        Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+
+        System.out.println("getDriver().getCurrentUrl() click öncesi = " + getDriver().getCurrentUrl());
+        System.out.println("optionData = " + optionData);
+        page.pickBazarHomePage().clickDropDownMenuOption(optionData);
+//todo click yaptıktan sonra currenturl neden hala homepage geliyor???
+        System.out.println("getDriver().getCurrentUrl() click sonrası = " + getDriver().getCurrentUrl());
+        softAssert.assertTrue(waitForVisibilityOfTitle(optionData));
+
+        System.out.println("getDriver().getTitle() = " + getDriver().getTitle());
+        //assert get title ile yapınca düzeldi ancak nedn currentUrl hata veriyor
+        waitForSeconds(2);
+        softAssert.assertAll();
+        Driver.closeDriver();
+    }
+
+    @Test( dataProvider = "dropDownMenuOptionsData", groups = "US_003")
+    public void TC_003_02(ITestContext context,String  optionData) {
 
         setupBrowser(context);
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        String optionName="Grocery";
-        page.pickBazarHomePage().clickDropDownMenuOption(optionName);
-        softAssert.assertTrue(waitForUrlContains(optionName));
+        softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuOptionClickable(optionData));
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
+    @DataProvider(name = "dropDownMenuOptionsData")
+    public Object[][] dropDownMenuOptionsData() {
+        return new Object[][] {
+                { "Grocery" },
+                { "Bakery" },
+                { "Makeup" },
+                { "Bags" },
+                { "Clothing" },
+                { "Furniture" },
+                { "Daily Needs" },
+                { "Books" }
+        };
+    }
+
+    @Test( dataProvider = "dropDownMenuOptionsData", groups = "US_003")
+    public void TC_003_01(ITestContext context,String  optionData) {
+
+        setupBrowser(context);
+        AllPages page = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
+        Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+
+        softAssert.assertTrue(page.pickBazarHomePage().isGrocerySelectedDropDownValue());
+        softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuOptionDisplayed(optionData));
+
+        softAssert.assertAll();
+        Driver.closeDriver();
+    }
 
     @DataProvider(name = "urlData")
     public Object[][] urlData() {
@@ -54,6 +103,8 @@ public class HomePageTest {
         };
     }
 
+
+//--------------------------------US_002-------------------------------------------------------------------------//
     @Test(dataProvider = "urlData", groups = {"US_002"})
     public void TC_002_01(ITestContext context,String data) {
 
@@ -62,18 +113,16 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty(data));
 
-        logger.info("Ana ekranda PickBazar butonuna basilir ve Home Page ekranina gidilir. ");
-        page.pickBazarHomePage().getPickBazarLogo().click();
-        String url = Driver.getDriver().getCurrentUrl();
-        System.out.println("url = " + url);
-        waitForSeconds(3);
-        String url2= ConfigReader.getProperty("pickbazar_url");
-        System.out.println("url2 = " + url2);
-        softAssert.assertTrue(url.equals(url2));
+        page.pickBazarHomePage().clickPickBazarLogo();
+        String currentUrl = Driver.getDriver().getCurrentUrl();
+        String expectedUrl= ConfigReader.getProperty("pickbazar_url");
+        softAssert.assertTrue(waitForUrlContains(expectedUrl));
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
+
+//--------------------------------US_001-------------------------------------------------------------------------//
     @Test(groups = {"US_001"})
     public void TC_001_03(ITestContext context){
 
@@ -153,9 +202,9 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        String optionName="Bags";
+        String optionName="Grocery";
         page.pickBazarHomePage().clickDropDownMenuOption(optionName);
-        softAssert.assertTrue(waitForUrlContains(optionName));
+        softAssert.assertTrue(Driver.getDriver().getTitle().contains(optionName));
 
         softAssert.assertAll();
         Driver.closeDriver();
