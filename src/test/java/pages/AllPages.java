@@ -7,12 +7,12 @@ public class AllPages {
 
     private ContactListHomePage contactListHomePage;
     private ContactListPage contactListPage;
-    public HomePage homePage;
+    private HomePage pickBazarHomePage;
     private BasketPage basketPage;
     private  MakeUpPage makeUpPage;
     private CheckoutPage checkoutPage;
     private Logger logger;
-    public ShopsPage shopsPage;
+    private ShopsPage shopsPage;
     private OffersPage offersPage;
     private  FaqPage faqPage;
     private ContactPage contactPage;
@@ -53,10 +53,10 @@ public class AllPages {
 
 
     public HomePage pickBazarHomePage(){
-        if(homePage == null){
-            homePage =new HomePage();
+        if(pickBazarHomePage == null){
+            pickBazarHomePage =new HomePage();
         }
-        return homePage;
+        return pickBazarHomePage;
     }
 
     public BasketPage basketPage(){
