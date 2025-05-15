@@ -88,15 +88,15 @@ public class HomePage {
 
 //-------------------------------Display Methods--------------------------------------------------------------//
 
-    public boolean isPickBazarLogoDisplayed(WebDriver driver) {
+    public boolean isPickBazarLogoDisplayed() {
         return isWebElementDisplayed(pickBazarLogo);
     }
 
-    public boolean isSearchTextInputDisplayed(WebDriver driver) {
+    public boolean isSearchTextInputDisplayed() {
         return isWebElementDisplayed(searchTextInput);
     }
 
-    public boolean isSearchButtonDisplayed(WebDriver driver) {
+    public boolean isSearchButtonDisplayed() {
         return isWebElementDisplayed(searchButton);
     }
 
