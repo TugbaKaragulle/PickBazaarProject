@@ -1,14 +1,13 @@
 package pages;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
 
-import java.time.Duration;
+import java.util.*;
 
 import static utilities.Driver.getDriver;
 
@@ -19,9 +18,6 @@ public class LoginProfilePage {
     }
 
     //***************************************** @FindBy *********************************************************************
-
-@FindBy(xpath = "//button[.='Join']")
-    private WebElement joinButton;
 
 @FindBy(id = "email")
     private  WebElement email;
@@ -53,33 +49,128 @@ private WebElement loginButton;
 @FindBy(xpath = "//button[text()='Logout']")
     private WebElement logout;
 
-//**************************************** Class Level Variables*********************************************+
+//******************************************Getter Methods********************************************************+
+
+    public WebElement getEmail() {
+        return email;
+    }
+
+    public WebElement getPassword() {
+        return password;
+    }
+
+    public WebElement getLoginButton() {
+        return loginButton;
+    }
+
+    public WebElement getProfilSilueti() {
+        return profilSilueti;
+    }
+
+    public WebElement getPoints() {
+        return points;
+    }
+
+    public WebElement getProfile() {
+        return profile;
+    }
+
+    public WebElement getMyOrders() {
+        return myOrders;
+    }
+
+    public WebElement getMyWishlist() {
+        return myWishlist;
+    }
+
+    public WebElement getCheckout() {
+        return checkout;
+    }
+
+    public WebElement getLogout() {
+        return logout;
+    }
+
+//**************************************** Class Level Variables And Objects *****************************************
 
     String exceptedText;
     String actualText;
-    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+    AllPages allPages = new AllPages();
+    Actions actions = new Actions(getDriver());
 
-//****************************************** Methods ******************************************************
+//****************************************** My Reausable Methods ******************************************************
 
-public void loginMethod(String mail, String pass){
+public void loginMethod(String mail, String pass){ //Homepage'de login olmak icin kullanilacak olan method
 
     getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-    joinButton.click();
+    ReusableMethods.clickElement(allPages.pickBazarHomePage().getJoinButton());
     email.sendKeys(mail);
     password.sendKeys(pass);
-    loginButton.click();
-
+    ReusableMethods.clickElement(loginButton);
 }
 
-public boolean profilePoints() {
+
+public boolean isUrlContainsKeyWord(String keyword, WebElement element){
     loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-    profilSilueti.click();
+
+    actions.click(profilSilueti).perform();
+    ReusableMethods.waitForClickability(element);
+    actions.moveToElement(element).click().perform();
+    String actualUrl = getDriver().getCurrentUrl();
+    return actualUrl.contains(keyword);
+}
+
+
+
+//***************************************** Test Methods ***********************************************************
+
+public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
+    loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+    ReusableMethods.clickElement(profilSilueti);
     exceptedText ="0";
     ReusableMethods.waitForVisibility(getDriver(),points,10);
     actualText= points.getText();
     return actualText.contains(exceptedText);
 }
 
+
+    public boolean profileDropDownMenu(String data) {
+        loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+
+        WebElement element = null;
+
+        switch (data) {
+            case "profile":
+                element = profile;
+                break;
+            case "orders":
+                element = myOrders;
+                break;
+            case "wishlists":
+                element = myWishlist;
+                break;
+            case "checkout":
+                element = checkout;
+                break;
+            default:
+                throw new IllegalArgumentException("Geçersiz data : " + data);
+        }
+
+        actions.click(profilSilueti).perform(); //siluete tiklar, menuye girmk icin
+        ReusableMethods.waitForClickability(element);
+        actions.moveToElement(element).click().perform();
+
+        String currentUrl = getDriver().getCurrentUrl();
+        return currentUrl.contains(data);
+    }
+
+    public boolean verifyLogoutWorks(){ //TODO login methodu Sengul hnm'dan al
+        loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+        actions.click(profilSilueti).perform();
+        ReusableMethods.waitForClickability(logout);
+        actions.moveToElement(logout).click().perform();
+        return ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getJoinButton());
+    }
 
 
 }
