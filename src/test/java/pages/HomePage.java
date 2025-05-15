@@ -9,14 +9,17 @@ import utilities.ReusableMethods;
 
 import java.util.List;
 
-import static utilities.JavascriptUtils.clickElementByJS;
+import static utilities.Driver.getDriver;
+import static utilities.JavascriptUtils.*;
 import static utilities.ReusableMethods.*;
 
 
 public class HomePage {
 
 
-    public HomePage() {      PageFactory.initElements(Driver.getDriver(), this);  }
+    public HomePage() {
+        PageFactory.initElements(Driver.getDriver(), this);
+    }
 
 
 //-------------------------------HomePage Locates--------------------------------------------------------------//
@@ -26,21 +29,21 @@ public class HomePage {
     private WebElement pickBazarLogo;
     @FindBy(id = "headlessui-menu-button-1")
     private WebElement dropDownMenu;
-    @FindBy(css="div>a[href='/grocery']")
+    @FindBy(css = "div>a[href='/grocery']")
     private WebElement groceryOptionInDropDownMenu;
-    @FindBy(css="div>a[href='/bakery']")
+    @FindBy(css = "div>a[href='/bakery']")
     private WebElement bakeryOptionInDropDownMenu;
-    @FindBy(css="div>a[href='/makeup']")
+    @FindBy(css = "div>a[href='/makeup']")
     private WebElement makeupOptionInDropDownMenu;
-    @FindBy(css="div>a[href='/bags']")
+    @FindBy(css = "div>a[href='/bags']")
     private WebElement bagsOptionInDropDownMenu;
-    @FindBy(css="div>a[href='/clothing']")
+    @FindBy(css = "div>a[href='/clothing']")
     private WebElement clothingOptionInDropDownMenu;
-    @FindBy(css="div>a[href='/furniture']")
+    @FindBy(css = "div>a[href='/furniture']")
     private WebElement furnitureOptionInDropDownMenu;
-    @FindBy(css="div>a[href='/daily-needs']")
+    @FindBy(css = "div>a[href='/daily-needs']")
     private WebElement dailyNeedsOptionInDropDownMenu;
-    @FindBy(css="div>a[href='/books']")
+    @FindBy(css = "div>a[href='/books']")
     private WebElement booksOptionInDropDownMenu;
 
     //------------top right side of homepage------------
@@ -58,13 +61,12 @@ public class HomePage {
     private WebElement joinButton;
 
 
-
     //------------middle of homepage------------
     @FindBy(css = "div>h1.text-2xl.font-bold.tracking-tight.text-heading")
     private WebElement h1TagText;    //Groceries Delivered in 90 Minute
     @FindBy(css = "div>p.text-sm.text-heading")
     private WebElement pTagText;    //Get your healthy foods & snacks delivered at your doorsteps all day everyday
-    @FindBy(xpath ="//div[@class='relative flex rounded md:rounded-lg h-14 shadow-900']")
+    @FindBy(xpath = "//div[@class='relative flex rounded md:rounded-lg h-14 shadow-900']")
     private WebElement searhAreaFrame;
     @FindBy(css = "div>input.search")
     private WebElement searchTextInput;
@@ -74,24 +76,27 @@ public class HomePage {
     private WebElement expressDeliveryImage;
     @FindBy(css = "div.swiper-slide.swiper-slide-next>span>img")
     private WebElement cashOnDeliveryImage;
+    @FindBy(xpath = "//img[@alt='904']")
+    private WebElement giftVoucherImage;
     @FindBy(css = "div.swiper-wrapper>div>span>img")
     private List<WebElement> deliveryImagesList;
-
-
-
+    @FindBy(css = "div>div.grid")
+    private WebElement groceryProductFrame;
+    @FindBy(css = "div>div.px-5>ul")
+    private WebElement groceryMenuFrame;
 
 
 //-------------------------------Display Methods--------------------------------------------------------------//
 
-    public boolean isPickBazarLogoDisplayed(WebDriver driver){
+    public boolean isPickBazarLogoDisplayed(WebDriver driver) {
         return isWebElementDisplayed(pickBazarLogo);
     }
 
-    public boolean isSearchTextInputDisplayed(WebDriver driver){
-        return  isWebElementDisplayed(searchTextInput);
+    public boolean isSearchTextInputDisplayed(WebDriver driver) {
+        return isWebElementDisplayed(searchTextInput);
     }
 
-    public boolean isSearchButtonDisplayed(WebDriver driver){
+    public boolean isSearchButtonDisplayed(WebDriver driver) {
         return isWebElementDisplayed(searchButton);
     }
 
@@ -127,46 +132,55 @@ public class HomePage {
         return cashOnDeliveryImage.isDisplayed();
     }
 
+    public boolean isGiftVoucherImageDeliveryImageDisplayed() {
+        return giftVoucherImage.isDisplayed();
+    }
+
+    public boolean isGroceryProductFrameDisplayed() {
+        scrollIntoViewJS(groceryProductFrame);
+        return groceryProductFrame.isDisplayed();
+    }
+
+    public boolean isGroceryMenuFrameDisplayed() {
+        scrollIntoViewJS(groceryMenuFrame);
+        return groceryMenuFrame.isDisplayed();
+    }
 
 
 //-------------------------------End of Display Methods--------------------------------------------------------------//
 
 
-
-
-
-
 //-------------------------------click Methods--------------------------------------------------------------//
 
-    public void clickShopsButton(){
+    public void clickShopsButton() {
         clickElement(shopsButton);
     }
 
-    public void clickFAQButton(){
+    public void clickFAQButton() {
         clickElement(FAQButton);
     }
 
-    public void clickOffersButton(){
+    public void clickOffersButton() {
         clickElement(offersButton);
     }
 
-    public void clickContactButton(){
+    public void clickContactButton() {
         clickElement(contactButton);
     }
 
-    public void clickJoinButton(){
+    public void clickJoinButton() {
         clickElement(joinButton);
     }
 
-    public void clickDropDownMenu(){
+    public void clickDropDownMenu() {
         clickElement(dropDownMenu);
     }
 
-    public void clickPickBazarLogo(){
+    public void clickPickBazarLogo() {
         clickElement(pickBazarLogo);
     }
 
-    public void clickSearchButton(){
+    public void clickSearchButton() {
         clickElement(searchButton);
     }
 
@@ -180,33 +194,31 @@ public class HomePage {
         clickDropDownMenu();
 
         //ikinci adımda string değerine göre clickElement methodu çağırılır
-        switch (optionName){
+        switch (optionName) {
             case "Grocery" -> clickElement(groceryOptionInDropDownMenu);
-            case "Bakery"  -> clickElement(bakeryOptionInDropDownMenu);
-            case "Makeup"  -> clickElement(makeupOptionInDropDownMenu);
-            case "Bags"  -> clickElement(bagsOptionInDropDownMenu);
-            case "Clothing"  -> clickElement(clothingOptionInDropDownMenu);
-            case "Furniture"  -> clickElement(furnitureOptionInDropDownMenu);
-            case "Daily Needs"  -> clickElement(dailyNeedsOptionInDropDownMenu);
-            case "Books"  -> clickElement(booksOptionInDropDownMenu);
+            case "Bakery" -> clickElement(bakeryOptionInDropDownMenu);
+            case "Makeup" -> clickElement(makeupOptionInDropDownMenu);
+            case "Bags" -> clickElement(bagsOptionInDropDownMenu);
+            case "Clothing" -> clickElement(clothingOptionInDropDownMenu);
+            case "Furniture" -> clickElement(furnitureOptionInDropDownMenu);
+            case "Daily Needs" -> clickElement(dailyNeedsOptionInDropDownMenu);
+            case "Books" -> clickElement(booksOptionInDropDownMenu);
             default -> clickElement(pickBazarLogo);
         }
-        waitForSeconds(2);
     }
+
+
 //-------------------------------End of Click Methods--------------------------------------------------------------//
 
 
-
-    public void sendKeysSearchTextArea(String text){
+    public void sendKeysSearchTextArea(String text) {
         searchTextInput.sendKeys(text);
     }
-
 
 
     public boolean isGrocerySelectedDropDownValue() {
         return dropDownMenu.getText().equals("Grocery");
     }
-
 
 
     //-------------------------------getter Methods--------------------------------------------------------------//
@@ -221,6 +233,7 @@ public class HomePage {
     public WebElement getSearhAreaFrame() {
         return searhAreaFrame;
     }
+
     public WebElement getOffersButton() {
         return offersButton;
     }
@@ -272,5 +285,6 @@ public class HomePage {
     public WebElement getShopsButton() {
         return shopsButton;
     }
+
 
 }

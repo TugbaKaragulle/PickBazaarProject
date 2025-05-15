@@ -80,7 +80,6 @@ public class ReusableMethods {
         }
     }
 
-
 //---------------------------------------------------------------------------------------
     //BU method waitForElementToBeClickable methodunu çağırırken sadece element parametresiyle çağırma amaçlı eklendi
     public static boolean waitForClickability(WebElement element) {
@@ -93,4 +92,14 @@ public class ReusableMethods {
     }
 
 //---------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 }
