@@ -1,2 +1,4 @@
-2025-05-15 02:45:44 [main] INFO  tests.HomePageTest - http://shop.clarusway.net/   sayfası açıldı
-2025-05-15 02:45:46 [main] INFO  tests.HomePageTest - https://shop.clarusway.net/bakery clickDropDownMenuOption methodu ile sayfaya click yapıldı 
+2025-05-15 13:34:10 [main] INFO  tests.LoginProfileTest - profile görünür mü?: true
+2025-05-15 13:34:18 [main] INFO  tests.LoginProfileTest - orders görünür mü?: true
+2025-05-15 13:34:25 [main] INFO  tests.LoginProfileTest - wishlists görünür mü?: true
+2025-05-15 13:34:33 [main] INFO  tests.LoginProfileTest - checkout görünür mü?: true

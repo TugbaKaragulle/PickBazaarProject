@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
 
@@ -149,13 +150,15 @@ public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
                 element = checkout;
                 break;
             default:
-                throw new IllegalArgumentException("Geçersiz data : " + data);
+                Assert.fail("Geçersiz data : " + data);
         }
 
         actions.click(profilSilueti).perform(); //siluete tiklar, menuye girmk icin
         ReusableMethods.waitForClickability(element);
-        actions.moveToElement(element).click().perform();
+        actions.moveToElement(element).perform();
+        element.click();
 
+        ReusableMethods.waitForUrlContains(data);
         String currentUrl = getDriver().getCurrentUrl();
         return currentUrl.contains(data);
     }
