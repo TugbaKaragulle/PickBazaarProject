@@ -88,15 +88,15 @@ public class HomePage {
 
 //-------------------------------Display Methods--------------------------------------------------------------//
 
-    public boolean isPickBazarLogoDisplayed(WebDriver driver) {
+    public boolean isPickBazarLogoDisplayed() {
         return isWebElementDisplayed(pickBazarLogo);
     }
 
-    public boolean isSearchTextInputDisplayed(WebDriver driver) {
+    public boolean isSearchTextInputDisplayed() {
         return isWebElementDisplayed(searchTextInput);
     }
 
-    public boolean isSearchButtonDisplayed(WebDriver driver) {
+    public boolean isSearchButtonDisplayed() {
         return isWebElementDisplayed(searchButton);
     }
 
@@ -236,6 +236,50 @@ public class HomePage {
 
     public WebElement getOffersButton() {
         return offersButton;
+    }
+
+    public WebElement getGroceryOptionInDropDownMenu() {
+        return groceryOptionInDropDownMenu;
+    }
+
+    public WebElement getBakeryOptionInDropDownMenu() {
+        return bakeryOptionInDropDownMenu;
+    }
+
+    public WebElement getMakeupOptionInDropDownMenu() {
+        return makeupOptionInDropDownMenu;
+    }
+
+    public WebElement getBagsOptionInDropDownMenu() {
+        return bagsOptionInDropDownMenu;
+    }
+
+    public WebElement getClothingOptionInDropDownMenu() {
+        return clothingOptionInDropDownMenu;
+    }
+
+    public WebElement getFurnitureOptionInDropDownMenu() {
+        return furnitureOptionInDropDownMenu;
+    }
+
+    public WebElement getDailyNeedsOptionInDropDownMenu() {
+        return dailyNeedsOptionInDropDownMenu;
+    }
+
+    public WebElement getBooksOptionInDropDownMenu() {
+        return booksOptionInDropDownMenu;
+    }
+
+    public WebElement getGiftVoucherImage() {
+        return giftVoucherImage;
+    }
+
+    public WebElement getGroceryProductFrame() {
+        return groceryProductFrame;
+    }
+
+    public WebElement getGroceryMenuFrame() {
+        return groceryMenuFrame;
     }
 
     public WebElement getFAQButton() {
