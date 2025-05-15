@@ -10,6 +10,7 @@ import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 
 public class HomePageTest {
@@ -66,5 +67,28 @@ public class HomePageTest {
         logger.info("Ana ekranda PickBazar butonuna basilir ve Home Page ekranina gidilir. ");
         page.pickBazarHomePage().getPickBazarLogo().click();
 
+
+        // Tüm soft assertion'ları kontrol eder
+        softAssert.assertAll();
+
+
+        Driver.closeDriver();
+    }
+    @Test(priority = 1, groups = "smoke")
+    public void TC_001_DropdownMenuOptionClick(ITestContext context) {
+
+        setupBrowser(context);
+
+        AllPages page = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
+        Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+
+        String optionName="Grocery";
+        page.pickBazarHomePage().clickDropDownMenuOption(optionName);
+        softAssert.assertTrue(Driver.getDriver().getTitle().contains(optionName));
+
+
+        softAssert.assertAll();
+        Driver.closeDriver();
     }
 }

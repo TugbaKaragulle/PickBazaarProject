@@ -5,11 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
+import utilities.ReusableMethods;
 
 import java.util.List;
 
-import static utilities.ReusableMethods.clickElement;
-import static utilities.ReusableMethods.isWebElementDisplayed;
+import static utilities.JavascriptUtils.clickElementByJS;
+import static utilities.ReusableMethods.*;
 
 
 public class HomePage {
@@ -22,6 +23,22 @@ public class HomePage {
     private WebElement pickBazarLogo;
     @FindBy(id = "headlessui-menu-button-1")
     private WebElement dropDownMenu;
+    @FindBy(css="div>a[href='/grocery']")
+    private WebElement groceryOptionInDropDownMenu;
+    @FindBy(css="div>a[href='/bakery']")
+    private WebElement bakeryOptionInDropDownMenu;
+    @FindBy(css="div>a[href='/makeup']")
+    private WebElement makeupOptionInDropDownMenu;
+    @FindBy(css="div>a[href='/bags']")
+    private WebElement bagsOptionInDropDownMenu;
+    @FindBy(css="div>a[href='/clothing']")
+    private WebElement clothingOptionInDropDownMenu;
+    @FindBy(css="div>a[href='/furniture']")
+    private WebElement furnitureOptionInDropDownMenu;
+    @FindBy(css="div>a[href='/daily-needs']")
+    private WebElement dailyNeedsOptionInDropDownMenu;
+    @FindBy(css="div>a[href='/books']")
+    private WebElement booksOptionInDropDownMenu;
 
     //------------top right side of homepage------------
     @FindBy(css = "div>ul>li>a[href='/shops']")
@@ -72,7 +89,26 @@ public class HomePage {
     public boolean isPickBazarLogoDisplayed(WebDriver driver){
         return isWebElementDisplayed(pickBazarLogo);
     }
+    public void clickDropDownMenuOption(String optionName) {
 
+        //ilk adımda dropdownmenu açılır
+        clickDropDownMenu();
+
+        //ikinci adımda string değerine göre clickElement methodu çağırılır
+        switch (optionName){
+            case "Grocery" -> clickElement(groceryOptionInDropDownMenu);
+            case "Bakery"  -> clickElement(bakeryOptionInDropDownMenu);
+            case "Makeup"  -> clickElement(makeupOptionInDropDownMenu);
+            case "Bags"  -> clickElement(bagsOptionInDropDownMenu);
+            case "Clothing"  -> clickElement(clothingOptionInDropDownMenu);
+            case "Furniture"  -> clickElement(furnitureOptionInDropDownMenu);
+            case "Daily Needs"  -> clickElement(dailyNeedsOptionInDropDownMenu);
+            case "Books"  -> clickElement(booksOptionInDropDownMenu);
+            default -> clickElement(pickBazarLogo);
+        }
+
+        waitForSeconds(2);
+    }
     public void clickShopsButton(){
         clickElement(shopsButton);
     }
@@ -94,17 +130,19 @@ public class HomePage {
     public void clickPickBazarLogo(){
         clickElement(pickBazarLogo);
     }
+
     public void clickSearchButton(){
         clickElement(searchButton);
     }
+
     public void sendKeysSearchTextArea(String text){
         searchTextInput.sendKeys(text);
     }
 
-
     public boolean isSearchTextInputDisplayed(WebDriver driver){
         return  isWebElementDisplayed(searchTextInput);
     }
+
     public boolean isSearchButtonDisplayed(WebDriver driver){
         return isWebElementDisplayed(searchButton);
     }
@@ -120,7 +158,6 @@ public class HomePage {
     public boolean isShopsButtonDisplayed() {
         return shopsButton.isDisplayed();
     }
-
 
     public WebElement getOffersButton() {
         return offersButton;
