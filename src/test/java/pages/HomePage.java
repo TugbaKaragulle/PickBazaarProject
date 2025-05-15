@@ -1,15 +1,12 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
-import utilities.ReusableMethods;
 
 import java.util.List;
 
-import static utilities.Driver.getDriver;
 import static utilities.JavascriptUtils.*;
 import static utilities.ReusableMethods.*;
 
@@ -145,13 +142,34 @@ public class HomePage {
         scrollIntoViewJS(groceryMenuFrame);
         return groceryMenuFrame.isDisplayed();
     }
+    /**
+     * Dropdown Menuden String parametresi göndererek ilgili Option seçeneklerine tıklar
+     *
+     * @param optionName
+     */
+    public boolean isDropDownMenuOptionDisplayed(String optionName) {
 
+        //ilk adımda dropdownmenu açılır
+        clickDropDownMenu();
+
+        //ikinci adımda string değerine göre methodu çağırılır
+        return switch (optionName) {
+            case "Grocery" -> isWebElementDisplayed(groceryOptionInDropDownMenu);
+            case "Bakery" -> isWebElementDisplayed(bakeryOptionInDropDownMenu);
+            case "Makeup" -> isWebElementDisplayed(makeupOptionInDropDownMenu);
+            case "Bags" -> isWebElementDisplayed(bagsOptionInDropDownMenu);
+            case "Clothing" -> isWebElementDisplayed(clothingOptionInDropDownMenu);
+            case "Furniture" -> isWebElementDisplayed(furnitureOptionInDropDownMenu);
+            case "Daily Needs" -> isWebElementDisplayed(dailyNeedsOptionInDropDownMenu);
+            case "Books" -> isWebElementDisplayed(booksOptionInDropDownMenu);
+            default -> isWebElementDisplayed(pickBazarLogo);
+        };
+    }
 
 //-------------------------------End of Display Methods--------------------------------------------------------------//
 
 
 //-------------------------------click Methods--------------------------------------------------------------//
-
     public void clickShopsButton() {
         clickElement(shopsButton);
     }
@@ -186,6 +204,7 @@ public class HomePage {
 
     /**
      * Dropdown Menuden String parametresi göndererek ilgili Option seçeneklerine tıklar
+     *
      * @param optionName
      */
     public void clickDropDownMenuOption(String optionName) {
@@ -205,11 +224,38 @@ public class HomePage {
             case "Books" -> clickElement(booksOptionInDropDownMenu);
             default -> clickElement(pickBazarLogo);
         }
+
     }
 
 
 //-------------------------------End of Click Methods--------------------------------------------------------------//
 
+
+
+    /**
+     * Dropdown Menuden String parametresi göndererek ilgili Option seçeneklerinin tıklanabilirliğini test eder.
+     *
+     * @param optionName
+     * @return
+     */
+    public boolean isDropDownMenuOptionClickable(String optionName) {
+
+        //ilk adımda dropdownmenu açılır
+        clickDropDownMenu();
+
+        //ikinci adımda string değerine göre clickElement methodu çağırılır
+        return switch (optionName) {
+            case "Grocery" -> waitForClickability(groceryOptionInDropDownMenu);
+            case "Bakery" -> waitForClickability(bakeryOptionInDropDownMenu);
+            case "Makeup" -> waitForClickability(makeupOptionInDropDownMenu);
+            case "Bags" -> waitForClickability(bagsOptionInDropDownMenu);
+            case "Clothing" -> waitForClickability(clothingOptionInDropDownMenu);
+            case "Furniture" -> waitForClickability(furnitureOptionInDropDownMenu);
+            case "Daily Needs" -> waitForClickability(dailyNeedsOptionInDropDownMenu);
+            case "Books" -> waitForClickability(booksOptionInDropDownMenu);
+            default -> waitForClickability(pickBazarLogo);
+        };
+    }
 
     public void sendKeysSearchTextArea(String text) {
         searchTextInput.sendKeys(text);

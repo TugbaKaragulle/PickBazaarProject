@@ -84,7 +84,7 @@ public class ReusableMethods {
     }
 
 
-    //---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
     //BU method waitForElementToBeClickable methodunu çağırırken sadece element parametresiyle çağırma amaçlı eklendi
     public static boolean waitForClickability(WebElement element) {
         try {
@@ -96,13 +96,18 @@ public class ReusableMethods {
     }
 
 //---------------------------------------------------------------------------------------
+public static boolean waitForUrlContains(String data) {
+    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+    try {
+        return wait.until(ExpectedConditions.urlContains(data));
+    } catch (TimeoutException e) {
+        return false;
+    }
+}
 
-    public static boolean waitForUrlContains(String data) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
-        try {
-            return wait.until(ExpectedConditions.urlContains(data));
-        } catch (TimeoutException e) {
-            return false;
-        }
+//---------------------------------------------------------------------------------------
+    public static boolean waitForVisibilityOfTitle(String string){
+        WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.titleContains(string));
     }
 }
