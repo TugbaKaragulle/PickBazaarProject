@@ -26,6 +26,7 @@ public class AllPages {
     private GroceryPage groceryPage;
     private LoginProfilePage loginProfilePage;
     private BooksPage booksPage;
+    private LoginPage loginPage;
 
 
     //-------------------------------------------------
@@ -177,6 +178,14 @@ public class AllPages {
             booksPage =new BooksPage();
         }
         return booksPage;
+    }
+
+    public LoginPage loginPage(){
+        if (loginPage == null){
+            loginPage =new LoginPage();
+        }
+        return loginPage;
+
     }
 
 }
