@@ -97,50 +97,6 @@ public class ReusableMethods {
 
 //---------------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static boolean waitForUrlContains(String data) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         try {
