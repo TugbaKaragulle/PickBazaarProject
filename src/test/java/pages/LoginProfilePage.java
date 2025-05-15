@@ -7,8 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
 
-import java.util.*;
-
 import static utilities.Driver.getDriver;
 
 public class LoginProfilePage {
@@ -119,8 +117,6 @@ public boolean isUrlContainsKeyWord(String keyword, WebElement element){
     String actualUrl = getDriver().getCurrentUrl();
     return actualUrl.contains(keyword);
 }
-
-
 
 //***************************************** Test Methods ***********************************************************
 
