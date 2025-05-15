@@ -18,6 +18,9 @@ public class HomePage {
 
     public HomePage() {      PageFactory.initElements(Driver.getDriver(), this);  }
 
+
+//-------------------------------HomePage Locates--------------------------------------------------------------//
+
     //------------top left side of homepage------------
     @FindBy(css = "a.inline-flex.mx-auto.lg\\:mx-0")
     private WebElement pickBazarLogo;
@@ -74,21 +77,103 @@ public class HomePage {
     @FindBy(css = "div.swiper-wrapper>div>span>img")
     private List<WebElement> deliveryImagesList;
 
-    public WebElement getPickBazarLogo() {
-        return pickBazarLogo;
-    }
 
-    public WebElement getDropDownMenu() {
-        return dropDownMenu;
-    }
 
-    public WebElement getSearhAreaFrame() {
-        return searhAreaFrame;
-    }
+
+
+//-------------------------------Display Methods--------------------------------------------------------------//
 
     public boolean isPickBazarLogoDisplayed(WebDriver driver){
         return isWebElementDisplayed(pickBazarLogo);
     }
+
+    public boolean isSearchTextInputDisplayed(WebDriver driver){
+        return  isWebElementDisplayed(searchTextInput);
+    }
+
+    public boolean isSearchButtonDisplayed(WebDriver driver){
+        return isWebElementDisplayed(searchButton);
+    }
+
+    public boolean isDropDownMenuDisplayed() {
+        return isWebElementDisplayed(dropDownMenu);
+    }
+
+    public boolean isShopsButtonDisplayed() {
+        return shopsButton.isDisplayed();
+    }
+
+    public boolean isOffersButtonDisplayed() {
+        return offersButton.isDisplayed();
+    }
+
+    public boolean isFAQButtonDisplayed() {
+        return FAQButton.isDisplayed();
+    }
+
+    public boolean isBecomeASellerButtonDisplayed() {
+        return becomeASellerButton.isDisplayed();
+    }
+
+    public boolean isJoinButtonDisplayed() {
+        return joinButton.isDisplayed();
+    }
+
+    public boolean isExpressDeliveryImageDisplayed() {
+        return expressDeliveryImage.isDisplayed();
+    }
+
+    public boolean isCashOnDeliveryImageDeliveryImageDisplayed() {
+        return cashOnDeliveryImage.isDisplayed();
+    }
+
+
+
+//-------------------------------End of Display Methods--------------------------------------------------------------//
+
+
+
+
+
+
+//-------------------------------click Methods--------------------------------------------------------------//
+
+    public void clickShopsButton(){
+        clickElement(shopsButton);
+    }
+
+    public void clickFAQButton(){
+        clickElement(FAQButton);
+    }
+
+    public void clickOffersButton(){
+        clickElement(offersButton);
+    }
+
+    public void clickContactButton(){
+        clickElement(contactButton);
+    }
+
+    public void clickJoinButton(){
+        clickElement(joinButton);
+    }
+
+    public void clickDropDownMenu(){
+        clickElement(dropDownMenu);
+    }
+
+    public void clickPickBazarLogo(){
+        clickElement(pickBazarLogo);
+    }
+
+    public void clickSearchButton(){
+        clickElement(searchButton);
+    }
+
+    /**
+     * Dropdown Menuden String parametresi göndererek ilgili Option seçeneklerine tıklar
+     * @param optionName
+     */
     public void clickDropDownMenuOption(String optionName) {
 
         //ilk adımda dropdownmenu açılır
@@ -106,59 +191,36 @@ public class HomePage {
             case "Books"  -> clickElement(booksOptionInDropDownMenu);
             default -> clickElement(pickBazarLogo);
         }
-
         waitForSeconds(2);
     }
-    public void clickShopsButton(){
-        clickElement(shopsButton);
-    }
-    public void clickFAQButton(){
-        clickElement(FAQButton);
-    }
-    public void clickOffersButton(){
-        clickElement(offersButton);
-    }
-    public void clickContactButton(){
-        clickElement(contactButton);
-    }
-    public void clickJoinButton(){
-        clickElement(joinButton);
-    }
-    public void clickDropDownMenu(){
-        clickElement(dropDownMenu);
-    }
-    public void clickPickBazarLogo(){
-        clickElement(pickBazarLogo);
-    }
+//-------------------------------End of Click Methods--------------------------------------------------------------//
 
-    public void clickSearchButton(){
-        clickElement(searchButton);
-    }
+
 
     public void sendKeysSearchTextArea(String text){
         searchTextInput.sendKeys(text);
     }
 
-    public boolean isSearchTextInputDisplayed(WebDriver driver){
-        return  isWebElementDisplayed(searchTextInput);
-    }
 
-    public boolean isSearchButtonDisplayed(WebDriver driver){
-        return isWebElementDisplayed(searchButton);
-    }
-
-    public boolean isDropDownMenuDisplayed() {
-        return isWebElementDisplayed(dropDownMenu);
-    }
 
     public boolean isGrocerySelectedDropDownValue() {
         return dropDownMenu.getText().equals("Grocery");
     }
 
-    public boolean isShopsButtonDisplayed() {
-        return shopsButton.isDisplayed();
+
+
+    //-------------------------------getter Methods--------------------------------------------------------------//
+    public WebElement getPickBazarLogo() {
+        return pickBazarLogo;
     }
 
+    public WebElement getDropDownMenu() {
+        return dropDownMenu;
+    }
+
+    public WebElement getSearhAreaFrame() {
+        return searhAreaFrame;
+    }
     public WebElement getOffersButton() {
         return offersButton;
     }
@@ -210,4 +272,5 @@ public class HomePage {
     public WebElement getShopsButton() {
         return shopsButton;
     }
+
 }
