@@ -1,5 +1,10 @@
 package tests;
 
+
+
+public class ShopsPageTest {
+
+
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -53,4 +58,5 @@ public class ShopsPageTest {
 
         Driver.closeDriver();
     }
+
 }
