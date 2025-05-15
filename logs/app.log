@@ -1,4 +1,0 @@
-2025-05-15 14:11:24 [main] INFO  tests.LoginProfileTest - profile görünür mü?: true
-2025-05-15 14:11:32 [main] INFO  tests.LoginProfileTest - orders görünür mü?: true
-2025-05-15 14:11:39 [main] INFO  tests.LoginProfileTest - wishlists görünür mü?: true
-2025-05-15 14:11:47 [main] INFO  tests.LoginProfileTest - checkout görünür mü?: true
