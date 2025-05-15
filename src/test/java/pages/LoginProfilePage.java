@@ -4,10 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
-
-import java.util.*;
 
 import static utilities.Driver.getDriver;
 
@@ -100,18 +99,9 @@ private WebElement loginButton;
 
 //****************************************** My Reausable Methods ******************************************************
 
-public void loginMethod(String mail, String pass){ //Homepage'de login olmak icin kullanilacak olan method
-
-    getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-    ReusableMethods.clickElement(allPages.pickBazarHomePage().getJoinButton());
-    email.sendKeys(mail);
-    password.sendKeys(pass);
-    ReusableMethods.clickElement(loginButton);
-}
-
 
 public boolean isUrlContainsKeyWord(String keyword, WebElement element){
-    loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+    allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
 
     actions.click(profilSilueti).perform();
     ReusableMethods.waitForClickability(element);
@@ -120,12 +110,10 @@ public boolean isUrlContainsKeyWord(String keyword, WebElement element){
     return actualUrl.contains(keyword);
 }
 
-
-
 //***************************************** Test Methods ***********************************************************
 
 public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
-    loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+    allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
     ReusableMethods.clickElement(profilSilueti);
     exceptedText ="0";
     ReusableMethods.waitForVisibility(getDriver(),points,10);
@@ -135,7 +123,7 @@ public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
 
 
     public boolean profileDropDownMenu(String data) {
-        loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+        allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
 
         WebElement element = null;
 
@@ -153,19 +141,21 @@ public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
                 element = checkout;
                 break;
             default:
-                throw new IllegalArgumentException("Geçersiz data : " + data);
+                Assert.fail("Geçersiz data : " + data);
         }
 
         actions.click(profilSilueti).perform(); //siluete tiklar, menuye girmk icin
         ReusableMethods.waitForClickability(element);
-        actions.moveToElement(element).click().perform();
+        actions.moveToElement(element).perform();
+        element.click();
 
+        ReusableMethods.waitForUrlContains(data);
         String currentUrl = getDriver().getCurrentUrl();
         return currentUrl.contains(data);
     }
 
     public boolean verifyLogoutWorks(){ //TODO login methodu Sengul hnm'dan al
-        loginMethod(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+        allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
         actions.click(profilSilueti).perform();
         ReusableMethods.waitForClickability(logout);
         actions.moveToElement(logout).click().perform();
