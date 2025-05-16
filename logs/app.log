@@ -1,1 +1,6 @@
-2025-05-15 17:13:02 [main] INFO  tests.HomePageTest - Ana ekranda PickBazar butonuna basilir ve Home Page ekranina gidilir. 
+2025-05-16 01:12:09 [main] INFO  tests.GroceryTest - The grocery button is clickable on homepage
+2025-05-16 01:12:09 [main] INFO  tests.GroceryTest - The grocery url contains the word 'grocery'
+2025-05-16 01:12:09 [main] INFO  tests.GroceryTest - The text 'Groceries Delivered in 90 Minute' is visible
+2025-05-16 01:12:09 [main] INFO  tests.GroceryTest - The text 'Get your healthy foods & snacks delivered at your doorsteps all day everyday' is visible
+2025-05-16 01:12:09 [main] INFO  tests.GroceryTest - The search frame is displayed
+2025-05-16 01:12:09 [main] INFO  tests.GroceryTest - The search button is displayed
