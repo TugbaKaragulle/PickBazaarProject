@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -19,6 +20,7 @@ public class BasketPageTest {
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
         JavascriptUtils.scrollIntoViewJS(page.pickBazarHomePage().getProductFrame());
+        softAssert.assertTrue(page.pickBazarHomePage().isProductFrameVisible());
 
 
         softAssert.assertAll();

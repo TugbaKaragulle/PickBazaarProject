@@ -255,7 +255,9 @@ public class HomePage {
             default -> waitForClickability(pickBazarLogo);
         };
     }
-
+    public boolean isProductFrameVisible() {
+         return isWebElementDisplayed(productFrame);
+    }
     public void sendKeysSearchTextArea(String text) {
         searchTextInput.sendKeys(text);
     }
@@ -374,6 +376,7 @@ public class HomePage {
     public WebElement getShopsButton() {
         return shopsButton;
     }
+
 
 
 }
