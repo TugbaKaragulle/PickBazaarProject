@@ -100,7 +100,7 @@ private WebElement loginButton;
 //****************************************** My Reausable Methods ******************************************************
 
 
-public boolean isUrlContainsKeyWord(String keyword, WebElement element){
+public boolean isInProfileUrlContainsKeyWord(String keyword, WebElement element){
     allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
 
     actions.click(profilSilueti).perform();
@@ -112,7 +112,7 @@ public boolean isUrlContainsKeyWord(String keyword, WebElement element){
 
 //***************************************** Test Methods ***********************************************************
 
-public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
+public boolean profilePoints() {
     allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
     ReusableMethods.clickElement(profilSilueti);
     exceptedText ="0";
@@ -154,7 +154,7 @@ public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
         return currentUrl.contains(data);
     }
 
-    public boolean verifyLogoutWorks(){ //TODO login methodu Sengul hnm'dan al
+    public boolean verifyLogoutWorks(){
         allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
         actions.click(profilSilueti).perform();
         ReusableMethods.waitForClickability(logout);
