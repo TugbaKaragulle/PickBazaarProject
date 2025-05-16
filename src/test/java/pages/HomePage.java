@@ -78,9 +78,9 @@ public class HomePage {
     @FindBy(css = "div.swiper-wrapper>div>span>img")
     private List<WebElement> deliveryImagesList;
     @FindBy(css = "div>div.grid")
-    private WebElement groceryProductFrame;
+    private WebElement productFrame;
     @FindBy(css = "div>div.px-5>ul")
-    private WebElement groceryMenuFrame;
+    private WebElement menuFrame;
 
 
 //-------------------------------Display Methods--------------------------------------------------------------//
@@ -134,13 +134,13 @@ public class HomePage {
     }
 
     public boolean isGroceryProductFrameDisplayed() {
-        scrollIntoViewJS(groceryProductFrame);
-        return groceryProductFrame.isDisplayed();
+        scrollIntoViewJS(productFrame);
+        return productFrame.isDisplayed();
     }
 
     public boolean isGroceryMenuFrameDisplayed() {
-        scrollIntoViewJS(groceryMenuFrame);
-        return groceryMenuFrame.isDisplayed();
+        scrollIntoViewJS(menuFrame);
+        return menuFrame.isDisplayed();
     }
     /**
      * Dropdown Menuden String parametresi göndererek ilgili Option seçeneklerine tıklar
@@ -169,7 +169,7 @@ public class HomePage {
 //-------------------------------End of Display Methods--------------------------------------------------------------//
 
 
-//-------------------------------click Methods--------------------------------------------------------------//
+    //-------------------------------click Methods--------------------------------------------------------------//
     public void clickShopsButton() {
         clickElement(shopsButton);
     }
@@ -319,12 +319,12 @@ public class HomePage {
         return giftVoucherImage;
     }
 
-    public WebElement getGroceryProductFrame() {
-        return groceryProductFrame;
+    public WebElement getProductFrame() {
+        return productFrame;
     }
 
-    public WebElement getGroceryMenuFrame() {
-        return groceryMenuFrame;
+    public WebElement getMenuFrame() {
+        return menuFrame;
     }
 
     public WebElement getFAQButton() {

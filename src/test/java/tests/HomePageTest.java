@@ -23,7 +23,7 @@ public class HomePageTest {
     Logger logger = LogManager.getLogger(HomePageTest.class);
 
 
-//--------------------------------US_003-------------------------------------------------------------------------//
+    //--------------------------------US_003-------------------------------------------------------------------------//
     @Test( dataProvider = "dropDownMenuOptionsData", groups = "US_003")
     public void TC_003_03(ITestContext context,String  optionData) {
 //todo hata alıyorum melissa hocama sor???
@@ -104,7 +104,7 @@ public class HomePageTest {
     }
 
 
-//--------------------------------US_002-------------------------------------------------------------------------//
+    //--------------------------------US_002-------------------------------------------------------------------------//
     @Test(dataProvider = "urlData", groups = {"US_002"})
     public void TC_002_01(ITestContext context,String data) {
 
@@ -122,7 +122,7 @@ public class HomePageTest {
         Driver.closeDriver();
     }
 
-//--------------------------------US_001-------------------------------------------------------------------------//
+    //--------------------------------US_001-------------------------------------------------------------------------//
     @Test(groups = {"US_001"})
     public void TC_001_03(ITestContext context){
 
