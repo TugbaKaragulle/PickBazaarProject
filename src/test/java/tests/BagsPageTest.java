@@ -9,12 +9,10 @@ import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
 
-import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 
 
 public class BagsPageTest {
-
 
 
     @Test(groups = {"regression"})
@@ -44,12 +42,12 @@ public class BagsPageTest {
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarBagPage_url"));
         System.out.println();
         logger.info("\u001B[31mSayfada textinput görünür olduğunu doğrulanıyor..\u001B[0m");
-        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchTextInputDisplayed(getDriver()),
+        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchTextInputDisplayed(),
                 "Text input didn't seeing");
         logger.info("\u001B[31mSayfada textinput görünür olduğunu doğrulandı..\u001B[0m");
         System.out.println();
         logger.info("\u001B[31mSayfada SearchButtonDisplayed görünür olduğunu doğrulanıyor..\u001B[0m");
-        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchButtonDisplayed(getDriver())
+        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchButtonDisplayed()
                 , "Search Button didn't seeing");
         logger.info("\u001B[31mSayfada SearchButtonDisplayed görünür olduğunu doğrulandı..\u001B[0m");
         softAssert.assertTrue(allPages.bagsPage().WhenYouSearchTextAboutBagCheckVerifyTrue()

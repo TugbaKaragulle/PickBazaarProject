@@ -1,31 +1,40 @@
 package utilities;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.HomePage;
 
 import java.time.Duration;
 import java.util.List;
 
+import static utilities.Driver.getDriver;
+
 public class ReusableMethods {
 
-    ////BU method waitForVisibility methodunu çağırırken sadece element parametresiyle çağırma amaçlı eklendi
-    public static boolean isWebElementDisplayed(WebElement element) {
-        return ReusableMethods.waitForVisibility(Driver.getDriver(), element, 10).isDisplayed();
+//--------------------------------------------------------------
+    ////BU method waitForVisibility methodunu çağırırken sadece element parametresiyle çağırır, isDisplayed methodunu true/false return eder
+    public static boolean   isWebElementDisplayed(WebElement element) {
+        return ReusableMethods.waitForVisibility(getDriver(), element, 10).isDisplayed();
     }
     // Waits for the visibility of a specific element
     public static WebElement waitForVisibility(WebDriver driver, WebElement element, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
+//--------------------------------------------------------------------
 
     // Waits for all elements in a list to be visible
     public static List<WebElement> waitForVisibilityOfAllElements(WebDriver driver, List<WebElement> elements, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
         return wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
+//---------------------------------------------------------------------------
+
+
 
 //---------------------------------------------------------------------------
     public static void clickElement(WebElement element) {
@@ -33,7 +42,7 @@ public class ReusableMethods {
     }
     // Waits until a specific element is clickable
     public static WebElement waitForClickability( WebElement element, int timeoutSeconds) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeoutSeconds));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds));
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 //-------------------------------------------------------------------------------------------
@@ -45,6 +54,7 @@ public class ReusableMethods {
         return wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
+//---------------------------------------------------------------------------------------
     // Logs and returns the text of a WebElement
     public static String getElementText(WebElement element) {
         String text = element.getText().trim();
@@ -52,6 +62,7 @@ public class ReusableMethods {
         return text;
     }
 
+//---------------------------------------------------------------------------------------
     // Converts a numeric string inside a WebElement to an integer (e.g. "$1,234" → 1234)
     public static int convertElementTextIntoInteger(WebElement element) {
         String text = element.getText().replaceAll("[^0-9]", "");
@@ -61,6 +72,7 @@ public class ReusableMethods {
         return Integer.parseInt(text);
     }
 
+//---------------------------------------------------------------------------------------
     // Simple wait (not recommended for real tests, prefer explicit waits)
     public static void waitForSeconds(int seconds) {
         try {
@@ -72,6 +84,7 @@ public class ReusableMethods {
     }
 
 
+//---------------------------------------------------------------------------------------
     //BU method waitForElementToBeClickable methodunu çağırırken sadece element parametresiyle çağırma amaçlı eklendi
     public static boolean waitForClickability(WebElement element) {
         try {
@@ -82,4 +95,32 @@ public class ReusableMethods {
         }
     }
 
+//---------------------------------------------------------------------------------------
+public static boolean waitForUrlContains(String data) {
+    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+    try {
+        return wait.until(ExpectedConditions.urlContains(data));
+    } catch (TimeoutException e) {
+        return false;
+    }
+}
+
+//---------------------------------------------------------------------------------------
+    public static boolean waitForVisibilityOfTitle(String string){
+        WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.titleContains(string));
+    }
+
+    //Bu Methodla dom'da gerçekten count'tan fazla ürün gösterilene kadar bekliyor
+    //Ürünlerin oldugu bir sayfada, ürünlerin sayisini vs test etmek icin kullanilan bekleme methodu
+    public static boolean waitForProductCountToIncrease(List<WebElement> productList, int count){
+
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        try {
+            return wait.until(driver -> productList.size() > count);
+        } catch (TimeoutException e) {
+            System.out.println("Ürün sayısı artmadı, suanki ürün sayisi: " + productList.size());
+            return false;
+        }
+    }
 }

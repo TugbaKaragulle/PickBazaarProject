@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2025-05-20 13:02:07 [main] INFO  pages.BagsPage - [31m3 Adet image frame görünür olduğunu doğrulanıyor..[0m
 2025-05-20 13:02:17 [main] INFO  pages.BagsPage - - Express Delivery(902) - Cash On Delivery frame,(903) - Gift Voucher frame,(904)Seeing-->902
 2025-05-20 13:02:17 [main] INFO  pages.BagsPage - - Express Delivery(902) - Cash On Delivery frame,(903) - Gift Voucher frame,(904)Seeing-->903
@@ -62,3 +63,7 @@
 2025-05-20 13:02:56 [main] INFO  pages.BagsPage - -----------------------------------
 2025-05-20 13:02:56 [main] INFO  pages.BagsPage - List Name --> Wallet
 2025-05-20 13:02:56 [main] INFO  pages.BagsPage - [31mÇanta menü list  görünür olduğunu doğrulanıyor..[0m
+=======
+2025-05-20 12:16:27 [main] INFO  tests.GroceryTest - Navigating to the homepage.
+2025-05-20 12:16:30 [main] INFO  tests.GroceryTest - Selecting 'Grocery' category from the dropdown menu.
+>>>>>>> main
