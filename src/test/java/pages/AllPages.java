@@ -11,7 +11,6 @@ public class AllPages {
     private BasketPage basketPage;
     private  MakeUpPage makeUpPage;
     private CheckoutPage checkoutPage;
-    private Logger logger;
     private ShopsPage shopsPage;
     private OffersPage offersPage;
     private  FaqPage faqPage;
