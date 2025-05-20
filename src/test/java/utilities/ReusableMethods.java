@@ -17,7 +17,7 @@ public class ReusableMethods {
 
 //--------------------------------------------------------------
     ////BU method waitForVisibility methodunu çağırırken sadece element parametresiyle çağırır, isDisplayed methodunu true/false return eder
-    public static boolean isWebElementDisplayed(WebElement element) {
+    public static boolean   isWebElementDisplayed(WebElement element) {
         return ReusableMethods.waitForVisibility(getDriver(), element, 10).isDisplayed();
     }
     // Waits for the visibility of a specific element

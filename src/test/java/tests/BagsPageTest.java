@@ -37,9 +37,9 @@ public class BagsPageTest {
     public void TC_011_02(ITestContext context){
         setupBrowser(context);
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarBagPage_url"));
-        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchTextInputDisplayed(getDriver()),
+        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchTextInputDisplayed(),
                 "Text input didn't seeing");
-        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchButtonDisplayed(getDriver())
+        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchButtonDisplayed()
                 ,"Search Button didn't seeing");
         softAssert.assertTrue(allPages.bagsPage().WhenYouSearchTextAboutBagCheckVerifyTrue()
                 ,"gucciHandbagImage didn't seeing");
