@@ -1,5 +1,7 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,6 +15,7 @@ import static utilities.ReusableMethods.isWebElementDisplayed;
 public class BagsPage {
     AllPages allPages = new AllPages();
     Actions actions = new Actions(Driver.getDriver(), Duration.ofSeconds(10));
+    Logger logger = LogManager.getLogger(BagsPage.class);
 
     //**********************************************************BAGS PAGE LOCATES***********************************************************************************
 
@@ -52,25 +55,42 @@ public class BagsPage {
     }
 
     public boolean isDisplayexclusiveBrandedbagsText() {
-        return isWebElementDisplayed(exclusiveBrandedbagsText);
+        logger.info("\u001B[31mSayfada exclusiveBrandedbagsText görünür olduğunu doğrulanıyor..\u001B[0m");
+        boolean gorundumu = isWebElementDisplayed(exclusiveBrandedbagsText);
+        logger.info("\u001B[31mSayfada exclusiveBrandedbagsText görünür olduğunu doğrulandı..\u001B[0m");
+        return gorundumu;
     }
 
     public boolean isDisplaygetYourExclusiveBrandedBagsDeliveredToYouinNoTimeText() {
-        return isWebElementDisplayed(getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText);
+        System.out.println();
+        logger.info("\u001B[31mSayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulanıyor..\u001B[0m");
+        boolean gorundumu = isWebElementDisplayed(getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText);
+        logger.info("\u001B[31mSayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulandı..\u001B[0m");
+        return gorundumu;
     }
 
     public boolean isSearchAreaFrameDisplayed() {
-        return isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame());
+        System.out.println();
+        logger.info("\u001B[31mSayfada SearchAreaFrame görünür olduğunu doğrulanıyor..\u001B[0m");
+        boolean gorundumu = isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame());
+        logger.info("\u001B[31mSayfada SearchAreaFrame görünür olduğunu doğrulandı..\u001B[0m");
+        return gorundumu;
+
+
     }
 
     //isSearchTextInputDisplayed //Fatma Hanım
     //isSearchButtonDisplayed //Fatma Hanım
 
-    public boolean WhenYouSearchTextAboutBagCheckVerifyTrue(){
+    public boolean WhenYouSearchTextAboutBagCheckVerifyTrue()  {
+
+        System.out.println();
+        logger.info("\u001B[31mSayfada aranan çanta görünür olduğunu doğrulanıyor..\u001B[0m");
         allPages.pickBazarHomePage().getSearchTextInput().sendKeys("bag");
         allPages.pickBazarHomePage().clickSearchButton();
-
-       return isWebElementDisplayed(gucciHandbagImage);
+        boolean gorundumu = isWebElementDisplayed(gucciHandbagImage);
+        logger.info("\u001B[31mSayfada aranan çanta görünür olduğunu doğrulandı..\u001B[0m");
+       return gorundumu;
 
     }
 
@@ -84,16 +104,17 @@ public class BagsPage {
 
 
     public boolean is3frames_ExpressDelivery_CashOnDelivery_GiftVoucher_Display() {
-        actions.scrollToElement(allPages.pickBazarHomePage().getExpressDeliveryImage()).perform();
 
+        System.out.println();
+        logger.info("\u001B[31m3 Adet image frame görünür olduğunu doğrulanıyor..\u001B[0m");
+        actions.scrollToElement(allPages.pickBazarHomePage().getExpressDeliveryImage()).perform();
         int index = 0;
         for (WebElement w : allPages.pickBazarHomePage().getDeliveryImagesList()) {
             if (index >= 3) {
                 break;
             }
-            System.out.println("- Express Delivery(902) "+
-                    "- Cash On Delivery frame,(903) " +
-                    "- Gift Voucher frame,(904)"+ "Seeing-->"+w.getDomAttribute("alt"));
+            logger.info(
+                    "- Express Delivery(902) - Cash On Delivery frame,(903) - Gift Voucher frame,(904)Seeing-->{}", w.getDomAttribute("alt"));
             try {
                 if (!isWebElementDisplayed(w)) {
                     return false;
@@ -103,13 +124,16 @@ public class BagsPage {
             }
             index++;
         }
-
+        logger.info("\u001B[31m3 Adet image frame görünür olduğunu doğrulandı..\u001B[0m");
         return true;
     }
 
     public boolean inBagsPageAllBagsIsDisplay(){
+        boolean isPriceVisible ;
+        int FailSitutation = 0;
+        System.out.println();
+        logger.info("\u001B[31mÇantaların  görünür olduğunu doğrulanıyor..\u001B[0m");
         actions.scrollToElement(gucciHandbagImage).perform();
-        boolean isPriceVisible;
         for (WebElement bags:allBagsList15pieces){
             try {
                 if (!isWebElementDisplayed(bags)){
@@ -123,7 +147,7 @@ public class BagsPage {
                 WebElement priceBox = bags.findElement(By.xpath("//span[@class='text-sm font-semibold text-accent md:text-base']"));
                 isPriceVisible = isWebElementDisplayed(priceBox) && !priceBox.getText().trim().isEmpty();
             } catch (Exception e) {
-                isPriceVisible = false;
+                FailSitutation++;
             }
 
             WebElement bagsBrand = bags.findElement(By.cssSelector("article img"));
@@ -132,16 +156,19 @@ public class BagsPage {
             List<WebElement>  bagsPrice = bags.findElements(By.cssSelector("article span"));
             String bagsPrices = bagsPrice.get(2).getText();
 
-            System.out.println("----------------------------------");
-            System.out.println("Ürünün Markası : " + bagsBrandType);
+            logger.info("----------------------------------");
+            logger.info("\u001B[34mÜrünün Markası : \u001B[0m {}", bagsBrandType);
 
-            System.out.println("Fiyat Görünüyor mu? " + bagsPrices);
+            logger.info("\u001B[34mFiyat Görünüyor mu? \u001B[0m {}", bagsPrices);
         }
-        return true;
+        logger.info("\u001B[31mÇantaların  görünür olduğunu doğrulandı..\u001B[0m");
+        return FailSitutation == 0;
     }
 
     public boolean inBagsPageAllMenuTypeIsDisplay(){
         actions.scrollToElement(gucciHandbagImage).perform();
+        System.out.println();
+        logger.info("\u001B[31mÇanta menü list  görünür olduğunu doğrulanıyor..\u001B[0m");
 
         for (WebElement BagsPageAllMenuType:allBagsTypeMenu5pieces){
             try {
@@ -155,10 +182,11 @@ public class BagsPage {
             List<WebElement>  menuTexts = BagsPageAllMenuType.findElements(By.cssSelector("li span"));
             String menuTextName = menuTexts.get(1).getText();
 
-            System.out.println("-----------------------------------");
-            System.out.println("List Name" + " --> " + menuTextName);
+            logger.info("-----------------------------------");
+            logger.info("List Name --> {}", menuTextName);
 
         }
+        logger.info("\u001B[31mÇanta menü list  görünür olduğunu doğrulanıyor..\u001B[0m");
         return true;
     }
 

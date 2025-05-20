@@ -1,5 +1,7 @@
 package tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -7,18 +9,16 @@ import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
 
-import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 
 
 public class BagsPageTest {
-    AllPages allPages = new AllPages();
-    SoftAssert softAssert=new SoftAssert();
 
 
-
-    @Test(groups = {"smoke"})
-    public void TC_011_01(ITestContext context){
+    @Test(groups = {"regression"})
+    public void TC_011_01(ITestContext context) {
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
 
         setupBrowser(context);
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarBagPage_url"));
@@ -33,22 +33,33 @@ public class BagsPageTest {
         Driver.closeDriver();
     }
 
-    @Test(groups = {"smoke"})
-    public void TC_011_02(ITestContext context){
+    @Test(groups = {"regression"})
+    public void TC_011_02(ITestContext context) {
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
+        Logger logger = LogManager.getLogger(BagsPageTest.class);
         setupBrowser(context);
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarBagPage_url"));
+        System.out.println();
+        logger.info("\u001B[31mSayfada textinput görünür olduğunu doğrulanıyor..\u001B[0m");
         softAssert.assertTrue(allPages.pickBazarHomePage().isSearchTextInputDisplayed(),
                 "Text input didn't seeing");
+        logger.info("\u001B[31mSayfada textinput görünür olduğunu doğrulandı..\u001B[0m");
+        System.out.println();
+        logger.info("\u001B[31mSayfada SearchButtonDisplayed görünür olduğunu doğrulanıyor..\u001B[0m");
         softAssert.assertTrue(allPages.pickBazarHomePage().isSearchButtonDisplayed()
-                ,"Search Button didn't seeing");
+                , "Search Button didn't seeing");
+        logger.info("\u001B[31mSayfada SearchButtonDisplayed görünür olduğunu doğrulandı..\u001B[0m");
         softAssert.assertTrue(allPages.bagsPage().WhenYouSearchTextAboutBagCheckVerifyTrue()
-                ,"gucciHandbagImage didn't seeing");
+                , "gucciHandbagImage didn't seeing");
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"smoke"})
-    public void TC_011_03(ITestContext context){
+    @Test(groups = {"regression"})
+    public void TC_011_03(ITestContext context) {
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarBagPage_url"));
         allPages.bagsPage().scrollToDeliveryImages();
@@ -58,8 +69,10 @@ public class BagsPageTest {
         Driver.closeDriver();
     }
 
-    @Test(groups = {"smoke"})
-    public void TC_011_04(ITestContext context){
+    @Test(groups = {"regression"})
+    public void TC_011_04(ITestContext context) {
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarBagPage_url"));
         allPages.bagsPage().scrollToButtonOfToBagsPage();
@@ -73,8 +86,6 @@ public class BagsPageTest {
         softAssert.assertAll();
         Driver.closeDriver();
     }
-
-
 
 
 }
