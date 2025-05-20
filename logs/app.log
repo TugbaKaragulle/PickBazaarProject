@@ -1,0 +1,2 @@
+2025-05-20 12:16:27 [main] INFO  tests.GroceryTest - Navigating to the homepage.
+2025-05-20 12:16:30 [main] INFO  tests.GroceryTest - Selecting 'Grocery' category from the dropdown menu.

@@ -110,4 +110,17 @@ public static boolean waitForUrlContains(String data) {
         WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.titleContains(string));
     }
+
+    //Bu Methodla dom'da gerçekten count'tan fazla ürün gösterilene kadar bekliyor
+    //Ürünlerin oldugu bir sayfada, ürünlerin sayisini vs test etmek icin kullanilan bekleme methodu
+    public static boolean waitForProductCountToIncrease(List<WebElement> productList, int count){
+
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        try {
+            return wait.until(driver -> productList.size() > count);
+        } catch (TimeoutException e) {
+            System.out.println("Ürün sayısı artmadı, suanki ürün sayisi: " + productList.size());
+            return false;
+        }
+    }
 }

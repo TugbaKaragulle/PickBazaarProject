@@ -32,25 +32,32 @@ public class LoginProfileTest {
 
 
     @Test(dataProvider = "urlData", groups = "smoke")
-    public void TC_021_02_03_04_05(ITestContext context, String data){
+    public void TC_021(ITestContext context, String data, String testCaseNo){
 
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         setupBrowser(context);
-        softAssert.assertTrue(allPages.loginProfilePage().profileDropDownMenu(data));
-        softAssert.assertAll();
+        logger.info(testCaseNo+ " is in progress");
+        try {
+            softAssert.assertTrue(allPages.loginProfilePage().profileDropDownMenu(data));
+        } catch (Exception e) {
+            Driver.closeDriver();
+            softAssert.fail(testCaseNo+" is failed");
+        }
         Driver.closeDriver();
+        softAssert.assertAll();
+
     }
 
     @DataProvider(name = "urlData")
     public Object[][] urlData() {
         return new Object[][] {
-                { "profile" },
-                { "orders" },
-                { "wislists" },
-                { "checkout" }
-        };
+                { "profile", "TC_021_02" },
+                { "orders", "TC_021_03" },
+                { "wishlists", "TC_021_04" },
+                { "checkout", " TC_021_05" }
+        } ;
     }
 
     @Test(groups = "smoke")
