@@ -1,20 +1,23 @@
 package tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
-
 import static utilities.Driver.setupBrowser;
 
 public class FurniturePageTest {
-    AllPages allPages = new AllPages();
-    SoftAssert softAssert=new SoftAssert();
 
-    @Test
+
+    @Test(groups = {"regression"})
     public void TC_013_01(ITestContext context){
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert=new SoftAssert();
+        Logger logger = LogManager.getLogger(FurniturePageTest.class);
         setupBrowser(context);
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarFurniturePage_url"));
         softAssert.assertTrue(allPages.furniturePage().inFurniturePageAllMenuTypeIsDisplay(),
@@ -23,8 +26,10 @@ public class FurniturePageTest {
         Driver.closeDriver();
     }
 
-    @Test
+    @Test(groups = {"regression"})
     public void TC_013_02(ITestContext context){
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert=new SoftAssert();
         setupBrowser(context);
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarFurniturePage_url"));
         softAssert.assertTrue(allPages.furniturePage().isExclusiveFurnituresMadeOnlyForYouFrameImageDisplay(),
@@ -34,8 +39,10 @@ public class FurniturePageTest {
     }
 
     //Duration is 5.12 Minutes for this loop
-    @Test
+    @Test(groups = {"regression"})
     public void TC_013_03(ITestContext context){
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert=new SoftAssert();
         setupBrowser(context);
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarFurniturePage_url"));
         softAssert.assertTrue(allPages.furniturePage().isallFurnitureProduct30PiecesImgAndPrice(),

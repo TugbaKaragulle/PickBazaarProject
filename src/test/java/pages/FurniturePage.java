@@ -1,5 +1,7 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,6 +18,7 @@ import static utilities.ReusableMethods.isWebElementDisplayed;
 public class FurniturePage {
 
     Actions actions = new Actions(Driver.getDriver(), Duration.ofSeconds(10));
+    Logger logger = LogManager.getLogger(FurniturePage.class);
 
     //**********************************************************FURNITURE PAGE LOCATES************************************************************************
 
@@ -29,6 +32,8 @@ public class FurniturePage {
     private List<WebElement> allFurnitureProduct30Pieces;
 
 
+
+
     //************************************************************CONST.*************************************************************************************
 
     public FurniturePage() {
@@ -38,7 +43,7 @@ public class FurniturePage {
     // **********************************************************Furniture Methods***************************************************************************
 
     public boolean inFurniturePageAllMenuTypeIsDisplay() {
-
+        logger.info("\u001B[31mMobilya menü görünür olduğunu doğrulanıyor..\u001B[0m");
         for (WebElement furnitureMenuType : allFurnitureMenu4pieces) {
             try {
                 if (!isWebElementDisplayed(furnitureMenuType)) {
@@ -51,18 +56,29 @@ public class FurniturePage {
             List<WebElement> allMenuTypeText = furnitureMenuType.findElements(By.cssSelector("div span"));
             String menuTypeText = allMenuTypeText.get(1).getText();
 
-            System.out.println("-------------------------------");
-            System.out.println("Chair Menu Lists -->" + menuTypeText);
+            logger.info("-------------------------------");
+            logger.info("\u001B[34mChair Menu Lists --> \u001B[0m {}", menuTypeText);
         }
+        logger.info("\u001B[31mMobilya menü görünür olduğunu doğrulandı..\u001B[0m");
         return true;
     }
 
     public boolean isExclusiveFurnituresMadeOnlyForYouFrameImageDisplay() {
+        System.out.println();
+        logger.info("\u001B[31mMobilya frame görünür olduğunu doğrulanıyor..\u001B[0m");
 
-        return isWebElementDisplayed(ExclusiveFurnituresMadeOnlyForYouFrameImage);
+        boolean ısDisplay =isWebElementDisplayed(ExclusiveFurnituresMadeOnlyForYouFrameImage);
+
+        logger.info("\u001B[31mMobilya frame görünür olduğunu doğrulandı..\u001B[0m");
+        return ısDisplay;
+
+
+
     }
 
     public boolean isallFurnitureProduct30PiecesImgAndPrice() {
+        System.out.println();
+        logger.info("\u001B[31mEşyaların genel olarak görünürlüğüne bakılacak..\u001B[0m");
         for (WebElement card : allFurnitureProduct30Pieces) {
             actions.scrollByAmount(0, 50).perform();
             boolean isImageVisible;
@@ -73,32 +89,39 @@ public class FurniturePage {
                 WebElement image = card.findElement(By.tagName("img"));
                 String productName = image.getDomAttribute("alt");
                 isImageVisible = isWebElementDisplayed(image);
-                System.out.println("Product Name -->" + productName);
+                logger.info("\u001B[34m Product Name --> \u001B[0m {}", productName);
             } catch (NoSuchElementException e) {
                 isImageVisible = false;
             }
-            System.out.println("Resim Görünüyor mu? " + isImageVisible);
+            logger.info("\u001B[34m Resim Görünüyor mu? \u001B[0m {}", isImageVisible);
 
-            System.out.println("--------------------------------------");
+            logger.info("--------------------------------------");
 
             try {
                 List<WebElement> priceBoxsTexts = card.findElements(By.cssSelector("article span"));
                 String productPrice = priceBoxsTexts.get(2).getText();
                 WebElement priceBoxText = priceBoxsTexts.get(2);
-                System.out.println("Product Price --> " + productPrice);
+                logger.info("\u001B[34m Product Price --> \u001B[0m {}", productPrice);
                 isPriceVisible = isWebElementDisplayed(priceBoxText);
             } catch (NoSuchElementException e) {
                 isPriceVisible = false;
             }
 
-            System.out.println("Fiyat Görünüyor mu? " + isPriceVisible);
+            logger.info("\u001B[34m Fiyat Görünüyor mu? \u001B[0m {}", isPriceVisible);
 
-            System.out.println("--------------------------------------");
+            logger.info("---------------------------------------");
             actions.scrollByAmount(0, 50).perform();
 
         }
+        logger.info("\u001B[31mEşyaların genel olarak görünürlüğüne bakıldı..\u001B[0m");
         return true;
     }
+
+
+
+
+
+
 
 
 }
