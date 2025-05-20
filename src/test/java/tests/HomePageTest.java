@@ -10,11 +10,8 @@ import org.testng.asserts.SoftAssert;
 import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
-import utilities.ReusableMethods;
 
-import java.util.Objects;
 
-import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 import static utilities.ReusableMethods.*;
 
@@ -26,22 +23,15 @@ public class HomePageTest {
     //--------------------------------US_003-------------------------------------------------------------------------//
     @Test( dataProvider = "dropDownMenuOptionsData", groups = "US_003")
     public void TC_003_03(ITestContext context,String  optionData) {
-//todo hata alıyorum melissa hocama sor???
+
         setupBrowser(context);
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        System.out.println("getDriver().getCurrentUrl() click öncesi = " + getDriver().getCurrentUrl());
-        System.out.println("optionData = " + optionData);
         page.pickBazarHomePage().clickDropDownMenuOption(optionData);
-//todo click yaptıktan sonra currenturl neden hala homepage geliyor???
-        System.out.println("getDriver().getCurrentUrl() click sonrası = " + getDriver().getCurrentUrl());
         softAssert.assertTrue(waitForVisibilityOfTitle(optionData));
 
-        System.out.println("getDriver().getTitle() = " + getDriver().getTitle());
-        //assert get title ile yapınca düzeldi ancak nedn currentUrl hata veriyor
-        waitForSeconds(2);
         softAssert.assertAll();
         Driver.closeDriver();
     }
