@@ -28,6 +28,7 @@ public class HomePageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("test");
 
         page.pickBazarHomePage().clickDropDownMenuOption(optionData);
         softAssert.assertTrue(waitForVisibilityOfTitle(optionData));
