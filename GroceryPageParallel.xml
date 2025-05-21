@@ -3,7 +3,7 @@
 <suite name="All Test Suite" thread-count="3" parallel="methods">
     <test verbose="2" preserve-order="true"
           name="Parallel Test">
-        <parameter name="browser" value="chrome"> </parameter>
+        <parameter name="browser" value="firefox"> </parameter>
         <classes>
             <class name="tests.GroceryTest">
                 <methods>
