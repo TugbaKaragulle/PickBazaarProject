@@ -1,5 +1,9 @@
 package tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
@@ -18,7 +22,10 @@ public class BasketPageTest {
 
     Logger logger = LogManager.getLogger(BasketPageTest.class);
 
-    @Test(groups = {"US_018"})    // bu testin bug kaydı açıldı
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_16_Daily Needs ekranında sepet UI testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_16(ITestContext context) {
 
         setupBrowser(context);
@@ -43,7 +50,10 @@ public class BasketPageTest {
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})    // bu testin bug kaydı açıldı
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_15_Daily Needs ekranında sepet UI testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_15(ITestContext context) {
 
         setupBrowser(context);
@@ -64,7 +74,10 @@ public class BasketPageTest {
 
 
 
-    @Test(groups = {"US_018"})    // bu testin bug kaydı açıldı
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_14_Daily Needs ekranında sepet UI testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_14(ITestContext context) {
 
         setupBrowser(context);
@@ -76,14 +89,17 @@ public class BasketPageTest {
         softAssert.assertTrue( page.dailyNeedsPage().isVisibleBasketIcon() );
         logger.info("Daily Needs ekranında basket ikonunun görünürlüğü doğrulandı ");
 
-        softAssert.assertTrue( page.dailyNeedsPage().isClickableBasketIcon() );
+        softAssert.assertTrue( page.dailyNeedsPage().isClickableBasketIcon() ,"");
         logger.info("Daily Needs ekranında basket ikonunun tıklanılabilirliği doğrulandı ");
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})    // bu testin bug kaydı açıldı
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_13_Sepet ekranında login olarak sepet UI testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_13(ITestContext context) {
 
         setupBrowser(context);
@@ -99,14 +115,17 @@ public class BasketPageTest {
         page.basketPage().clickCheckoutButton();
         logger.info("Checkout butonuna tıklandı");
 
-        softAssert.assertTrue( ReusableMethods.waitForUrlContains("checkout") );
+        softAssert.assertTrue( ReusableMethods.waitForUrlContains("checkout") ,"");
         logger.info("Checkout sayfasının açıldığı doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})    // bu testin bug kaydı açıldı
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_12_Sepet ekranında login olmadan önceki sepet UI testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_12(ITestContext context) {
 
         setupBrowser(context);
@@ -122,13 +141,16 @@ public class BasketPageTest {
         page.basketPage().clickCheckoutButton();
         logger.info("Checkout butonuna tıklandı");
 
-        softAssert.assertTrue( ReusableMethods.isWebElementDisplayed(page.loginPage().getLogInButton()) );
+        softAssert.assertTrue( ReusableMethods.isWebElementDisplayed(page.loginPage().getLogInButton()) ,"" );
         logger.info("Login sayfasının açıldığı doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
-    @Test(groups = {"US_018"})    // bu testin bug kaydı açıldı
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_11_Sepet ekranında ilk üründe (x) işaretine tıklanarak silme testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_11(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -153,7 +175,7 @@ public class BasketPageTest {
         logger.info("Açılan sepet ekranında,ilgili indexteki ürünü silmek için 'X' butonuna tıklandı. ");
 
           try {
-            softAssert.assertTrue(isProductDeleted );
+            softAssert.assertTrue(isProductDeleted ,"");
             logger.info("Ürün silindi. Silinen ürün = " +nameOfIndexedProduct );
         } catch (Exception e) {
             logger.warn("ürün X butonu ile silinemedi.");
@@ -163,7 +185,10 @@ public class BasketPageTest {
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})    // bu testin bug kaydı açıldı
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_10_Sepet ekranında ilk üründe (-) işaretine tıklanarak silme-tutar testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_10(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -188,14 +213,17 @@ public class BasketPageTest {
         int priceOfOneProduct = page.basketPage().getPriceOfOneProduct(indexofList);  //bir ürünün 1 adet sayısınca hesaplanan tutarı
 
 
-        softAssert.assertEquals(page.basketPage().getTotalPriceOfOneProduct(indexofList), priceOfOneProduct * actualNumberOfOneProduct);
+        softAssert.assertEquals(page.basketPage().getTotalPriceOfOneProduct(indexofList), priceOfOneProduct * actualNumberOfOneProduct,"");
         logger.info("Sepetteki ürün tutarı hesaplanan tutar ile eşleşiyor . Hesaplanan tutar = " + priceOfOneProduct * actualNumberOfOneProduct);
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})    // bu testin bug kaydı açıldı
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_09_Sepet ekranında ilk üründe (-) işaretine tıklanarak silme-adet testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_09(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -219,13 +247,16 @@ public class BasketPageTest {
 
          int actualNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList);
 
-        softAssert.assertEquals(actualNumberOfOneProduct, expectedNumberOfOneProduct);
+        softAssert.assertEquals(actualNumberOfOneProduct, expectedNumberOfOneProduct,"");
         logger.info("Sepetteki ürün adeti sayısı 1 eksildi -> ürün adeti 1 olduğu doğrulandı");
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})    // bu testin bug kaydı açıldı
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_08_Sepet ekranında ilk üründe (+) işaretine tıklanarak eklenme-tutar testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_08(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -247,14 +278,17 @@ public class BasketPageTest {
         int expectedPriceOfOneProduct = page.basketPage().getPriceOfOneProduct(indexofList);  //bir ürünün tutarı
         int expectedNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList);  //bir üründen alınan adet sayısı
 
-        softAssert.assertEquals(page.basketPage().getTotalPriceOfOneProduct(indexofList), expectedPriceOfOneProduct * expectedNumberOfOneProduct);
+        softAssert.assertEquals(page.basketPage().getTotalPriceOfOneProduct(indexofList), expectedPriceOfOneProduct * expectedNumberOfOneProduct,"");
         logger.info("Sepetteki ürün tutarı hesaplanan tutar ile eşleşiyor . Hesaplanan tutar = " + expectedPriceOfOneProduct * expectedNumberOfOneProduct);
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_07_Sepet ekranında ilk üründe (+) işaretine tıklanarak eklenme-adet testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_07(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -272,13 +306,17 @@ public class BasketPageTest {
         int actualNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList);
         logger.info("Açılan sepet ekranında, ürün sepete eklemek için " + " işaretine tıklanır");
 
-        softAssert.assertEquals(actualNumberOfOneProduct, expectedNumberOfOneProduct);
+        softAssert.assertEquals(actualNumberOfOneProduct, expectedNumberOfOneProduct,"");
         logger.info("Sepetteki ürün adeti sayısı 1 arttı -> ürün adeti 2 olduğu doğrulandı");
+
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})    //
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_06_Sepet ekranında Items satırındaki x işareti testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_06(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -288,14 +326,17 @@ public class BasketPageTest {
         page.basketPage().openBasketPanel();
         page.basketPage().closeBasketPage();
         softAssert.assertTrue(page.basketPage().isBasketPanelClosed(), "Sepet paneli kapanmadı!");
-
+        logger.info("");
 
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_05_Anasayfada kücük ekranda sepet bilgisi gelmesi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_05(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -303,14 +344,17 @@ public class BasketPageTest {
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
 
         page.basketPage().openBasketPanel();
-        softAssert.assertTrue(page.basketPage().isNoProductFoundTextVisible());
+        softAssert.assertTrue(page.basketPage().isNoProductFoundTextVisible(),"");
         logger.info(page.basketPage().getNoProductFoundHeader() + " metninin görünürlüğü doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_04_Anasayfada kücük ekranda sepet bilgisi gelmesi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_04(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -325,7 +369,10 @@ public class BasketPageTest {
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_03_Ürün Listesi ekranında sepete ürün ekleme UI testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_03(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -339,13 +386,17 @@ public class BasketPageTest {
         int numberOfItemsInProductFrame = ReusableMethods.convertElementTextIntoInteger(page.makeUpPage().getNumberOfProductAddedToBasket(0));
         System.out.println("numberOfItemsInBasketButton = " + numberOfItemsInBasketButton);
         System.out.println("numberOfItemsInProductFrame = " + numberOfItemsInProductFrame);
-        softAssert.assertTrue(numberOfItemsInBasketButton == numberOfItemsInProductFrame);
+        softAssert.assertTrue(numberOfItemsInBasketButton == numberOfItemsInProductFrame,"");
+        logger.info("");
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_02_Ürün Listesi ekranında sepete ürün ekleme UI testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_02(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -356,13 +407,17 @@ public class BasketPageTest {
         String addedProductName = page.makeUpPage().addProductIntoEmptyBasket(page, indexofList);
         //page.basketPage().openBasketPanel(); // basketpage sectionını aç
         page.makeUpPage().deleteProductWithMinusButton(indexofList);
-        softAssert.assertTrue(page.basketPage().verfiyDeletedProductFromBasket());
+        softAssert.assertTrue(page.basketPage().verfiyDeletedProductFromBasket(),"");
+        logger.info("");
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
 
-    @Test(groups = {"US_018"})
+    @Test(groups = {"smoke","US_018"})
+    @Owner("Fatma")
+    @Description("TC_018_01_Ürün Listesi ekranında sepete ürün ekleme UI testi")
+    @Severity(SeverityLevel.NORMAL)
     public void TC_018_01(ITestContext context) {
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -371,13 +426,15 @@ public class BasketPageTest {
 
         int indexofList = 0;  //sepetteki ürün listesinden ilk ürününün testi yapılacak.
         JavascriptUtils.scrollIntoViewJS(page.pickBazarHomePage().getProductFrame());
-        softAssert.assertTrue(page.pickBazarHomePage().isProductFrameVisible());
+        softAssert.assertTrue(page.pickBazarHomePage().isProductFrameVisible(),"");
+        logger.info("");
 
         String addedProductName = page.makeUpPage().addProductIntoEmptyBasket(page, indexofList);
         logger.info(addedProductName);
         // System.out.println("page.basketPage().getProductNameInBasket(0) = " + page.basketPage().getProductNameInBasket(0));
         //todo bu hata alıyor?? neden olduğunu çözemedim hocaya sor
-        softAssert.assertTrue(page.basketPage().verifyProductNameInBasket(addedProductName));
+        softAssert.assertTrue(page.basketPage().verifyProductNameInBasket(addedProductName),"");
+        logger.info("");
 
         softAssert.assertAll();
         Driver.closeDriver();
