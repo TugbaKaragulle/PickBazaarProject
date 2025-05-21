@@ -1,21 +1,22 @@
 package pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
+import utilities.ReusableMethods;
 import java.time.Duration;
 import java.util.List;
 import static utilities.ReusableMethods.isWebElementDisplayed;
+import static utilities.ReusableMethods.log;
 
 public class BagsPage {
     AllPages allPages = new AllPages();
     Actions actions = new Actions(Driver.getDriver(), Duration.ofSeconds(10));
-    Logger logger = LogManager.getLogger(BagsPage.class);
+
 
     //**********************************************************BAGS PAGE LOCATES***********************************************************************************
 
@@ -55,25 +56,26 @@ public class BagsPage {
     }
 
     public boolean isDisplayexclusiveBrandedbagsText() {
-        logger.info("\u001B[31mSayfada exclusiveBrandedbagsText görünür olduğunu doğrulanıyor..\u001B[0m");
+        log("Sayfada exclusiveBrandedbagsText görünür olduğunu doğrulanıyor..");
         boolean gorundumu = isWebElementDisplayed(exclusiveBrandedbagsText);
-        logger.info("\u001B[31mSayfada exclusiveBrandedbagsText görünür olduğunu doğrulandı..\u001B[0m");
+        log("Sayfada exclusiveBrandedbagsText görünür olduğunu doğrulandı..");
         return gorundumu;
     }
 
     public boolean isDisplaygetYourExclusiveBrandedBagsDeliveredToYouinNoTimeText() {
         System.out.println();
-        logger.info("\u001B[31mSayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulanıyor..\u001B[0m");
+        log("Sayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulanıyor..");
         boolean gorundumu = isWebElementDisplayed(getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText);
-        logger.info("\u001B[31mSayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulandı..\u001B[0m");
+        ReusableMethods.captureScreenshot("Text Görünür mü?");
+        log("Sayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulandı..");
         return gorundumu;
     }
 
     public boolean isSearchAreaFrameDisplayed() {
         System.out.println();
-        logger.info("\u001B[31mSayfada SearchAreaFrame görünür olduğunu doğrulanıyor..\u001B[0m");
+        log("Sayfada SearchAreaFrame görünür olduğunu doğrulanıyor..");
         boolean gorundumu = isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame());
-        logger.info("\u001B[31mSayfada SearchAreaFrame görünür olduğunu doğrulandı..\u001B[0m");
+        log("Sayfada SearchAreaFrame görünür olduğunu doğrulandı..");
         return gorundumu;
 
 
@@ -85,11 +87,11 @@ public class BagsPage {
     public boolean WhenYouSearchTextAboutBagCheckVerifyTrue()  {
 
         System.out.println();
-        logger.info("\u001B[31mSayfada aranan çanta görünür olduğunu doğrulanıyor..\u001B[0m");
+        log("Sayfada aranan çanta görünür olduğunu doğrulanıyor..");
         allPages.pickBazarHomePage().getSearchTextInput().sendKeys("bag");
         allPages.pickBazarHomePage().clickSearchButton();
         boolean gorundumu = isWebElementDisplayed(gucciHandbagImage);
-        logger.info("\u001B[31mSayfada aranan çanta görünür olduğunu doğrulandı..\u001B[0m");
+        log("Sayfada aranan çanta görünür olduğunu doğrulandı..");
        return gorundumu;
 
     }
@@ -106,14 +108,14 @@ public class BagsPage {
     public boolean is3frames_ExpressDelivery_CashOnDelivery_GiftVoucher_Display() {
 
         System.out.println();
-        logger.info("\u001B[31m3 Adet image frame görünür olduğunu doğrulanıyor..\u001B[0m");
+        log("3 Adet image frame görünür olduğunu doğrulanıyor..");
         actions.scrollToElement(allPages.pickBazarHomePage().getExpressDeliveryImage()).perform();
         int index = 0;
         for (WebElement w : allPages.pickBazarHomePage().getDeliveryImagesList()) {
             if (index >= 3) {
                 break;
             }
-            logger.info(
+            log(
                     "- Express Delivery(902) - Cash On Delivery frame,(903) - Gift Voucher frame,(904)Seeing-->{}", w.getDomAttribute("alt"));
             try {
                 if (!isWebElementDisplayed(w)) {
@@ -124,7 +126,7 @@ public class BagsPage {
             }
             index++;
         }
-        logger.info("\u001B[31m3 Adet image frame görünür olduğunu doğrulandı..\u001B[0m");
+        log("3 Adet image frame görünür olduğunu doğrulandı..");
         return true;
     }
 
@@ -132,7 +134,7 @@ public class BagsPage {
         boolean isPriceVisible ;
         int FailSitutation = 0;
         System.out.println();
-        logger.info("\u001B[31mÇantaların  görünür olduğunu doğrulanıyor..\u001B[0m");
+        log("Çantaların  görünür olduğunu doğrulanıyor..");
         actions.scrollToElement(gucciHandbagImage).perform();
         for (WebElement bags:allBagsList15pieces){
             try {
@@ -156,19 +158,19 @@ public class BagsPage {
             List<WebElement>  bagsPrice = bags.findElements(By.cssSelector("article span"));
             String bagsPrices = bagsPrice.get(2).getText();
 
-            logger.info("----------------------------------");
-            logger.info("\u001B[34mÜrünün Markası : \u001B[0m {}", bagsBrandType);
+            log("----------------------------------");
+            log("Ürünün Markası :  {}", bagsBrandType);
 
-            logger.info("\u001B[34mFiyat Görünüyor mu? \u001B[0m {}", bagsPrices);
+            log("Fiyat Görünüyor mu?  {}", bagsPrices);
         }
-        logger.info("\u001B[31mÇantaların  görünür olduğunu doğrulandı..\u001B[0m");
+        log("Çantaların  görünür olduğunu doğrulandı..");
         return FailSitutation == 0;
     }
 
     public boolean inBagsPageAllMenuTypeIsDisplay(){
         actions.scrollToElement(gucciHandbagImage).perform();
         System.out.println();
-        logger.info("\u001B[31mÇanta menü list  görünür olduğunu doğrulanıyor..\u001B[0m");
+        log("Çanta menü list  görünür olduğunu doğrulanıyor..");
 
         for (WebElement BagsPageAllMenuType:allBagsTypeMenu5pieces){
             try {
@@ -182,13 +184,15 @@ public class BagsPage {
             List<WebElement>  menuTexts = BagsPageAllMenuType.findElements(By.cssSelector("li span"));
             String menuTextName = menuTexts.get(1).getText();
 
-            logger.info("-----------------------------------");
-            logger.info("List Name --> {}", menuTextName);
+            log("-----------------------------------");
+            log("List Name --> {}", menuTextName);
 
         }
-        logger.info("\u001B[31mÇanta menü list  görünür olduğunu doğrulanıyor..\u001B[0m");
+        log("Çanta menü list  görünür olduğunu doğrulandı..");
         return true;
     }
+
+
 
 
 

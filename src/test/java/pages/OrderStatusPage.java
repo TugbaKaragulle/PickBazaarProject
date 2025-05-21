@@ -1,7 +1,6 @@
 package pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -19,7 +18,7 @@ import static utilities.ReusableMethods.*;
 public class OrderStatusPage {
 
     Actions actions = new Actions(Driver.getDriver(), Duration.ofSeconds(10));
-    Logger logger = LogManager.getLogger(OrderStatusPage.class);
+
 
 
     //**************************************************************ORDER STATUS LOCATES**********************************************************************************
@@ -97,7 +96,7 @@ public class OrderStatusPage {
     //There are 10 Order status but this method checking to first 5 element verify with the text situation
     public boolean First5PiecesOrderStatus() {
         int FailSituation = 0;
-        logger.info("\u001B[31mOrder status alanının Text görünürlüğü sırasıyla kontrol ediliyor..\u001B[0m");
+        log("Order status alanının Text görünürlüğü sırasıyla kontrol ediliyor..");
 
         List<String> foundFields = new ArrayList<>();
         for (WebElement First5OrderList : First5PiecesOrderStatusLoc) {
@@ -109,7 +108,7 @@ public class OrderStatusPage {
 
                 foundFields.add(orderText);
             } catch (Exception e) {
-                logger.error("listeye atılacak order text bulunamadı");
+                logError("listeye atılacak order text bulunamadı");
                 FailSituation++;
             }
         }
@@ -118,9 +117,9 @@ public class OrderStatusPage {
         for (String required : First5RequiredList) {
 
             if (foundFields.contains(required)) {
-                logger.info("\u001B[34m Eksik yok --> \u001B[0m  {}", required);
+                log(" Eksik yok -->   {}", required);
             } else {
-                logger.error("\u001B[34m Bu alan eksik --> \u001B[0m {}", required);
+                logError(" Bu alan eksik -->  {}", required);
                 FailSituation++;
             }
 
@@ -140,7 +139,7 @@ public class OrderStatusPage {
             try {
                 foundFieldss.add(orderText);
             } catch (Exception e) {
-                logger.error("listeye atılacak order text bulunamadı");
+                logError("listeye atılacak order text bulunamadı");
                 FailSituationn++;
             }
         }
@@ -148,16 +147,16 @@ public class OrderStatusPage {
         for (String ignoredd : Last6RequiredList) {
 
             if (foundFieldss.contains(ignoredd)) {
-                logger.info("\u001B[34m Eksik yok --> \u001B[0m {}", ignoredd);
+                log(" Eksik yok --> {}", ignoredd);
             } else {
-                logger.error("\u001B[34m Bu alan eksik --> \u001B[0m {}", ignoredd);
+                logError(" Bu alan eksik -->  {}", ignoredd);
                 FailSituationn++;
             }
 
 
         }
 
-        logger.info("\u001B[31mOrder status alanının Text görünürlüğü sırasıyla kontrol edildi..\u001B[0m");
+        log("Order status alanının Text görünürlüğü sırasıyla kontrol edildi..");
         return FailSituationn == 0;
     }
 
@@ -170,25 +169,25 @@ public class OrderStatusPage {
         boolean orderStatusisDisplay;
         int failSituation = 0;
 
-        logger.info("\u001B[31mOrder status alanının Detay bilgilerin görünürlüğü kontrol ediliyor..\u001B[0m");
+        log("Order status alanının Detay bilgilerin görünürlüğü kontrol ediliyor..");
         for (WebElement statusType : all4StatusType_OrderNumber_Date_Total_PaymentMethod) {
-            logger.info("-----------------------------------------");
+            log("-----------------------------------------");
             try {
 
                 orderStatusisDisplay = isWebElementDisplayed(statusType);
                 String statusText = statusType.getText();
-                logger.info("\u001B[34mOrder Status Name --> \u001B[0m {}", statusText);
+                log("Order Status Name -->  {}", statusText);
 
 
             } catch (Exception e) {
                 orderStatusisDisplay = false;
-                logger.error("\u001B[34mGörünür değil __> \u001B[0m {}", statusType);
+                logError("Görünür değil __>  {}", statusType);
                 failSituation++;
             }
 
-            logger.info("\u001B[34mOrder Text göründü ?--> \u001B[0m {}", orderStatusisDisplay);
+            log("Order Text göründü ?-->  {}", orderStatusisDisplay);
         }
-        logger.info("\u001B[31mOrder status alanının Detay bilgilerin görünürlüğü kontrol edildi..\u001B[0m");
+        log("Order status alanının Detay bilgilerin görünürlüğü kontrol edildi..");
         return failSituation == 0;
     }
 
@@ -198,21 +197,21 @@ public class OrderStatusPage {
 
         for (WebElement priceType : isTotalAmountAreaPricesAreDisplay) {
             ReusableMethods.waitForVisibility(Driver.getDriver(),priceType,10);
-            logger.info("-----------------------------------------");
+            log("-----------------------------------------");
             try {
 
                 priceTextDisplay = isWebElementDisplayed(priceType);
                 String priceText = priceType.getText();
-                logger.info("\u001B[34mprice text --> \u001B[0m {}", priceText);
+                log("price text -->  {}", priceText);
 
 
             } catch (Exception e) {
                 priceTextDisplay = false;
-                logger.error("\u001B[34mGörünür değil --> \u001B[0m {}", priceType);
+                logError("Görünür değil -->  {}", priceType);
                 failSituation++;
             }
 
-            logger.info("\u001B[34mprice Text göründü ?--> \u001B[0m {}", priceTextDisplay);
+            log("price Text göründü ?-->  {}", priceTextDisplay);
         }
         return failSituation == 0;
     }
@@ -221,16 +220,16 @@ public class OrderStatusPage {
         boolean ısSeeing = false;
         int failSitutation = 0;
         System.out.println();
-        logger.info("\u001B[31mOrder status alanının görünürlüğü kontrol ediliyor..\u001B[0m");
+        log("Order status alanının görünürlüğü kontrol ediliyor..");
         try {
             ısSeeing = isWebElementDisplayed(orderStatusArea);
-            logger.info("\u001B[34mBelirtilen alan görünür mü ?\u001B[0m {}", ısSeeing);
+            log("Belirtilen alan görünür mü ? {}", ısSeeing);
             String areaText = orderStatusArea.getText();
-            logger.info("\u001B[34mBelirtilen alan texti :\u001B[0m {}", areaText);
-            logger.info("\u001B[31mOrder status alanının görünürlüğü kontrol edildi..\u001B[0m");
+            log("Belirtilen alan texti : {}", areaText);
+            log("Order status alanının görünürlüğü kontrol edildi..");
             System.out.println();
         } catch (Exception e) {
-            logger.error("\u001B[34mGöründü mü ?\u001B {}", ısSeeing);
+            log("Göründü mü ? {}", ısSeeing);
             failSitutation++;
         }
 
@@ -252,7 +251,8 @@ public class OrderStatusPage {
                 String title = headingText.getText().trim();
                 foundFields.add(title);
             } catch (Exception e) {
-                logger.error("Listeye atılacak heading bulunamadı..");
+
+                logError("Listeye atılacak heading bulunamadı..");
                 failSituation++;
             }
         }
@@ -260,9 +260,9 @@ public class OrderStatusPage {
         for (String required : requiredFields) {
 
             if (foundFields.contains(required)) {
-                logger.info("Bütün alanlar Tam Eksik yok -->  {}", required);
+                log("Bütün alanlar Tam Eksik yok -->  {}", required);
             } else {
-                logger.error("Bu alan eksik -->  {}", required);
+                logError("Bu alan eksik -->  {}", required);
                 failSituation++;
             }
 
@@ -284,25 +284,25 @@ public class OrderStatusPage {
 
         boolean itemPricee = isWebElementDisplayed(itemPrice);
         if (itemPricee) {
-            logger.info("item price göründü mü ? --> {}", true);
+            log("item price göründü mü ? --> {}", true);
         } else {
-            logger.error("item price göründü mü ? --> {}", false);
+            logError("item price göründü mü ? --> {}", false);
             failsituation++;
         }
 
         boolean itemImage = isWebElementDisplayed(itemPicture);
         if (itemImage) {
-            logger.info("item image göründü mü ? --> {}", true);
+            log("item image göründü mü ? --> {}", true);
         } else {
-            logger.error("item image göründü mü --->  {} ", false);
+            logError("item image göründü mü --->  {} ", false);
             failsituation++;
         }
 
         boolean itemQuantity = isWebElementDisplayed(Quantityitem);
         if (itemQuantity) {
-            logger.info("Ürün miktarı görünüyor --> {}", true);
+            log("Ürün miktarı görünüyor --> {}", true);
         } else {
-            logger.error("Ürün miktarı görünmüyor --> {}", false);
+            logError("Ürün miktarı görünmüyor --> {}", false);
             failsituation++;
         }
 
@@ -321,11 +321,11 @@ public class OrderStatusPage {
             iscontainreview = buttons.get(0).getText().contains("Write a review");
             iscontainUpdate = buttons.get(1).getText().contains("Update review");
 
-            logger.info("Yorum alanı içeriyor mu? --> {}", iscontainreview);
-            logger.info("Update alanı içeriyor mu? --> {}", iscontainreview);
+            log("Yorum alanı içeriyor mu? --> {}", iscontainreview);
+            log("Update alanı içeriyor mu? --> {}", iscontainreview);
         } catch (Exception e) {
-            logger.error("Yorum alanı içeriyor mu --> {}", iscontainreview);
-            logger.error("Update alanı içeriyor mu --> {}", iscontainUpdate);
+            logError("Yorum alanı içeriyor mu --> {}", iscontainreview);
+            logError("Update alanı içeriyor mu --> {}", iscontainUpdate);
             failsituation++;
         }
 
