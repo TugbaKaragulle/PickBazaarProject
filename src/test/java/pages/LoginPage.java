@@ -192,7 +192,12 @@ public class LoginPage {
         ReusableMethods.clickElement(verifyCodeButton);
 
 
-}}
+}
+
+    public WebElement getLogInButton() {
+        return logInButton;
+    }
+}
 
 
 
