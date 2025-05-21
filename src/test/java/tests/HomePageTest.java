@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.StepLogger;
 
 
 import static utilities.Driver.setupBrowser;
@@ -114,6 +116,8 @@ public class HomePageTest {
     }
 
     //--------------------------------US_001-------------------------------------------------------------------------//
+
+    @Step
     @Test(groups = {"US_001"})
     public void TC_001_03(ITestContext context){
 
@@ -121,7 +125,7 @@ public class HomePageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-
+        StepLogger.log("Home Page sayfası açılır");
         softAssert.assertTrue( page.pickBazarHomePage().isGroceryProductFrameDisplayed() );
         softAssert.assertTrue( page.pickBazarHomePage().isGroceryMenuFrameDisplayed() );
 

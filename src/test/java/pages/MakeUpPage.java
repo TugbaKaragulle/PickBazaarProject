@@ -84,8 +84,12 @@ public class MakeUpPage {
         return numberOfProductAddedToBasket.get(index);
     }
 
-    public WebElement addProductIntoBasketwithJS(AllPages page, int indexofList) {
-        JavascriptUtils.scrollIntoViewJS(page.pickBazarHomePage().getProductFrame());
-        return addProductIntoBasketList_plusorcart.get(indexofList);
+    public WebElement addProductIntoBasketwithJS(AllPages page, int index, int times) {
+        for (int i = 0; i < times; i++) {
+            JavascriptUtils.scrollIntoViewJS(page.pickBazarHomePage().getProductFrame());  //elementin olduğu frame ekranda görüntülenir.
+            JavascriptUtils.clickElementByJS(page.makeUpPage().addProductIntoBasketList_plusorcart.get(index));  //ürün sepete eklenir
+
+        }
+        return addProductIntoBasketList_plusorcart.get(index);
     }
 }
