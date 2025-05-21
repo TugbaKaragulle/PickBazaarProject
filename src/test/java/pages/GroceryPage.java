@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import static utilities.Driver.getDriver;
+//***
 
 public class GroceryPage {
 
@@ -192,7 +193,7 @@ public class GroceryPage {
         return title;
     }
     public boolean VerifyIfScrollDownMenuContainsSubMenu(String text, List<String> expectedSubMenu){
-
+        allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
         clickLeftMenuByTitle(text);
         List<String> actualSubMenu = new ArrayList<>();
         for (WebElement element : insideTheScrollDownMenuOnTheLeft){
@@ -236,7 +237,7 @@ public class GroceryPage {
         return actualText.equals(shortText);
     }
 
-    public boolean areSmallPhotosVisible(){
+    public boolean areSmallImagesVisible(){
         allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
         productsList.getFirst().click();
         for (WebElement each: productSmallfotos){

@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
+//***
 
 public class GroceryTest {
 
@@ -41,7 +42,6 @@ public class GroceryTest {
         logger.info("The search frame is displayed");
         softAssert.assertTrue(allPages.pickBazarHomePage().isSearchButtonDisplayed(),"The search button is not displayed");
         logger.info("The search button is displayed");
-
         softAssert.assertAll();
         Driver.closeDriver();
 
@@ -127,11 +127,9 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-        logger.info("Selecting 'Grocery' category from the dropdown menu.");
-        allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
         logger.info("Checking if the 'Fruits & Vegetables' menu contains 'Fruits' and 'Vegetables' sub-items.");
         List<String> testData= new ArrayList<>(Arrays.asList("Fruits","Vegetables"));
-        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Fruits & Vegetables",testData),"The 'Fruits & Vegetables' menu does not contain 'Fruits' and 'Vegetables' sub-items.");
+        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Fruits & Vegetables",testData),"The 'Fruits & Vegetables' menu doesn't contain 'Fruits' and 'Vegetables' sub-items.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -143,11 +141,9 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-        logger.info("Selecting 'Grocery' category from the dropdown menu.");
-        allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
-
+        logger.info("Verifying that 'Meat & Fish' menu contains 'Fresh Fish' and 'Meat' sub-items.");
         List<String> testData= new ArrayList<>(Arrays.asList("Fresh Fish","Meat"));
-        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Meat & Fish", testData));
+        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Meat & Fish", testData),"The 'Meat & Fish' menu doesn't contains 'Fresh Fish' and 'Meat' sub-items.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -159,8 +155,9 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying that 'Snacks' menu contains all expected sub-items.");
         List<String> testData= new ArrayList<>(Arrays.asList("Nuts & Biscuits","Chocolates", "Crisps","Noodles & Pasta","Sauce","Soup"));
-        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Snacks", testData));
+        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Snacks", testData),"'Snacks' menu does not contain all expected sub-items.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -172,8 +169,9 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying that 'Pet Care' menu contains all expected sub-items.");
         List<String> testData= new ArrayList<>(Arrays.asList("Cat Food","Dog Food", "Accessories"));
-        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Pet Care", testData));
+        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Pet Care", testData),"'Pet Care' menu does not contain all expected sub-items.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -185,8 +183,9 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying that 'Home & Cleaning' menu contains all expected sub-items.");
         List<String> testData= new ArrayList<>(Arrays.asList("Air Freshner","Cleaning Products", "Kitchen Accessories","Laundry"));
-        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Home & Cleaning", testData));
+        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Home & Cleaning", testData),"'Home & Cleaning' menu does not contain all expected sub-items.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -198,8 +197,9 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying that 'Dairy' menu contains all expected sub-items.");
         List<String> testData= new ArrayList<>(Arrays.asList("Milk","Butter", "Egg","Yogurt"));
-        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Dairy", testData));
+        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Dairy", testData),"'Dairy' menu does not contain all expected sub-items.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -211,8 +211,9 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying that 'Cooking' menu contains all expected sub-items.");
         List<String> testData= new ArrayList<>(Arrays.asList("Oil","Rice", "Salt & Sugar","Spices"));
-        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Cooking", testData));
+        softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Cooking", testData),"'Cooking' menu does not contain all expected sub-items.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -224,6 +225,7 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying that 'Breakfast' menu contains all expected sub-items.");
         List<String> testData= new ArrayList<>(Arrays.asList("Bread","Cereal","Jam"));
         softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Breakfast", testData));
         softAssert.assertAll();
@@ -237,6 +239,7 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying that 'Health & Beauty' menu contains all expected sub-items.");
         List<String> testData= new ArrayList<>(Arrays.asList("Bath","Cream", "Deodorant","Face Care","Oral Care", "Shaving Needs"));
         softAssert.assertTrue(allPages.groceryPage().VerifyIfScrollDownMenuContainsSubMenu("Health & Beauty", testData));
         softAssert.assertAll();
@@ -251,7 +254,9 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Checking if there are max 30 products before clicking 'Load More'.");
         softAssert.assertTrue(allPages.groceryPage().VerifyproductCount());
+        logger.info("Clicking 'Load More' button and checking if product count increases.");
         softAssert.assertTrue(allPages.groceryPage().countOfProductWithLoadMoreButton());
         softAssert.assertAll();
         Driver.closeDriver();
@@ -264,13 +269,16 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-        softAssert.assertTrue(allPages.groceryPage().verifyReadMoreButtonIsClickable());
+        logger.info("Checking if 'Read More' button is clickable.");
+        softAssert.assertTrue(allPages.groceryPage().verifyReadMoreButtonIsClickable(),"The 'Read More' button is not clickable.");
+        logger.info("Verifying the long product description appears.");
         String longText= "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). " +
                 "Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, " +
                 "though many bi- or tri-colored cultivars may be found.Less";
-        softAssert.assertTrue(allPages.groceryPage().productDescriptionforLongText(longText));
+        softAssert.assertTrue(allPages.groceryPage().productDescriptionforLongText(longText),"The long product description is not displayed.");
         String shortText= "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... " +
                 "The skin of ripe apples is generally red, yellow, g...Read more";
+        logger.info("Checking if 'Less' button is clickable and short text appears again.");
         softAssert.assertTrue(allPages.groceryPage().productDescriptionforShortText(shortText));
         softAssert.assertAll();
         Driver.closeDriver();
@@ -283,8 +291,10 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-        softAssert.assertTrue(allPages.groceryPage().areSmallPhotosVisible());
+        logger.info("Checking if small images under the product are visible.");
+        softAssert.assertTrue(allPages.groceryPage().areSmallImagesVisible(),"small images under the product are not visible.");
 
+        logger.info("Clicking small images and checking if they match the big image.");
         softAssert.assertTrue(
                 allPages.groceryPage().verifyIfPhotosAreEquals(
                         allPages.groceryPage().getProductBigFotoIndex1(),
