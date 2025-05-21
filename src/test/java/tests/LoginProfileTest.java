@@ -29,10 +29,10 @@ public class LoginProfileTest {
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         setupBrowser(context);
         Allure.step("Müsteri Points yazan yerde puanini görüntülüyor");
-        //logger.info("Müsteri Points yazan yerde puanini görüntülüyor");
+        logger.info("Müsteri Points yazan yerde puanini görüntülüyor");
         softAssert.assertTrue(allPages.loginProfilePage().profilePoints());
         Allure.step("Müsteri Points yazan yerde puanini görüntüledi");
-        //logger.info("Müsteri Points yazan yerde puanini görüntüledi");
+        logger.info("Müsteri Points yazan yerde puanini görüntüledi");
         softAssert.assertAll();
         Driver.closeDriver();
     }

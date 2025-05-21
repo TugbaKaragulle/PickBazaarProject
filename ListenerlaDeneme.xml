@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="utilities.AllureListerner"> </listener>
+    </listeners>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/tugba/IdeaProjects/PickBazarTestNGProject/src/test/java/tests/BooksTest.java">
+        <classes>
+            <class name="tests.BooksTest">
+                <methods>
+                    <include name="TC_23_01"/>
+                    <include name="TC_23_02"/>
+                    <include name="TC_23_03"/>
+                    <include name="TC_23_04"/>
+                    <include name="TC_23_05"/>
+                    <include name="TC_23_07"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
