@@ -3,7 +3,6 @@ package tests;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -11,8 +10,6 @@ import org.testng.asserts.SoftAssert;
 import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
-
-
 import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 import static utilities.ReusableMethods.*;
@@ -140,6 +137,7 @@ public class HomePageTest {
         setupBrowser(context);
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
+
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         softAssert.assertTrue( page.pickBazarHomePage().isGroceryProductFrameDisplayed() ,"Grocery ürünleri olduğu frame görüntülenemedi");
         logger.info("Ekranin Sag tarafinda Grocery ürünleri olduğu frame görüntülenir");
