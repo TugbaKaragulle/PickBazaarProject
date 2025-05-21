@@ -25,6 +25,10 @@ public class AllureListerner implements ITestListener {
         }
     }
 
+    /**
+     *
+     * @param context
+     */
     @Override
     public void onFinish(ITestContext context) {
         try {
@@ -40,5 +44,4 @@ public class AllureListerner implements ITestListener {
             throw new RuntimeException(e);
         }
     }
-
 }
