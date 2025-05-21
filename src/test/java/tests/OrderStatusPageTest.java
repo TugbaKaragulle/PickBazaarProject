@@ -1,7 +1,6 @@
 package tests;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -9,7 +8,6 @@ import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
 import static utilities.Driver.setupBrowser;
-
 public class OrderStatusPageTest {
 
 
