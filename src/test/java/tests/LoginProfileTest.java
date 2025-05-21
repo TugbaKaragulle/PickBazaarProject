@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
@@ -9,22 +10,28 @@ import org.testng.asserts.SoftAssert;
 import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
-
 import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
+//***
 
 public class LoginProfileTest {
     Logger logger = LogManager.getLogger(LoginProfileTest.class);
 
+
     @Test(groups = "smoke")
+    @Owner("Tugba")
+    @Description("Deneme Description")
+    @Severity(SeverityLevel.CRITICAL)
     public void TC_021_01(ITestContext context) {
 
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         setupBrowser(context);
+        Allure.step("Müsteri Points yazan yerde puanini görüntülüyor");
         logger.info("Müsteri Points yazan yerde puanini görüntülüyor");
         softAssert.assertTrue(allPages.loginProfilePage().profilePoints());
+        Allure.step("Müsteri Points yazan yerde puanini görüntüledi");
         logger.info("Müsteri Points yazan yerde puanini görüntüledi");
         softAssert.assertAll();
         Driver.closeDriver();
