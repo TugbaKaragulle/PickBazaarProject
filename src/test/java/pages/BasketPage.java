@@ -70,9 +70,8 @@ public class BasketPage {
     }
 
     public boolean verifyProductNameInBasket(String productName) {
-        logger.info(productName);
+
         for (WebElement w : productNameListInBasket) {
-            logger.info(w.getText().trim());
             if (w.getText().trim().equals(productName.trim()))
                 return true;
         }
@@ -98,27 +97,39 @@ public class BasketPage {
 
 
     public String getProductNameInBasket(int index) {
-        return productNameListInBasket.get(index).getText();
+
+        try {
+            openBasketPanel();
+            System.out.println("Sepet paneli açıldı");
+        } catch (Exception e) {
+            System.out.println("Sepet paneli açık");
+        } finally {
+            return productNameListInBasket.get(index).getText();
+        }
     }
 
-    public void addAProductIntoBasketWithPlusIcon(AllPages page, int indexOfList) {
-        page.basketPage().clickPlusIcon(indexOfList); //ürünü sepete ekle tıklanır
+    public void addAProductIntoBasketWithPlusIcon( int indexOfList) {
+        clickPlusIcon(indexOfList); //ürünü sepete ekle tıklanır
     }
 
-    public void deleteAProductFromBasketWithMinusIcon(AllPages page, int indexofList) {
-        page.basketPage().clickMinusIcon(indexofList); //ürünü sepete ekle tıklanır
+    public void deleteAProductFromBasketWithMinusIcon(int indexofList) {
+        clickMinusIcon(indexofList); //ürünü sepete ekle tıklanır
     }
 
-    public boolean deleteAProductFromBasketXButton(AllPages page, int indexofList) {
+    public boolean deleteAProductFromBasketXButton( int indexofList) {
 
-        String nameOfIndexedProduct = page.basketPage().getProductNameInBasket(indexofList); //ürün silinmeden önce ürün adı depolanır
+        System.out.println("indexofList = " + indexofList);
+        String nameOfIndexedProduct = getProductNameInBasket(indexofList); //ürün silinmeden önce ürün adı depolanır
+
+        System.out.println("nameOfIndexedProduct = " + nameOfIndexedProduct);
+
         boolean isProductDeleted = false;
-        for (WebElement w : page.basketPage().getProductNameListInBasket()) {
+        for (WebElement w : getProductNameListInBasket()) {
             if (!(w.getText().equals(nameOfIndexedProduct))) {
                 isProductDeleted = true;
             }
         }
-        page.basketPage().clickXbuttonOfAProduct(indexofList);
+        clickXbuttonOfAProduct(indexofList);
         return isProductDeleted;
     }
 
