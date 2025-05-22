@@ -168,6 +168,14 @@ public class LoginPage {
         ReusableMethods.clickElement(sendOPT);
     }
 
+    public void logoutIfLoggedIn() {
+
+        if( isProfileImageDisplayed() ){
+            logoutbuttonClick();
+        }
+    }
+
+
     public void sendOPTCode() {
         Actions action = new Actions(Driver.getDriver());
 
@@ -185,6 +193,9 @@ public class LoginPage {
 
 
         }
+
+
+
 
     }
 
