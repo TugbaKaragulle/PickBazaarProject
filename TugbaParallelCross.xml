@@ -13,8 +13,8 @@
     </test>
 
     <test verbose="2" preserve-order="true"
-          name="Edge ile calisacak test">
-        <parameter name="browser" value="edge"> </parameter>
+          name="ParallelCross2 Test">
+        <parameter name="browser" value="firefox"> </parameter>
         <classes>
             <class name="tests.GroceryTest"> </class>
         </classes>
@@ -27,4 +27,6 @@
             <class name="tests.LoginProfileTest"> </class>
         </classes>
     </test>
+
+
 </suite>
