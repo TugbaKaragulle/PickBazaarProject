@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="utilities.AllureListerner"> </listener>
+    </listeners>
+    <test verbose="2" preserve-order="true"
+          name="US_001">
+        <classes>
+            <class name="tests.HomePageTest">
+                <methods>
+                    <include name="TC_001_01"/>
+                    <include name="TC_001_02"/>
+                    <include name="TC_001_03"/>
+                    <include name="TC_002_01"/>
+                    <include name="TC_003_01"/>
+                    <include name="TC_003_02"/>
+                    <include name="TC_003_03"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
