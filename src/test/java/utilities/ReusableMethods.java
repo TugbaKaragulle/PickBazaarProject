@@ -1,9 +1,9 @@
 package utilities;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.qameta.allure.Allure;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.HomePage;
@@ -122,5 +122,40 @@ public static boolean waitForUrlContains(String data) {
             System.out.println("Ürün sayısı artmadı, suanki ürün sayisi: " + productList.size());
             return false;
         }
+    }
+
+    public static void captureScreenshot(String name) {
+        WebDriver driver = Driver.getDriver();
+        if (driver == null) return;
+
+        try {
+            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            Allure.getLifecycle().addAttachment(name, "image/png", "png", screenshot);
+        } catch (Exception e) {
+            System.out.println("Screenshot alınamadı: " + e.getMessage());
+        }
+    }
+
+    static Logger logger = LogManager.getLogger(ReusableMethods.class);
+
+    public static void log(String message) {
+        logger.info(message);             // Konsola yaz
+        Allure.step(message);             // Allure raporuna yaz
+    }
+
+    public static void log(String format, Object arg) {
+        String message = format.replace("{}", String.valueOf(arg));
+        logger.info(message);
+        Allure.step(message);
+    }
+    public static void logError(String message) {
+        logger.error(message);
+        Allure.step("[ERROR] " + message);
+    }
+
+    public static void logError(String format, Object arg) {
+        String message = format.replace("{}", String.valueOf(arg));
+        logger.info(message);
+        Allure.step("[ERROR] " +message);
     }
 }
