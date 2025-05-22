@@ -1,9 +1,13 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import tests.BooksTest;
+import utilities.ConfigReader;
 import utilities.JavascriptUtils;
 import utilities.ReusableMethods;
 
@@ -16,16 +20,19 @@ import static utilities.Driver.getDriver;
 
 public class BooksPage {
 
-    public BooksPage() {
-        PageFactory.initElements(getDriver(), this);  }
+    Logger logger = LogManager.getLogger(BooksTest.class);
 
-    //*************************** Locates ************************
+    public BooksPage() {
+        PageFactory.initElements(getDriver(), this);
+    }
+
+    //TODO*************************** Locates ************************
 
     @FindBy(xpath = "//div[@class='swiper-slide swiper-slide-active swiper-slide-duplicate-next swiper-slide-duplicate-prev']//img")
     private WebElement banner;
 
     @FindBy(xpath = "//div[@class='flex items-center justify-between mb-7 ']")
-    private List<WebElement>mainTitles;
+    private List<WebElement> mainTitles;
 
     @FindBy(xpath = "//div[@class='grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-11 2xl:grid-cols-5 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]']//a[@class='cursor-pointer']//span//img[@class='product-image rounded-lg']")
     private List<WebElement> newArrivalBookNames;
@@ -45,28 +52,29 @@ public class BooksPage {
     @FindBy(xpath = "//div[@class='grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]']//img")
     private List<WebElement> popularProductImages;
 
-    @FindBy( xpath = "//div[@class='grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]']//a[@class='text-sm font-semibold text-heading transition-colors hover:text-orange-500 md:text-base']")
+    @FindBy(xpath = "//div[@class='grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]']//a[@class='text-sm font-semibold text-heading transition-colors hover:text-orange-500 md:text-base']")
     private List<WebElement> popularProductBookNames;
 
-    @FindBy (xpath = "//div[@class='grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]']//div[@class='flex shrink-0 items-center']")
+    @FindBy(xpath = "//div[@class='grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]']//div[@class='flex shrink-0 items-center']")
     private List<WebElement> popularPruductPrice;
 
-    @FindBy (xpath = "//div[@class='relative overflow-hidden text-center cursor-pointer group']//img")
+    @FindBy(xpath = "//div[@class='relative overflow-hidden text-center cursor-pointer group']//img")
     private List<WebElement> whichBookImages;
 
-    @FindBy (xpath = "//h3[text()='Which Book You Like to See?']")
+    @FindBy(xpath = "//h3[text()='Which Book You Like to See?']")
     private WebElement whichBookTitle;
 
-    @FindBy (xpath = "//span[@class='block mt-2 text-base font-semibold transition-colors text-heading group-hover:text-orange-500 ltr:text-left rtl:text-right']")
+    @FindBy(xpath = "//span[@class='block mt-2 text-base font-semibold transition-colors text-heading group-hover:text-orange-500 ltr:text-left rtl:text-right']")
     private List<WebElement> whichBookNames;
 
     @FindBy(xpath = "//div[@class='absolute z-10 flex items-center justify-center w-8 h-8 -mt-4 rounded-full outline-none cursor-pointer banner-slider-next text-heading bg-light shadow-300 top-1/2 ltr:-right-4 rtl:-left-4 focus:outline-none transition-colors hover:text-orange-500']")
     private WebElement whichBookScrollArrow;
 
     @FindBy(xpath = "//h3[text()='Top Authors']")
-    private  WebElement topAuthorsTitle;
+    private WebElement topAuthorsTitle;
 
-    @FindBy(xpath = "//a[contains(@class, 'group')]") //(xpath = "//a[@class='group relative flex cursor-pointer flex-col items-center bg-light text-center']")
+    @FindBy(xpath = "//a[contains(@class, 'group')]")
+    //(xpath = "//a[@class='group relative flex cursor-pointer flex-col items-center bg-light text-center']")
     private List<WebElement> authorPhotos;
 
     @FindBy(xpath = "(//span[contains(@class, 'rounded-full') and contains(@class, 'h-44') and contains(@class, 'shadow-350')])[position() <= 5]")
@@ -81,7 +89,8 @@ public class BooksPage {
     @FindBy(xpath = "(//span[contains(@class, 'rounded-full') and contains(@class, 'h-44') and contains(@class, 'shadow-350')])[position() > last() - 5]/span")
     private List<WebElement> last5AuthorNames;
 
-    @FindBy(xpath = "//div[contains(@class, 'author-slider-next')]") //(xpath = "//div[@class='author-slider-next w-8 h-8 flex items-center justify-center text-heading bg-light shadow-300 outline-none rounded-full absolute top-1/2 -mt-4 z-[5] cursor-pointer ltr:-right-3 rtl:-left-3 ltr:lg:-right-4 rtl:lg:-left-4 focus:outline-none transition-colors hover:text-orange-500']")
+    @FindBy(xpath = "//div[contains(@class, 'author-slider-next')]")
+    //(xpath = "//div[@class='author-slider-next w-8 h-8 flex items-center justify-center text-heading bg-light shadow-300 outline-none rounded-full absolute top-1/2 -mt-4 z-[5] cursor-pointer ltr:-right-3 rtl:-left-3 ltr:lg:-right-4 rtl:lg:-left-4 focus:outline-none transition-colors hover:text-orange-500']")
     private WebElement authorScrollArrowRight;
 
     @FindBy(xpath = "//div[@class='author-slider-prev w-8 h-8 flex items-center justify-center text-heading bg-light shadow-300 outline-none rounded-full absolute top-1/2 -mt-4 z-[5] cursor-pointer ltr:-left-3 rtl:-right-3 ltr:lg:-left-4 rtl:lg:-right-4 focus:outline-none transition-colors hover:text-orange-500']")
@@ -91,7 +100,7 @@ public class BooksPage {
     private List<WebElement> authorNames;
 
 
-    //TODO*****************************Getter Methods*******************
+    //TODO***************************** Getter Methods *******************
 
     public WebElement getBanner() {
         return banner;
@@ -184,62 +193,137 @@ public class BooksPage {
     public List<WebElement> getLast5AuthorNames() {
         return last5AuthorNames;
     }
-    //TODO***************************  Variables **********************
+
+    //TODO************************ Variables ***************************
 
     AllPages allPages = new AllPages();
     Actions actions = new Actions(getDriver());
+    private String bestSellingtitle = "Best Selling Products";
 
-    //TODO************************** Reusable Methods *****************
 
-    public void clickAsMuchAsYouWant(WebElement element, int clickCount){
+    //TODO********************** Variables getter **********************
+    public String getBestSellingtitle() {
+        return bestSellingtitle;
+    }
+
+    //TODO********************* Reusable Methods ***********************
+
+    public void clickAsMuchAsYouWant(WebElement element, int clickCount) {
         for (int i = 0; i < clickCount; i++) {
-            ReusableMethods.waitForVisibility(getDriver(),element,10);
+            ReusableMethods.waitForVisibility(getDriver(), element, 10);
             JavascriptUtils.clickElementByJS(element);//element.click();
         }
     }
 
-    //TODO************************** Methods **************************
+    //TODO*********************** Methods ******************************
 
-    public boolean isBannerDisplayed(){
+    public boolean isBannerDisplayed() {
+        logger.info("Navigating to the homepage.");
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         allPages.pickBazarHomePage().clickDropDownMenuOption("Books");
+        logger.info("Verifying that the banner with 'Sale UP TO 20% OFF' and 'Shop Now' is visible.");
         return banner.isDisplayed();
     }
 
-    public boolean bestSellingProductsField(String title){
+    public boolean bestSellingProductsField(String title) {
+        logger.info("Navigating to the homepage.");
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         allPages.pickBazarHomePage().clickDropDownMenuOption("Books");
         List<String> titles = new ArrayList<>();
-        for (WebElement each : mainTitles){
-        titles.add(each.getText());
+        for (WebElement each : mainTitles) {
+            titles.add(each.getText());
         }
+        logger.info("Verifying that the 'Best Selling Products' section is visible.");
         return titles.contains(title);
     }
 
-    public void scrollToElementOnBookPage(WebElement element){
+    public void scrollToElement(WebElement element) {
+        logger.info("Navigating to the homepage.");
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         allPages.pickBazarHomePage().clickDropDownMenuOption("Books");
+        logger.info("Scrolling to the test area.");
         JavascriptUtils.scrollIntoViewJS(element);
-       // actions.scrollToElement(element).perform();
+        // actions.scrollToElement(element).perform();
         ReusableMethods.waitForVisibilityOfTitle("Pickbazar | Books");
     }
 
-    public boolean areElementsDisplayed(List<WebElement> elements){
-        for (WebElement each : elements){
-            ReusableMethods.waitForVisibility(getDriver(),each,10);
-            if (!each.isDisplayed()){
+    public boolean areElementsDisplayed(List<WebElement> elements, WebElement element, String logMessage) {
+
+        scrollToElement(element);
+        logger.info("Verifying that " + logMessage + " are visible.");
+
+        for (WebElement each : elements) {
+            ReusableMethods.waitForVisibility(getDriver(), each, 10);
+            if (!each.isDisplayed()) {
                 return false;
             }
         }
         return true;
     }
 
-    public void deneme(){
-        scrollToElementOnBookPage(topAuthorsTitle);
-        for (WebElement each : authorPhotos){
-            System.out.println(each.getAccessibleName()+" ");
+    public boolean areAuthorPhotosDisplayed() {
+        logger.info("Scrolling to 'Top Authors' section.");
+        scrollToElement(topAuthorsTitle);
 
+        for (WebElement each : first5AuthorPhotos) {
+            ReusableMethods.waitForVisibility(getDriver(), each, 10);
+            if (!each.isDisplayed()) {
+                return false;
+            }
         }
-
+        logger.info("Clicking the scroll arrow 3 times.");
+        clickAsMuchAsYouWant(authorScrollArrowRight, 3);
+        logger.info("Verifying that author photos are visible.");
+        for (WebElement each2 : last5AuthorPhotos) {
+            ReusableMethods.waitForVisibility(getDriver(), each2, 10);
+            if (!each2.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
     }
 
+    public boolean areAuthorNamesDisplayed() {
+        logger.info("Scrolling to 'Top Authors' section.");
+        scrollToElement(topAuthorsTitle);
+
+        for (WebElement each : first5AuthorNames) {
+            ReusableMethods.waitForVisibility(getDriver(), each, 10);
+            if (!each.isDisplayed()) {
+                return false;
+            }
+        }
+        logger.info("Clicking the scroll arrow 3 times.");
+        clickAsMuchAsYouWant(authorScrollArrowRight, 3);
+        logger.info("Verifying that author names are visible.");
+        for (WebElement each2 : last5AuthorNames) {
+            ReusableMethods.waitForVisibility(getDriver(), each2, 10);
+            if (!each2.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isWhichBookSectionDisplayed(List<WebElement> elements, WebElement element, String logMessage) {
+        logger.info("Scrolling to 'Which Books You Like To See?' section.");
+        scrollToElement(element);
+        logger.info("Clicking on the scroll arrow.");
+        clickAsMuchAsYouWant(whichBookScrollArrow, 1);
+        logger.info("Verifying that the book " + logMessage + " are displayed.");
+        for (WebElement each : elements) {
+            ReusableMethods.waitForVisibility(getDriver(), each, 10);
+            if (!each.isDisplayed()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isTitleVisible(WebElement element) {
+        scrollToElement(element);
+        logger.info("Verifying that the section title is visible.");
+        return ReusableMethods.isWebElementDisplayed(element);
+    }
 
 }
-

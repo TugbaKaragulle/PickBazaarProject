@@ -46,7 +46,7 @@ public class LoginProfileTest {
         try {
             softAssert.assertTrue(allPages.loginProfilePage().profileDropDownMenu(data),"The page '" + data + "' could not be opened");
         } catch (Exception e) {
-            softAssert.fail(testCaseNo + " is failed due to an "+e+" exception.");
+            softAssert.fail(testCaseNo + " is failed due to an "+e.getMessage()+" exception.");
         } finally {
             Driver.closeDriver();
             softAssert.assertAll();
