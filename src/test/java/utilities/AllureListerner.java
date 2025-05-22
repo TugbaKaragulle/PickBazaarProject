@@ -4,15 +4,13 @@ import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
+import org.testng.*;
 
 import java.io.IOException;
 
-public class AllureListerner implements ITestListener {
+public class AllureListerner implements ISuiteListener, ITestListener {
 
-    @Override
+
     public void onTestFailure(ITestResult result) {
         WebDriver driver = Driver.getDriver();
         if (driver == null) return;
@@ -25,8 +23,13 @@ public class AllureListerner implements ITestListener {
         }
     }
 
-    @Override
-    public void onFinish(ITestContext context) {
+    /**
+     * Testler tamamlandığında, işletim sistemine göre uygun komutla
+     * Allure raporlarını otomatik olarak başlatır. Terminalden allure serve gerek kalmaz
+     */
+
+
+    public void onFinish(ISuite suite) {
         try {
             String os = System.getProperty("os.name").toLowerCase();
             if (os.contains("win")) {

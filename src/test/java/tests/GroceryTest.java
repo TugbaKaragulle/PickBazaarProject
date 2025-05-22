@@ -21,6 +21,7 @@ public class GroceryTest {
 
     Logger logger = LogManager.getLogger(GroceryTest.class);
 
+
     @Test(groups = "smoke")
     public void TC_008_01(ITestContext context) {
         AllPages allPages = new AllPages();
@@ -28,27 +29,86 @@ public class GroceryTest {
         setupBrowser(context);
         logger.info("Navigating to the homepage.");
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying if the grocery button is clickable on homepage");
         softAssert.assertTrue(allPages.groceryPage().isGroceryClickable(),"The grocery button is not clickable on homepage");
-        logger.info("The grocery button is clickable on homepage");
-        softAssert.assertTrue(allPages.groceryPage().isGroceryLinkContains(),"The grocery url doesn't contains the word 'grocery'");
-        logger.info("The grocery url contains the word 'grocery'");
-        softAssert.assertTrue(allPages.groceryPage().isElementTextEquals(allPages.pickBazarHomePage().getH1TagText(),
-                "Groceries Delivered in 90 Minute"),"The text 'Groceries Delivered in 90 Minute' is not visible");
-        logger.info("The text 'Groceries Delivered in 90 Minute' is visible");
-        softAssert.assertTrue(allPages.groceryPage().isElementTextEquals(allPages.pickBazarHomePage().getpTagText(),
-                "Get your healthy foods & snacks delivered at your doorsteps all day everyday"),"The text 'Get your healthy foods & snacks delivered at your doorsteps all day everyday' is not visible");
-        logger.info("The text 'Get your healthy foods & snacks delivered at your doorsteps all day everyday' is visible");
-        softAssert.assertTrue(ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame()),"The search frame is not displayed");
-        logger.info("The search frame is displayed");
-        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchButtonDisplayed(),"The search button is not displayed");
-        logger.info("The search button is displayed");
         softAssert.assertAll();
         Driver.closeDriver();
 
     }
 
+    @Test(groups = "smoke")
+    public void TC_008_02(ITestContext context) {
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
+        setupBrowser(context);
+        logger.info("Navigating to the homepage.");
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying if the grocery url contains the word 'grocery");
+        softAssert.assertTrue(allPages.groceryPage().isGroceryLinkContains(),"The grocery url doesn't contains the word 'grocery'");
+        softAssert.assertAll();
+        Driver.closeDriver();
+
+    }
+
+    @Test(groups = "smoke")
+    public void TC_008_03(ITestContext context) {
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
+        setupBrowser(context);
+        logger.info("Navigating to the homepage.");
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying if the text 'Groceries Delivered in 90 Minute' is visible");
+        softAssert.assertTrue(allPages.groceryPage().isElementTextEquals(allPages.pickBazarHomePage().getH1TagText(),
+                "Groceries Delivered in 90 Minute"),"The text 'Groceries Delivered in 90 Minute' is not visible");
+        softAssert.assertAll();
+        Driver.closeDriver();
+
+    }
+
+    @Test(groups = "smoke")
+    public void TC_008_04(ITestContext context) {
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
+        setupBrowser(context);
+        logger.info("Navigating to the homepage.");
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying if the text 'Get your healthy foods & snacks delivered at your doorsteps all day everyday' is visible");
+        softAssert.assertTrue(allPages.groceryPage().isElementTextEquals(allPages.pickBazarHomePage().getpTagText(),
+                "Get your healthy foods & snacks delivered at your doorsteps all day everyday"),"The text 'Get your healthy foods & snacks delivered at your doorsteps all day everyday' is not visible");
+        softAssert.assertAll();
+        Driver.closeDriver();
+
+    }
+
+    @Test(groups = "smoke")
+    public void TC_008_05(ITestContext context) {
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
+        setupBrowser(context);
+        logger.info("Navigating to the homepage.");
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying if the search frame is visible");
+        softAssert.assertTrue(ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame()),"The search frame is not displayed");
+        softAssert.assertAll();
+        Driver.closeDriver();
+
+    }
+
+    @Test(groups = "smoke")
+    public void TC_008_06(ITestContext context) {
+        AllPages allPages = new AllPages();
+        SoftAssert softAssert = new SoftAssert();
+        setupBrowser(context);
+        logger.info("Navigating to the homepage.");
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Verifying if the search button is visible ");
+        softAssert.assertTrue(allPages.pickBazarHomePage().isSearchButtonDisplayed(),"The search button is not visible");
+        softAssert.assertAll();
+        Driver.closeDriver();
+    }
+
     @Test(dataProvider = "searchFrameData", groups = "smoke")
-    public void TC_08_02(ITestContext context, String products){
+    public void TC_08(ITestContext context, String products,String testCaseNo){
 
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
@@ -58,7 +118,7 @@ public class GroceryTest {
         try {
             softAssert.assertTrue(allPages.groceryPage().verifyProductsAppearAfterSearch(products));
         } catch (IndexOutOfBoundsException e) {
-            softAssert.fail(products+" not found");
+            softAssert.fail(testCaseNo+" : "+products+" not found");
         }
         logger.info("Verified that the product {} is displayed. ", products);
         softAssert.assertAll();
@@ -68,16 +128,16 @@ public class GroceryTest {
     @DataProvider(name = "searchFrameData")
     public Object[][] searchFrameData() {
         return new Object[][] {
-                { "Apple" },
-                { "Lays" },
-                { "Clean" },
-                { "Salt" },
-                { "Milk" },
-                { "Rice" },
-                { "Oil" },
-                { "Bread" },
-                { "Jam" },
-                { "Salmon" }
+                { "Apple","Test Case 08_07 " },
+                { "Lays" ,"Test Case 08_08 "},
+                { "Clean","Test Case 08_09 " },
+                { "Salt","Test Case 08_10 " },
+                { "Milk","Test Case 08_11 " },
+                { "Rice","Test Case 08_12 " },
+                { "Oil" ,"Test Case 08_13 "},
+                { "Bread","Test Case 08_14 " },
+                { "Jam","Test Case 08_15 " },
+                { "Salmon","Test Case 08_16 " }
         };
     }
 
@@ -272,16 +332,12 @@ public class GroceryTest {
         logger.info("Checking if 'Read More' button is clickable.");
         softAssert.assertTrue(allPages.groceryPage().verifyReadMoreButtonIsClickable(),"The 'Read More' button is not clickable.");
         logger.info("Verifying the long product description appears.");
-        String longText= "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). " +
-                "Apple trees are ... The skin of ripe apples is generally red, yellow, green, pink, or russetted, " +
-                "though many bi- or tri-colored cultivars may be found.Less";
-        softAssert.assertTrue(allPages.groceryPage().productDescriptionforLongText(longText),"The long product description is not displayed.");
-        String shortText= "An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... " +
-                "The skin of ripe apples is generally red, yellow, g...Read more";
+        softAssert.assertTrue(allPages.groceryPage().productDescriptionforLongText(ConfigReader.getProperty("LongDiscriptionApple")),"The long product description is not displayed.");
         logger.info("Checking if 'Less' button is clickable and short text appears again.");
-        softAssert.assertTrue(allPages.groceryPage().productDescriptionforShortText(shortText));
+        softAssert.assertTrue(allPages.groceryPage().productDescriptionforShortText(ConfigReader.getProperty("shortDiscriptionApple")));
         softAssert.assertAll();
         Driver.closeDriver();
+
     }
 
     @Test(groups = "smoke")

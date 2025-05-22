@@ -28,11 +28,8 @@ public class LoginProfileTest {
         SoftAssert softAssert = new SoftAssert();
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         setupBrowser(context);
-        Allure.step("Müsteri Points yazan yerde puanini görüntülüyor");
-        logger.info("Müsteri Points yazan yerde puanini görüntülüyor");
-        softAssert.assertTrue(allPages.loginProfilePage().profilePoints());
-        Allure.step("Müsteri Points yazan yerde puanini görüntüledi");
-        logger.info("Müsteri Points yazan yerde puanini görüntüledi");
+        logger.info("Customer sees their points on the profile page.");
+        softAssert.assertTrue(allPages.loginProfilePage().profilePoints(),"Customer cannot see their points on the profile page.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -45,16 +42,15 @@ public class LoginProfileTest {
         SoftAssert softAssert = new SoftAssert();
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         setupBrowser(context);
-        logger.info(testCaseNo+ " is in progress");
+        logger.info("Executing test case: " + testCaseNo + " with data: " + data);
         try {
-            softAssert.assertTrue(allPages.loginProfilePage().profileDropDownMenu(data));
+            softAssert.assertTrue(allPages.loginProfilePage().profileDropDownMenu(data),"The page '" + data + "' could not be opened");
         } catch (Exception e) {
+            softAssert.fail(testCaseNo + " is failed due to an "+e+" exception.");
+        } finally {
             Driver.closeDriver();
-            softAssert.fail(testCaseNo+" is failed");
+            softAssert.assertAll();
         }
-        Driver.closeDriver();
-        softAssert.assertAll();
-
     }
 
     @DataProvider(name = "urlData")
@@ -73,11 +69,9 @@ public class LoginProfileTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-        logger.info("Logout'a tiklaninca join butonunun görünür oldugu dogrulaniyor");
-        softAssert.assertTrue(allPages.loginProfilePage().verifyLogoutWorks());
-        logger.info("Logout'a tiklaninca join butonunun görünür oldugu dogrulandi");
+        logger.info("Checking if the 'Join' button is visible after clicking logout");
+        softAssert.assertTrue(allPages.loginProfilePage().verifyLogoutWorks(),"'Join' button is not visible after logging out.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
-
 }
