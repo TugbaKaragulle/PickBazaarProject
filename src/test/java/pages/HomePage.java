@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
+import utilities.JavascriptUtils;
 
 import java.util.List;
 
@@ -257,6 +258,7 @@ public class HomePage {
         };
     }
     public boolean isProductFrameVisible() {
+        JavascriptUtils.scrollIntoViewJS(getProductFrame());
          return isWebElementDisplayed(productFrame);
     }
     public void sendKeysSearchTextArea(String text) {
