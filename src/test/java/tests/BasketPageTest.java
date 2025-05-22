@@ -133,9 +133,15 @@ public class BasketPageTest {
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
         logger.info("Makeup Page sayfası açıldı");
+
         //todo login olma durumu kontrolü eklenip, logout olma adımı eklenmeli
 
-        page.loginPage().isUserLoggedIn();
+        page.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+        Actions actions = new Actions(getDriver());
+        actions.click(page.loginProfilePage().getProfilSilueti()).perform();
+        actions.click(page.loginProfilePage().getLogout()).perform();
+
+        //page.loginProfilePage().getLogout();
 
         ReusableMethods.waitForSeconds(5);
 

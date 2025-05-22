@@ -11,8 +11,6 @@ import utilities.ReusableMethods;
 
 import java.util.List;
 
-import static utilities.Driver.getDriver;
-
 public class LoginPage {
 
     public LoginPage() {
@@ -198,15 +196,6 @@ public class LoginPage {
 
     public WebElement getLogInButton() {
         return logInButton;
-    }
-
-    public boolean checkUserLoggedIn() {
-
-        if(!isProfileImageDisplayed()) {
-            logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-            return true;
-        }
-        else return false;
     }
 }
 
