@@ -142,7 +142,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_03(ITestContext context) {
+    public void TC_08_17(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -162,7 +162,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_04(ITestContext context) {
+    public void TC_08_18(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -181,7 +181,7 @@ public class GroceryTest {
 
 
     @Test(groups = "smoke")
-    public void TC_08_05(ITestContext context) {
+    public void TC_08_19(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -195,7 +195,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_06(ITestContext context) {
+    public void TC_08_20(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -209,7 +209,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_07(ITestContext context) {
+    public void TC_08_21(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -223,7 +223,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_08(ITestContext context) {
+    public void TC_08_22(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -237,7 +237,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_09(ITestContext context) {
+    public void TC_08_23(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -251,7 +251,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_10(ITestContext context) {
+    public void TC_08_24(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -265,7 +265,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_11(ITestContext context) {
+    public void TC_08_25(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -279,7 +279,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_12(ITestContext context) {
+    public void TC_08_26(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -293,7 +293,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_13(ITestContext context) {
+    public void TC_08_27(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -308,7 +308,7 @@ public class GroceryTest {
 
 
     @Test(groups = "smoke")
-    public void TC_08_14(ITestContext context) {
+    public void TC_08_28(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -323,7 +323,7 @@ public class GroceryTest {
     }
 
     @Test(groups = "smoke")
-    public void TC_08_15(ITestContext context) {
+    public void TC_08_29(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -340,8 +340,58 @@ public class GroceryTest {
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Test(groups = "smoke")
-    public void TC_08_16(ITestContext context) {
+    public void TC_08_30(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);

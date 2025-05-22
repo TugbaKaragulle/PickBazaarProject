@@ -131,4 +131,5 @@ public class LoginProfilePage {
         actions.moveToElement(logout).click().perform();
         return ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getJoinButton());
     }
+
 }
