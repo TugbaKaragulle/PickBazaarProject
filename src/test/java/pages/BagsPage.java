@@ -7,11 +7,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
-import utilities.ReusableMethods;
+
 import java.time.Duration;
 import java.util.List;
-import static utilities.ReusableMethods.isWebElementDisplayed;
-import static utilities.ReusableMethods.log;
+
+import static utilities.ReusableMethods.*;
 
 public class BagsPage {
     AllPages allPages = new AllPages();
@@ -44,41 +44,55 @@ public class BagsPage {
     }
 
     // **********************************************************Bags Methods********************************************************************************
-
     public void clickDropDownMenu() {
         allPages.pickBazarHomePage().getDropDownMenu().click(); //Fatma Hanım
 
     }
-
     public void clickDropdownMenuAndBags() {
         clickDropDownMenu();
         dropDownMenuBagsLocate.click();
     }
 
     public boolean isDisplayexclusiveBrandedbagsText() {
-        log("Sayfada exclusiveBrandedbagsText görünür olduğunu doğrulanıyor..");
-        boolean gorundumu = isWebElementDisplayed(exclusiveBrandedbagsText);
-        log("Sayfada exclusiveBrandedbagsText görünür olduğunu doğrulandı..");
-        return gorundumu;
+        log("Verifying that exclusiveBrandedbagsText is visible on the page..");
+        boolean isVisiable = false;
+        try {
+            isVisiable = isWebElementDisplayed(exclusiveBrandedbagsText);
+        } catch (Exception e) {
+            screenShot("exclusiveBrandedbagsText not visible");
+        }
+        log("isVisiable ? --> ", isVisiable);
+        log("verified to be visible on the page..");
+        return isVisiable;
     }
 
     public boolean isDisplaygetYourExclusiveBrandedBagsDeliveredToYouinNoTimeText() {
         System.out.println();
-        log("Sayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulanıyor..");
-        boolean gorundumu = isWebElementDisplayed(getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText);
-        ReusableMethods.captureScreenshot("Text Görünür mü?");
-        log("Sayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulandı..");
-        return gorundumu;
+        log("Verifying that getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText is visible on the page..");
+        boolean isVisiable = false;
+        try {
+            isVisiable = isWebElementDisplayed(getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText);
+        } catch (Exception e) {
+            screenShot("getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText not visible");
+        }
+        log("isVisiable ? --> ", isVisiable);
+        log("verified to be visible on the page..");
+
+        return isVisiable;
     }
 
     public boolean isSearchAreaFrameDisplayed() {
         System.out.println();
-        log("Sayfada SearchAreaFrame görünür olduğunu doğrulanıyor..");
-        boolean gorundumu = isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame());
-        log("Sayfada SearchAreaFrame görünür olduğunu doğrulandı..");
-        return gorundumu;
-
-
+        log("Verifying that SearchAreaFrame is visible on the page..");
+        boolean isVisiable = false;
+        try {
+            isVisiable = isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame());
+        } catch (Exception e) {
+            screenShot("SearchAreaFrame Görünür değil");
+        }
+        log("is visiable ? --> ", isVisiable);
+        log("verified to be visible on the page..");
+        return isVisiable;
     }
 
     //isSearchTextInputDisplayed //Fatma Hanım
@@ -90,9 +104,14 @@ public class BagsPage {
         log("Sayfada aranan çanta görünür olduğunu doğrulanıyor..");
         allPages.pickBazarHomePage().getSearchTextInput().sendKeys("bag");
         allPages.pickBazarHomePage().clickSearchButton();
-        boolean gorundumu = isWebElementDisplayed(gucciHandbagImage);
+        boolean isVisiable = false;
+        try {
+            isVisiable = isWebElementDisplayed(gucciHandbagImage);
+        } catch (Exception e) {
+            screenShot("cant find this page");
+        }
         log("Sayfada aranan çanta görünür olduğunu doğrulandı..");
-       return gorundumu;
+       return isVisiable;
 
     }
 
