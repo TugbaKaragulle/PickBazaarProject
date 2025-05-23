@@ -168,12 +168,7 @@ public class LoginPage {
         ReusableMethods.clickElement(sendOPT);
     }
 
-    public void logoutIfLoggedIn() {
 
-        if( isProfileImageDisplayed() ){
-            logoutbuttonClick();
-        }
-    }
 
 
     public void sendOPTCode() {
@@ -193,17 +188,34 @@ public class LoginPage {
 
 
         }
-
-
-
-
     }
+
+        public boolean isLoggedOut() {
+            AllPages page = new AllPages();
+            boolean isLoggedOut;
+            try {
+                isLoggedOut = page.pickBazarHomePage().isJoinButtonDisplayed();
+
+            } catch (Exception e) {
+                isLoggedOut = false;
+
+            }
+            return isLoggedOut;
+        }
+
+
+
 
     public void verifyCodeButtonClick() {
         ReusableMethods.clickElement(verifyCodeButton);
 
 
-}}
+}
+
+    public WebElement getLogInButton() {
+        return logInButton;
+    }
+}
 
 
 

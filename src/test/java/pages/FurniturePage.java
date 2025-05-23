@@ -1,5 +1,6 @@
 package pages;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,10 +13,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static utilities.ReusableMethods.isWebElementDisplayed;
+import static utilities.ReusableMethods.log;
 
 public class FurniturePage {
 
     Actions actions = new Actions(Driver.getDriver(), Duration.ofSeconds(10));
+
 
     //**********************************************************FURNITURE PAGE LOCATES************************************************************************
 
@@ -38,7 +41,7 @@ public class FurniturePage {
     // **********************************************************Furniture Methods***************************************************************************
 
     public boolean inFurniturePageAllMenuTypeIsDisplay() {
-
+        log("Mobilya menü görünür olduğunu doğrulanıyor..");
         for (WebElement furnitureMenuType : allFurnitureMenu4pieces) {
             try {
                 if (!isWebElementDisplayed(furnitureMenuType)) {
@@ -51,18 +54,29 @@ public class FurniturePage {
             List<WebElement> allMenuTypeText = furnitureMenuType.findElements(By.cssSelector("div span"));
             String menuTypeText = allMenuTypeText.get(1).getText();
 
-            System.out.println("-------------------------------");
-            System.out.println("Chair Menu Lists -->" + menuTypeText);
+            log("-------------------------------");
+            log("Chair Menu Lists -->  {}", menuTypeText);
         }
+        log("Mobilya menü görünür olduğunu doğrulandı..");
         return true;
     }
 
     public boolean isExclusiveFurnituresMadeOnlyForYouFrameImageDisplay() {
+        System.out.println();
+        log("Mobilya frame görünür olduğunu doğrulanıyor..");
 
-        return isWebElementDisplayed(ExclusiveFurnituresMadeOnlyForYouFrameImage);
+        boolean ısDisplay = isWebElementDisplayed(ExclusiveFurnituresMadeOnlyForYouFrameImage);
+
+        log("Mobilya frame görünür olduğunu doğrulandı..");
+        return ısDisplay;
+
+
     }
 
     public boolean isallFurnitureProduct30PiecesImgAndPrice() {
+        System.out.println();
+        log("Eşyaların genel olarak görünürlüğüne bakılacak..");
+
         for (WebElement card : allFurnitureProduct30Pieces) {
             actions.scrollByAmount(0, 50).perform();
             boolean isImageVisible;
@@ -73,30 +87,31 @@ public class FurniturePage {
                 WebElement image = card.findElement(By.tagName("img"));
                 String productName = image.getDomAttribute("alt");
                 isImageVisible = isWebElementDisplayed(image);
-                System.out.println("Product Name -->" + productName);
+                log(" Product Name -->  {}", productName);
             } catch (NoSuchElementException e) {
                 isImageVisible = false;
             }
-            System.out.println("Resim Görünüyor mu? " + isImageVisible);
+            log(" Resim Görünüyor mu?  {}", isImageVisible);
 
-            System.out.println("--------------------------------------");
+            log("--------------------------------------");
 
             try {
                 List<WebElement> priceBoxsTexts = card.findElements(By.cssSelector("article span"));
                 String productPrice = priceBoxsTexts.get(2).getText();
                 WebElement priceBoxText = priceBoxsTexts.get(2);
-                System.out.println("Product Price --> " + productPrice);
+                log(" Product Price -->  {}", productPrice);
                 isPriceVisible = isWebElementDisplayed(priceBoxText);
             } catch (NoSuchElementException e) {
                 isPriceVisible = false;
             }
 
-            System.out.println("Fiyat Görünüyor mu? " + isPriceVisible);
+            log(" Fiyat Görünüyor mu?  {}", isPriceVisible);
 
-            System.out.println("--------------------------------------");
+            log("---------------------------------------");
             actions.scrollByAmount(0, 50).perform();
 
         }
+        log("Eşyaların genel olarak görünürlüğüne bakıldı..");
         return true;
     }
 

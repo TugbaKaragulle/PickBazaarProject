@@ -4,11 +4,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
 
 import static utilities.Driver.getDriver;
+
+//***
 
 public class LoginProfilePage {
 
@@ -16,16 +18,7 @@ public class LoginProfilePage {
         PageFactory.initElements(getDriver(), this);
     }
 
-    //***************************************** @FindBy *********************************************************************
-
-@FindBy(id = "email")
-    private  WebElement email;
-
-@FindBy(id = "password")
-    private  WebElement password;
-
-@FindBy(xpath = "//button[text()='Login']")
-private WebElement loginButton;
+//***************************************** @FindBy *************************************************
 
 @FindBy (xpath = "//img[@alt='user name']")
     private WebElement profilSilueti;
@@ -49,18 +42,6 @@ private WebElement loginButton;
     private WebElement logout;
 
 //******************************************Getter Methods********************************************************+
-
-    public WebElement getEmail() {
-        return email;
-    }
-
-    public WebElement getPassword() {
-        return password;
-    }
-
-    public WebElement getLoginButton() {
-        return loginButton;
-    }
 
     public WebElement getProfilSilueti() {
         return profilSilueti;
@@ -97,22 +78,10 @@ private WebElement loginButton;
     AllPages allPages = new AllPages();
     Actions actions = new Actions(getDriver());
 
-//****************************************** My Reausable Methods ******************************************************
-
-
-public boolean isInProfileUrlContainsKeyWord(String keyword, WebElement element){
-    allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-
-    actions.click(profilSilueti).perform();
-    ReusableMethods.waitForClickability(element);
-    actions.moveToElement(element).click().perform();
-    String actualUrl = getDriver().getCurrentUrl();
-    return actualUrl.contains(keyword);
-}
 
 //***************************************** Test Methods ***********************************************************
 
-public boolean profilePoints() {
+    public boolean profilePoints() {
     allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
     ReusableMethods.clickElement(profilSilueti);
     exceptedText ="0";
@@ -121,11 +90,11 @@ public boolean profilePoints() {
     return actualText.contains(exceptedText);
 }
 
-
     public boolean profileDropDownMenu(String data) {
+        SoftAssert softAssert = new SoftAssert();
         allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
 
-        WebElement element = null;
+        WebElement element = null ;
 
         switch (data) {
             case "profile":
@@ -141,7 +110,7 @@ public boolean profilePoints() {
                 element = checkout;
                 break;
             default:
-                Assert.fail("Geçersiz data : " + data);
+                softAssert.fail("Geçersiz data : " + data);
         }
 
         actions.click(profilSilueti).perform(); //siluete tiklar, menuye girmk icin
@@ -151,6 +120,7 @@ public boolean profilePoints() {
 
         ReusableMethods.waitForUrlContains(data);
         String currentUrl = getDriver().getCurrentUrl();
+        assert currentUrl != null; // contains sari renkti, intellij tavsiye etti.
         return currentUrl.contains(data);
     }
 
@@ -161,6 +131,4 @@ public boolean profilePoints() {
         actions.moveToElement(logout).click().perform();
         return ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getJoinButton());
     }
-
-
 }

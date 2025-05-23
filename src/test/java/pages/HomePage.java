@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
+import utilities.JavascriptUtils;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ public class HomePage {
     }
 
 
-//-------------------------------HomePage Locates--------------------------------------------------------------//
+//**********************************************************  HomePage Locates  ******************************************************************************//
 
-    //------------top left side of homepage------------
+    //-----------------top left side of homepage------------
     @FindBy(css = "a.inline-flex.mx-auto.lg\\:mx-0")
     private WebElement pickBazarLogo;
     @FindBy(id = "headlessui-menu-button-1")
@@ -43,7 +44,7 @@ public class HomePage {
     @FindBy(css = "div>a[href='/books']")
     private WebElement booksOptionInDropDownMenu;
 
-    //------------top right side of homepage------------
+    //-------------------top right side of homepage---------------
     @FindBy(css = "div>ul>li>a[href='/shops']")
     private WebElement shopsButton;
     @FindBy(css = "div>ul>li>a[href='/offers']")
@@ -58,7 +59,7 @@ public class HomePage {
     private WebElement joinButton;
 
 
-    //------------middle of homepage------------
+    //------------------------middle of homepage-------------------------
     @FindBy(css = "div>h1.text-2xl.font-bold.tracking-tight.text-heading")
     private WebElement h1TagText;    //Groceries Delivered in 90 Minute
     @FindBy(css = "div>p.text-sm.text-heading")
@@ -83,7 +84,7 @@ public class HomePage {
     private WebElement menuFrame;
 
 
-//-------------------------------Display Methods--------------------------------------------------------------//
+//********************************************************   Display Methods *********************************************************************************//
 
     public boolean isPickBazarLogoDisplayed() {
         return isWebElementDisplayed(pickBazarLogo);
@@ -165,11 +166,12 @@ public class HomePage {
             default -> isWebElementDisplayed(pickBazarLogo);
         };
     }
+//***********************************************************  End of Display Methods*************************************************************************//
 
-//-------------------------------End of Display Methods--------------------------------------------------------------//
 
 
-    //-------------------------------click Methods--------------------------------------------------------------//
+
+//***********************************************************  Click Methods  ********************************************************************************//
     public void clickShopsButton() {
         clickElement(shopsButton);
     }
@@ -227,7 +229,7 @@ public class HomePage {
 
     }
 
-//-------------------------------End of Click Methods--------------------------------------------------------------//
+//********************************************************** End of Click Methods  ************************************************************************** //
 
 
 
@@ -256,6 +258,7 @@ public class HomePage {
         };
     }
     public boolean isProductFrameVisible() {
+        JavascriptUtils.scrollIntoViewJS(getProductFrame());
          return isWebElementDisplayed(productFrame);
     }
     public void sendKeysSearchTextArea(String text) {
@@ -268,7 +271,7 @@ public class HomePage {
 
 
 
-    //-------------------------------getter Methods--------------------------------------------------------------//
+//*********************************************************** getter Methods-********************************************************************** //
     public WebElement getPickBazarLogo() {
         return pickBazarLogo;
     }

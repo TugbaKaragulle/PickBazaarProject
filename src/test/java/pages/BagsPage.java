@@ -1,18 +1,22 @@
 package pages;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
+import utilities.ReusableMethods;
 import java.time.Duration;
 import java.util.List;
 import static utilities.ReusableMethods.isWebElementDisplayed;
+import static utilities.ReusableMethods.log;
 
 public class BagsPage {
     AllPages allPages = new AllPages();
     Actions actions = new Actions(Driver.getDriver(), Duration.ofSeconds(10));
+
 
     //**********************************************************BAGS PAGE LOCATES***********************************************************************************
 
@@ -52,25 +56,43 @@ public class BagsPage {
     }
 
     public boolean isDisplayexclusiveBrandedbagsText() {
-        return isWebElementDisplayed(exclusiveBrandedbagsText);
+        log("Sayfada exclusiveBrandedbagsText görünür olduğunu doğrulanıyor..");
+        boolean gorundumu = isWebElementDisplayed(exclusiveBrandedbagsText);
+        log("Sayfada exclusiveBrandedbagsText görünür olduğunu doğrulandı..");
+        return gorundumu;
     }
 
     public boolean isDisplaygetYourExclusiveBrandedBagsDeliveredToYouinNoTimeText() {
-        return isWebElementDisplayed(getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText);
+        System.out.println();
+        log("Sayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulanıyor..");
+        boolean gorundumu = isWebElementDisplayed(getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText);
+        ReusableMethods.captureScreenshot("Text Görünür mü?");
+        log("Sayfada getYourExclusiveBrandedBagsDeliveredToYouinNoTimeText görünür olduğunu doğrulandı..");
+        return gorundumu;
     }
 
     public boolean isSearchAreaFrameDisplayed() {
-        return isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame());
+        System.out.println();
+        log("Sayfada SearchAreaFrame görünür olduğunu doğrulanıyor..");
+        boolean gorundumu = isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame());
+        log("Sayfada SearchAreaFrame görünür olduğunu doğrulandı..");
+        return gorundumu;
+
+
     }
 
     //isSearchTextInputDisplayed //Fatma Hanım
     //isSearchButtonDisplayed //Fatma Hanım
 
-    public boolean WhenYouSearchTextAboutBagCheckVerifyTrue(){
+    public boolean WhenYouSearchTextAboutBagCheckVerifyTrue()  {
+
+        System.out.println();
+        log("Sayfada aranan çanta görünür olduğunu doğrulanıyor..");
         allPages.pickBazarHomePage().getSearchTextInput().sendKeys("bag");
         allPages.pickBazarHomePage().clickSearchButton();
-
-       return isWebElementDisplayed(gucciHandbagImage);
+        boolean gorundumu = isWebElementDisplayed(gucciHandbagImage);
+        log("Sayfada aranan çanta görünür olduğunu doğrulandı..");
+       return gorundumu;
 
     }
 
@@ -84,16 +106,17 @@ public class BagsPage {
 
 
     public boolean is3frames_ExpressDelivery_CashOnDelivery_GiftVoucher_Display() {
-        actions.scrollToElement(allPages.pickBazarHomePage().getExpressDeliveryImage()).perform();
 
+        System.out.println();
+        log("3 Adet image frame görünür olduğunu doğrulanıyor..");
+        actions.scrollToElement(allPages.pickBazarHomePage().getExpressDeliveryImage()).perform();
         int index = 0;
         for (WebElement w : allPages.pickBazarHomePage().getDeliveryImagesList()) {
             if (index >= 3) {
                 break;
             }
-            System.out.println("- Express Delivery(902) "+
-                    "- Cash On Delivery frame,(903) " +
-                    "- Gift Voucher frame,(904)"+ "Seeing-->"+w.getDomAttribute("alt"));
+            log(
+                    "- Express Delivery(902) - Cash On Delivery frame,(903) - Gift Voucher frame,(904)Seeing-->{}", w.getDomAttribute("alt"));
             try {
                 if (!isWebElementDisplayed(w)) {
                     return false;
@@ -103,13 +126,16 @@ public class BagsPage {
             }
             index++;
         }
-
+        log("3 Adet image frame görünür olduğunu doğrulandı..");
         return true;
     }
 
     public boolean inBagsPageAllBagsIsDisplay(){
+        boolean isPriceVisible ;
+        int FailSitutation = 0;
+        System.out.println();
+        log("Çantaların  görünür olduğunu doğrulanıyor..");
         actions.scrollToElement(gucciHandbagImage).perform();
-        boolean isPriceVisible;
         for (WebElement bags:allBagsList15pieces){
             try {
                 if (!isWebElementDisplayed(bags)){
@@ -123,7 +149,7 @@ public class BagsPage {
                 WebElement priceBox = bags.findElement(By.xpath("//span[@class='text-sm font-semibold text-accent md:text-base']"));
                 isPriceVisible = isWebElementDisplayed(priceBox) && !priceBox.getText().trim().isEmpty();
             } catch (Exception e) {
-                isPriceVisible = false;
+                FailSitutation++;
             }
 
             WebElement bagsBrand = bags.findElement(By.cssSelector("article img"));
@@ -132,16 +158,19 @@ public class BagsPage {
             List<WebElement>  bagsPrice = bags.findElements(By.cssSelector("article span"));
             String bagsPrices = bagsPrice.get(2).getText();
 
-            System.out.println("----------------------------------");
-            System.out.println("Ürünün Markası : " + bagsBrandType);
+            log("----------------------------------");
+            log("Ürünün Markası :  {}", bagsBrandType);
 
-            System.out.println("Fiyat Görünüyor mu? " + bagsPrices);
+            log("Fiyat Görünüyor mu?  {}", bagsPrices);
         }
-        return true;
+        log("Çantaların  görünür olduğunu doğrulandı..");
+        return FailSitutation == 0;
     }
 
     public boolean inBagsPageAllMenuTypeIsDisplay(){
         actions.scrollToElement(gucciHandbagImage).perform();
+        System.out.println();
+        log("Çanta menü list  görünür olduğunu doğrulanıyor..");
 
         for (WebElement BagsPageAllMenuType:allBagsTypeMenu5pieces){
             try {
@@ -155,12 +184,15 @@ public class BagsPage {
             List<WebElement>  menuTexts = BagsPageAllMenuType.findElements(By.cssSelector("li span"));
             String menuTextName = menuTexts.get(1).getText();
 
-            System.out.println("-----------------------------------");
-            System.out.println("List Name" + " --> " + menuTextName);
+            log("-----------------------------------");
+            log("List Name --> {}", menuTextName);
 
         }
+        log("Çanta menü list  görünür olduğunu doğrulandı..");
         return true;
     }
+
+
 
 
 

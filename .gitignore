@@ -1,4 +1,6 @@
 .idea/
 target/
+logs/
 .gitignore
-.logs/
+allure-report/
+allure-results/
