@@ -87,8 +87,8 @@ public class OrderStatusPageTest {
         AllPages allPages = new AllPages();
         setupBrowser(context);
         Driver.getDriver().get(ConfigReader.getProperty("pickbazarOrderStatusPage_url"));
-        allPages.orderStatusPage().pageScrollDown();
 
+        allPages.orderStatusPage().pageScrollDown();
         softAssert.assertTrue(allPages.orderStatusPage().aboutItemQuantityImageAndPriceIsDisplay(),
                 "Order status page look button of the page something is not seeing (price,quantity or image");
         softAssert.assertTrue(allPages.orderStatusPage().writeReviewAndUpdateReview(),

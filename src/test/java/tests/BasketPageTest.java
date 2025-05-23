@@ -18,6 +18,7 @@ import javax.swing.*;
 import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 
+@Feature("Sepet Sayfası Testleri")
 public class BasketPageTest {
 
     Logger logger = LogManager.getLogger(BasketPageTest.class);
@@ -25,7 +26,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_16_Daily Needs ekranında sepet UI testi")
+    @Story("TC_018_16_Daily Needs ekranında sepet UI testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_16(ITestContext context) {
 
@@ -33,18 +34,16 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("dailyneedspage_url"));
-        logger.info("Daily Needs Page sayfası açıldı");
+        Allure.step("Daily Needs Page sayfası açıldı");
 
-        //todo login olma durumu kontrolü eklenip, logout olma adımı eklenmeli
-
-        page.basketPage().openBasketPanel();
-        logger.info("Daily Needs ekranında  sepet paneli açıldı");
+        page.basketPage().clickBasketButtonInDailyNeeds();
+        Allure.step("Daily Needs ekranında  sepet paneli açıldı");
 
         softAssert.assertTrue(ReusableMethods.isWebElementDisplayed(page.basketPage().getCheckoutButton()));
-        logger.info("Checkout butonunun görünürlüğü doğrulandı");
+        Allure.step("Checkout butonunun görünürlüğü doğrulandı");
 
         softAssert.assertTrue(ReusableMethods.waitForClickability(page.basketPage().getCheckoutButton()));
-        logger.info("Checkout butonunun tıklanılabilirliği doğrulandı");
+        Allure.step("Checkout butonunun tıklanılabilirliği doğrulandı");
 
 
         softAssert.assertAll();
@@ -61,13 +60,13 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("dailyneedspage_url"));
-        logger.info("Daily Needs Page sayfası açıldı");
+        Allure.step("Daily Needs Page sayfası açıldı");
 
         page.dailyNeedsPage().openBasketPanel();
-        logger.info("Daily Needs ekranında  sepet ikonuna tıkandı");
+        Allure.step("Daily Needs ekranında  sepet ikonuna tıkandı");
 
         softAssert.assertTrue(page.basketPage().isVisibleBasketPanel());
-        logger.info("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı, sayfanın açıldığı doğrulandı");
+        Allure.step("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı, sayfanın açıldığı doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -84,13 +83,13 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("dailyneedspage_url"));
-        logger.info("Daily Needs Page sayfası açıldı");
+        Allure.step("Daily Needs Page sayfası açıldı");
 
         softAssert.assertTrue(page.dailyNeedsPage().isVisibleBasketIcon());
-        logger.info("Daily Needs ekranında basket ikonunun görünürlüğü doğrulandı ");
+        Allure.step("Daily Needs ekranında basket ikonunun görünürlüğü doğrulandı ");
 
         softAssert.assertTrue(page.dailyNeedsPage().isClickableBasketIcon(), "");
-        logger.info("Daily Needs ekranında basket ikonunun tıklanılabilirliği doğrulandı ");
+        Allure.step("Daily Needs ekranında basket ikonunun tıklanılabilirliği doğrulandı ");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -106,17 +105,18 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
-        logger.info("Makeup Page sayfası açıldı");
+        Allure.step("Makeup Page sayfası açıldı");
 
         page.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-
+//todo  bu testi xml üzerinden firefox ile çalıştırdığımda kalıyor, nasıl düzeltebilirim??
         page.basketPage().openBasketPanel();
-        logger.info("Makeup ekranında  sepet paneli açıldı");
+        ReusableMethods.waitForSeconds(5);
+        Allure.step("Makeup ekranında  sepet paneli açıldı");
         page.basketPage().clickCheckoutButton();
-        logger.info("Checkout butonuna tıklandı");
+        Allure.step("Checkout butonuna tıklandı");
 
         softAssert.assertTrue(ReusableMethods.waitForUrlContains("checkout"), "");
-        logger.info("Checkout sayfasının açıldığı doğrulandı");
+        Allure.step("Checkout sayfasının açıldığı doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -132,26 +132,18 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
-        logger.info("Makeup Page sayfası açıldı");
+        Allure.step("Makeup Page sayfası açıldı");
 
-        //todo login olma durumu kontrolü eklenip, logout olma adımı eklenmeli
-
-        page.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-        Actions actions = new Actions(getDriver());
-        actions.click(page.loginProfilePage().getProfilSilueti()).perform();
-        actions.click(page.loginProfilePage().getLogout()).perform();
-
-        //page.loginProfilePage().getLogout();
-
-        ReusableMethods.waitForSeconds(5);
+        //logout olma durumu kontrolü edilip, Teste devam edilir
+        page.basketPage().isLoggedOut();
 
         page.basketPage().openBasketPanel();
-        logger.info("Makeup ekranında  sepet paneli açıldı");
+        Allure.step("Makeup ekranında  sepet paneli açıldı");
         page.basketPage().clickCheckoutButton();
-        logger.info("Checkout butonuna tıklandı");
+        Allure.step("Checkout butonuna tıklandı");
 
         softAssert.assertTrue(ReusableMethods.isWebElementDisplayed(page.loginPage().getLogInButton()), "");
-        logger.info("Login sayfasının açıldığı doğrulandı");
+        Allure.step("Login sayfasının açıldığı doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -166,25 +158,25 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
-        logger.info("Makeup Page sayfası açıldı");
+        Allure.step("Makeup Page sayfası açıldı");
 
         int times = 3;  //aynı üründen kaç tane eklensin
 
         page.makeUpPage().addProductIntoBasketwithJS(page, indexofList, times);
-        logger.info("Precondition şartı için Sepete ilgili indexteki üründen " + times + " adet eklendi.");
+        Allure.step("Precondition şartı için Sepete ilgili indexteki üründen " + times + " adet eklendi.");
 
         page.makeUpPage().addProductIntoBasketwithJS(page, 1, 2);
-        logger.info("Precondition şartı için Sepete ilgili indexteki üründen 2 adet eklendi.");
+        Allure.step("Precondition şartı için Sepete ilgili indexteki üründen 2 adet eklendi.");
 
         String nameOfIndexedProduct = page.basketPage().getProductNameInBasket(indexofList);  //silmeden önce ilgili indexteki ürün adı depolanır
         boolean isProductDeleted = page.basketPage().deleteAProductFromBasketXButton(indexofList);
-        logger.info("Açılan sepet ekranında,ilgili indexteki ürünü silmek için 'X' butonuna tıklandı. ");
+        Allure.step("Açılan sepet ekranında,ilgili indexteki ürünü silmek için 'X' butonuna tıklandı. ");
 
         try {
             softAssert.assertTrue(isProductDeleted, "");
-            logger.info("Ürün silindi. Silinen ürün = " + nameOfIndexedProduct);
+            Allure.step("Ürün silindi. Silinen ürün = " + nameOfIndexedProduct);
         } catch (Exception e) {
-            logger.warn("ürün X butonu ile silinemedi.");
+            Allure.step("ürün X butonu ile silinemedi.");
         }
 
         softAssert.assertAll();
@@ -200,26 +192,26 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
-        logger.info("Makeup Page sayfası açıldı");
+        Allure.step("Makeup Page sayfası açıldı");
 
         int times = 3;  //aynı üründen kaç tane eklensin
         page.makeUpPage().addProductIntoBasketwithJS(page, indexofList, times);
-        logger.info("Precondition şartı için Sepete ilgili indexteki üründen " + times + " adet eklendi.");
+        Allure.step("Precondition şartı için Sepete ilgili indexteki üründen " + times + " adet eklendi.");
 
         page.basketPage().openBasketPanel();
-        logger.info("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı");
+        Allure.step("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı");
 
 
         int expectedNumberOfOneProductNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList) - 1;  //beklenen ürün sayısı
         page.basketPage().deleteAProductFromBasketWithMinusIcon(indexofList);
-        logger.info("Açılan sepet ekranında,ürün eksiltmek eklemek için  (-) işaretine tıklandı");
+        Allure.step("Açılan sepet ekranında,ürün eksiltmek eklemek için  (-) işaretine tıklandı");
 
         int actualNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList);  //şuan varolan ürün sayısı
         int priceOfOneProduct = page.basketPage().getPriceOfOneProduct(indexofList);  //bir ürünün 1 adet sayısınca hesaplanan tutarı
 
 
         softAssert.assertEquals(page.basketPage().getTotalPriceOfOneProduct(indexofList), priceOfOneProduct * actualNumberOfOneProduct, "");
-        logger.info("Sepetteki ürün tutarı hesaplanan tutar ile eşleşiyor . Hesaplanan tutar = " + priceOfOneProduct * actualNumberOfOneProduct);
+        Allure.step("Sepetteki ürün tutarı hesaplanan tutar ile eşleşiyor . Hesaplanan tutar = " + priceOfOneProduct * actualNumberOfOneProduct);
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -234,25 +226,25 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
-        logger.info("Makeup Page sayfası açılır");
+        Allure.step("Makeup Page sayfası açılır");
 
         int times = 3;  //aynı üründen kaç tane eklensin
 
         page.makeUpPage().addProductIntoBasketwithJS(page, indexofList, times);
-        logger.info("Precondition şartı için Sepete ilgili indexteki üründen " + times + " adet eklendi.");
+        Allure.step("Precondition şartı için Sepete ilgili indexteki üründen " + times + " adet eklendi.");
 
         page.basketPage().openBasketPanel();
-        logger.info("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı");
+        Allure.step("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı");
 
         int expectedNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList) - 1;  //beklenen şuan varolan ürün sayısının 1 eksilmesi
 
         page.basketPage().deleteAProductFromBasketWithMinusIcon(indexofList);
-        logger.info("Açılan sepet ekranında,ürün eksiltmek eklemek için (-) işaretine tıklandı");
+        Allure.step("Açılan sepet ekranında,ürün eksiltmek eklemek için (-) işaretine tıklandı");
 
         int actualNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList);
 
         softAssert.assertEquals(actualNumberOfOneProduct, expectedNumberOfOneProduct, "");
-        logger.info("Sepetteki ürün adeti sayısı 1 eksildi -> ürün adeti 1 olduğu doğrulandı");
+        Allure.step("Sepetteki ürün adeti sayısı 1 eksildi -> ürün adeti 1 olduğu doğrulandı");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -266,23 +258,23 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
-        logger.info("Makeup Page sayfası açılır");
+        Allure.step("Makeup Page sayfası açılır");
 
 
         page.makeUpPage().addProductIntoBasket(page, indexofList);
-        logger.info("Sepete precondition şartı için bir ürün eklendi.");
+        Allure.step("Sepete precondition şartı için bir ürün eklendi.");
 
         page.basketPage().openBasketPanel();
-        logger.info("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı");
+        Allure.step("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı");
 
         page.basketPage().addAProductIntoBasketWithPlusIcon(indexofList);
-        logger.info("Açılan sepet ekranında, ürün sepete eklemek için " + " işaretine tıklandı");
+        Allure.step("Açılan sepet ekranında, ürün sepete eklemek için " + " işaretine tıklandı");
 
         int expectedPriceOfOneProduct = page.basketPage().getPriceOfOneProduct(indexofList);  //bir ürünün tutarı
         int expectedNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList);  //bir üründen alınan adet sayısı
 
         softAssert.assertEquals(page.basketPage().getTotalPriceOfOneProduct(indexofList), expectedPriceOfOneProduct * expectedNumberOfOneProduct, "");
-        logger.info("Sepetteki ürün tutarı hesaplanan tutar ile eşleşiyor . Hesaplanan tutar = " + expectedPriceOfOneProduct * expectedNumberOfOneProduct);
+        Allure.step("Sepetteki ürün tutarı hesaplanan tutar ile eşleşiyor . Hesaplanan tutar = " + expectedPriceOfOneProduct * expectedNumberOfOneProduct);
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -297,19 +289,19 @@ public class BasketPageTest {
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
-        logger.info("Makeup Page sayfası açılır");
+        Allure.step("Makeup Page sayfası açılır");
 
         page.makeUpPage().addProductIntoBasket(page, indexofList);
-        logger.info("Sepete precondition şartı için bir ürün eklendi.");
+        Allure.step("Sepete precondition şartı için bir ürün eklendi.");
         page.basketPage().openBasketPanel();
-        logger.info("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı");
+        Allure.step("Ürün ekranında/ana ekranda sağ taraftaki sepet ekranı açıldı");
         int expectedNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList) + 1;  //beklenen şuan varolan ürün sayısına 1 eklenmesi
         page.basketPage().addAProductIntoBasketWithPlusIcon(indexofList);
         int actualNumberOfOneProduct = page.basketPage().getNumberofItemsOfOneProduct(page, indexofList);
-        logger.info("Açılan sepet ekranında, ürün sepete eklemek için " + " işaretine tıklanır");
+        Allure.step("Açılan sepet ekranında, ürün sepete eklemek için " + " işaretine tıklanır");
 
         softAssert.assertEquals(actualNumberOfOneProduct, expectedNumberOfOneProduct, "");
-        logger.info("Sepetteki ürün adeti sayısı 1 arttı -> ürün adeti 2 olduğu doğrulandı");
+        Allure.step("Sepetteki ürün adeti sayısı 1 arttı -> ürün adeti 2 olduğu doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -328,7 +320,7 @@ public class BasketPageTest {
         page.basketPage().openBasketPanel();
         page.basketPage().closeBasketPage();
         softAssert.assertTrue(page.basketPage().isBasketPanelClosed(), "Sepet paneli kapanmadı!");
-        logger.info("");
+        Allure.step("Basket paneli kapandı");
 
 
         softAssert.assertAll();
@@ -347,7 +339,7 @@ public class BasketPageTest {
 
         page.basketPage().openBasketPanel();
         softAssert.assertTrue(page.basketPage().isNoProductFoundTextVisible(), "");
-        logger.info(page.basketPage().getNoProductFoundHeader() + " metninin görünürlüğü doğrulandı");
+        Allure.step(page.basketPage().getNoProductFoundHeader() + " metninin görünürlüğü doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -365,7 +357,7 @@ public class BasketPageTest {
 
         page.basketPage().openBasketPanel();
         softAssert.assertTrue(page.basketPage().isVisibleBasketPanel(), "Basket Paneli açılmadı.");
-        logger.info("Basket Paneli açıldığı doğrulandı");
+        Allure.step("Basket Paneli açıldığı doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -384,12 +376,12 @@ public class BasketPageTest {
 
         page.makeUpPage().addProductIntoBasket(page, indexofList);//preconditon şartı için 1 ürün eklenir.
         page.makeUpPage().addAProductIntoBasketWithPlusIcon(page, indexofList);
-        int numberOfItemsInBasketButton = ReusableMethods.convertElementTextIntoInteger(page.basketPage().getNumberOfItemsInBasketButton());
-        int numberOfItemsInProductFrame = ReusableMethods.convertElementTextIntoInteger(page.makeUpPage().getNumberOfProductAddedToBasket(0));
+        int numberOfItemsInBasketButton = page.basketPage().getNumberOfItemsInBasketButton();
+        int numberOfItemsInProductFrame = page.makeUpPage().getNumberOfProductAddedToBasket(indexofList);
         System.out.println("numberOfItemsInBasketButton = " + numberOfItemsInBasketButton);
         System.out.println("numberOfItemsInProductFrame = " + numberOfItemsInProductFrame);
         softAssert.assertTrue(numberOfItemsInBasketButton == numberOfItemsInProductFrame, "");
-        logger.info("");
+        Allure.step("Sepete eklenen ürün sayısı ile total sepete eklenen ürün sayısı eşleşmeli");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -409,7 +401,7 @@ public class BasketPageTest {
         //page.basketPage().openBasketPanel(); // basketpage sectionını aç
         page.makeUpPage().deleteProductWithMinusButton(indexofList);
         softAssert.assertTrue(page.basketPage().verfiyDeletedProductFromBasket(), "Ürün silinemedi");
-        logger.info("");
+        Allure.step("Sepet ekranında (-) butonu ile adet sayısı 1 olan ürün, sepetten silindi ");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -418,7 +410,6 @@ public class BasketPageTest {
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
     @Description("TC_018_01_Ürün Listesi ekranında sepete ürün ekleme UI testi ")
-
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_01(ITestContext context) {
         setupBrowser(context);
@@ -428,14 +419,14 @@ public class BasketPageTest {
 
 
         softAssert.assertTrue(page.pickBazarHomePage().isProductFrameVisible(), "Ürünlerin varolduğu frame ekranda görüntülenemedi");
-        logger.info("Ürünlerin varolduğu frame ekranda görüntülendi");
+        Allure.step("Ürünlerin varolduğu frame ekranda görüntülendi");
 
         String expectedProduct = page.makeUpPage().addProductIntoEmptyBasket(page, indexofList);
 
         page.basketPage().getProductNameInBasket(0);
 
         softAssert.assertTrue(page.basketPage().verifyProductNameInBasket(expectedProduct), expectedProduct + " adlı ürün sepette bulunamadı");
-        logger.info(expectedProduct + " adlı ürünün sepete eklendiği doğrulandı");
+        Allure.step(expectedProduct + " adlı ürünün sepete eklendiği doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();

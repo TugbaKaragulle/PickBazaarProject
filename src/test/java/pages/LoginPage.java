@@ -180,7 +180,6 @@ public class LoginPage {
         logger.info("OPT sent");
     }
 
-
     public void sendOPTCode() {
         Actions action = new Actions(Driver.getDriver());
 
@@ -198,15 +197,17 @@ public class LoginPage {
 
 
         }
-    }
 
+    }
 
     public void verifyCodeButtonClick() {
         ReusableMethods.clickElement(verifyCodeButton);
        logger.info("verify Code Button Clicked");
 
-
     }
+
+
+
 
 
 
@@ -214,6 +215,7 @@ public class LoginPage {
     public WebElement getLogInButton() {
         return logInButton;
     }
+
 
 
 
@@ -230,6 +232,13 @@ public class LoginPage {
         }
         return isLoggedOut;
     }
+
+
+
+
+}
+
+
 
 
 

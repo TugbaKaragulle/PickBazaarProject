@@ -19,6 +19,7 @@ public class BagsPageTest {
     @Story("Dropdown menüden çanta sayfasına erişim")
     @Description("Kullanıcı bags sayfasına ulaştığında belirli text alanlarının görünürlüğü kontrol edilir.")
     @Severity(SeverityLevel.CRITICAL)
+    @Owner("Mertay Gürel")
     public void TC_011_01(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
@@ -41,6 +42,7 @@ public class BagsPageTest {
     @Story("Anasayfa arama alanı ve buton kontrolü")
     @Description("Text input ve search butonunun görünür olup olmadığı kontrol edilir.")
     @Severity(SeverityLevel.NORMAL)
+    @Owner("Mertay Gürel")
     public void TC_011_02(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
@@ -67,6 +69,7 @@ public class BagsPageTest {
     @Story("Teslimat seçeneklerinin kontrolü")
     @Description("Çanta sayfasındaki 3 teslimat yöntemi çerçevesinin görünür olduğu doğrulanır.")
     @Severity(SeverityLevel.MINOR)
+    @Owner("Mertay Gürel")
     public void TC_011_03(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
@@ -83,6 +86,7 @@ public class BagsPageTest {
     @Story("Tüm çanta ve menü elemanlarının görünürlüğü")
     @Description("Sayfadaki tüm çantaların ve menülerin eksiksiz göründüğü kontrol edilir.")
     @Severity(SeverityLevel.NORMAL)
+    @Owner("Mertay Gürel")
     public void TC_011_04(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
