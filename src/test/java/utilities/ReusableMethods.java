@@ -167,4 +167,13 @@ public static boolean waitForUrlContains(String data) {
         logger.info(message);
         Allure.step("[ERROR] " +message);
     }
+    public static void screenShot(String name){
+        try {
+            byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            Allure.getLifecycle().addAttachment(name, "image/png", "png", screenshot);
+        } catch (Exception e) {
+            log("Ekran görüntüsü alınamadı: " + e.getMessage(),name);
+        }
+    }
+
 }

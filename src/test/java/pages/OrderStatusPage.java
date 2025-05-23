@@ -262,6 +262,8 @@ public class OrderStatusPage {
             if (foundFields.contains(required)) {
                 log("Bütün alanlar Tam Eksik yok -->  {}", required);
             } else {
+
+                screenShot(required + "Alanı eksik");
                 logError("Bu alan eksik -->  {}", required);
                 failSituation++;
             }
@@ -271,15 +273,16 @@ public class OrderStatusPage {
         return failSituation == 0;
     }
 
-    public void pageScrollDown() throws InterruptedException {
-
+    public void pageScrollDown()  {
+        waitForVisibility(Driver.getDriver(),itemPrice,3000);
         JavascriptUtils.scrollIntoViewJS(itemPrice);
+
         //actions.scrollToElement(itemPrice).perform();
 
     }
 
     public boolean aboutItemQuantityImageAndPriceIsDisplay() {
-
+        pageScrollDown();
         int failsituation = 0;
 
         boolean itemPricee = isWebElementDisplayed(itemPrice);
