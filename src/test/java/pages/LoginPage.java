@@ -205,11 +205,16 @@ public class LoginPage {
         ReusableMethods.clickElement(verifyCodeButton);
        logger.info("verify Code Button Clicked");
 
+
     }
+
+
+
 
     public WebElement getLogInButton() {
         return logInButton;
     }
+
 
 
     public boolean isLoggedOut() {
@@ -229,7 +234,9 @@ public class LoginPage {
 
 
 
-
-
-
 }
+
+
+
+
+
