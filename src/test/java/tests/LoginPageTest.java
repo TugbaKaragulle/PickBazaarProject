@@ -97,11 +97,6 @@ public class LoginPageTest {
 
 
         Driver.closeDriver();
-
-
-
-
-
     }
 
 

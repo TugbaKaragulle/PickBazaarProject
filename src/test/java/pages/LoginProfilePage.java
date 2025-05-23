@@ -1,11 +1,15 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
+import tests.BooksTest;
 import utilities.ConfigReader;
+import utilities.Driver;
 import utilities.ReusableMethods;
 
 import static utilities.Driver.getDriver;
@@ -18,7 +22,7 @@ public class LoginProfilePage {
         PageFactory.initElements(getDriver(), this);
     }
 
-//***************************************** @FindBy *************************************************
+//TODO***************************************** @FindBy *************************************************
 
 @FindBy (xpath = "//img[@alt='user name']")
     private WebElement profilSilueti;
@@ -41,7 +45,7 @@ public class LoginProfilePage {
 @FindBy(xpath = "//button[text()='Logout']")
     private WebElement logout;
 
-//******************************************Getter Methods********************************************************+
+//TODO******************************************Getter Methods***************************************************
 
     public WebElement getProfilSilueti() {
         return profilSilueti;
@@ -71,27 +75,36 @@ public class LoginProfilePage {
         return logout;
     }
 
-//**************************************** Class Level Variables And Objects *****************************************
+//TODO**************************************** Class Level Variables And Objects *********************************
 
     String exceptedText;
     String actualText;
     AllPages allPages = new AllPages();
     Actions actions = new Actions(getDriver());
+    Logger logger = LogManager.getLogger(BooksTest.class);
 
 
-//***************************************** Test Methods ***********************************************************
+//TODO***************************************** Test Methods ******************************************************
 
     public boolean profilePoints() {
+    logger.info("Navigating to the homepage.");
+    getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+    logger.info("Logging into the page with valid credentials.");
     allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+    logger.info("Clicking on the profile silhouette.");
     ReusableMethods.clickElement(profilSilueti);
     exceptedText ="0";
+    logger.info("Customer sees their points on the profile page.");
     ReusableMethods.waitForVisibility(getDriver(),points,10);
     actualText= points.getText();
     return actualText.contains(exceptedText);
 }
 
     public boolean profileDropDownMenu(String data) {
+        logger.info("Navigating to the homepage.");
+        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         SoftAssert softAssert = new SoftAssert();
+        logger.info("Logging into the page with valid credentials.");
         allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
 
         WebElement element = null ;
@@ -110,25 +123,37 @@ public class LoginProfilePage {
                 element = checkout;
                 break;
             default:
-                softAssert.fail("Geçersiz data : " + data);
+                logger.error("Geçersiz data : " + data);
+                return false;
         }
 
-        actions.click(profilSilueti).perform(); //siluete tiklar, menuye girmk icin
+        logger.info("Clicking profile silhouette to open the dropdown menu.");
+        actions.click(profilSilueti).perform();
+        logger.info("Waiting for '" + data + "' menu item to be clickable.");
         ReusableMethods.waitForClickability(element);
         actions.moveToElement(element).perform();
+        logger.info("Clicking on the '" + data + "' menu item.");
         element.click();
 
         ReusableMethods.waitForUrlContains(data);
         String currentUrl = getDriver().getCurrentUrl();
+        logger.info("Current URL after click: " + currentUrl);
         assert currentUrl != null; // contains sari renkti, intellij tavsiye etti.
         return currentUrl.contains(data);
     }
 
     public boolean verifyLogoutWorks(){
+        logger.info("Navigating to the homepage.");
+        Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+        logger.info("Logging into the page with valid credentials.");
         allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+        logger.info("Clicking on the profile silhouette.");
         actions.click(profilSilueti).perform();
+        logger.info("Waiting until the 'Logout' menu item becomes clickable.");
         ReusableMethods.waitForClickability(logout);
+        logger.info("Clicking on the 'Logout' menu item.");
         actions.moveToElement(logout).click().perform();
+        logger.info("Checking if the 'Join' button is visible after clicking logout");
         return ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getJoinButton());
     }
 }
