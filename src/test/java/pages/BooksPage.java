@@ -20,7 +20,6 @@ import static utilities.Driver.getDriver;
 
 public class BooksPage {
 
-    Logger logger = LogManager.getLogger(BooksTest.class);
 
     public BooksPage() {
         PageFactory.initElements(getDriver(), this);
@@ -199,6 +198,7 @@ public class BooksPage {
     AllPages allPages = new AllPages();
     Actions actions = new Actions(getDriver());
     private String bestSellingtitle = "Best Selling Products";
+    Logger logger = LogManager.getLogger(BooksTest.class);
 
 
     //TODO********************** Variables getter **********************
