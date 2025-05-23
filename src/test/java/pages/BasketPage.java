@@ -54,6 +54,9 @@ public class BasketPage {
     @FindBy(xpath = "//button[.//span[text()='Checkout']]")
     private WebElement checkoutButton;
 
+    @FindBy(xpath = "//button[@class='hidden product-cart lg:flex relative']")
+    private WebElement basketButtonInDailyNeedsPage;
+
 
     //--------------------------------------------------locates of small basket button--------------------------------------------------------------------//
 
@@ -250,5 +253,9 @@ public class BasketPage {
 
         }
         return isLoggedOut;
+    }
+
+    public void clickBasketButtonInDailyNeeds() {
+        clickElementByJS(basketButtonInDailyNeedsPage);
     }
 }
