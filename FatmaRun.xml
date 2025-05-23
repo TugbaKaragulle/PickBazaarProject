@@ -17,7 +17,7 @@
         <classes>
             <class name="tests.BasketPageTest">
                 <methods>
-                    <include name="TC_018_13"> </include>
+                    <include name="TC_018_16"> </include>
                 </methods>
             </class>
         </classes>

@@ -137,7 +137,7 @@ public class BasketPageTest {
         Allure.step("Makeup Page sayfası açıldı");
 
         //logout olma durumu kontrolü edilip, Teste devam edilir
-        page.loginPage().isLoggedOut();
+        page.basketPage().isLoggedOut();
 
         page.basketPage().openBasketPanel();
         Allure.step("Makeup ekranında  sepet paneli açıldı");
