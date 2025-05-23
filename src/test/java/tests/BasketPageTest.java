@@ -26,7 +26,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_16_Daily Needs ekranında sepet UI testi")
+    @Story("TC_018_16_Daily Needs ekranında sepet UI testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_16(ITestContext context) {
 
@@ -36,9 +36,7 @@ public class BasketPageTest {
         Driver.getDriver().get(ConfigReader.getProperty("dailyneedspage_url"));
         Allure.step("Daily Needs Page sayfası açıldı");
 
-        //todo login olma durumu kontrolü eklenip, logout olma adımı eklenmeli
-
-        page.basketPage().openBasketPanel();
+        page.basketPage().clickBasketButtonInDailyNeeds();
         Allure.step("Daily Needs ekranında  sepet paneli açıldı");
 
         softAssert.assertTrue(ReusableMethods.isWebElementDisplayed(page.basketPage().getCheckoutButton()));
