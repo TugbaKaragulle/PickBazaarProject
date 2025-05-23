@@ -1,5 +1,7 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,66 +15,68 @@ import java.util.List;
 
 public class LoginPage {
 
+    Logger logger = LogManager.getLogger(LoginPage.class);
+
     public LoginPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
 
     @FindBy(id = "email")
-    public WebElement emailField;
+    private WebElement emailField;
 
     @FindBy(xpath = "//input[@name='email']")
-    public WebElement emailForgot;
+    private WebElement emailForgot;
 
 
     @FindBy(id = "password")
-    public WebElement passwordField;
+    private WebElement passwordField;
 
     @FindBy(xpath = "//button[text()='Login']")
-    public WebElement logInButton;
+    private WebElement logInButton;
 
 
     @FindBy(xpath = "//img[@alt='user name']")
-    public WebElement profileImage;
+    private WebElement profileImage;
 
     @FindBy(xpath = "//button[text()='Forgot password?']")
-    public WebElement forgotPassword;
+    private WebElement forgotPassword;
 
     @FindBy(xpath = "//button[text()='Logout']")
-    public WebElement logoutButton;
+    private WebElement logoutButton;
 
 
     @FindBy(xpath = "(//label[@for='password'])[2]")
-    public WebElement isPasswordInvisible;
+    private WebElement isPasswordInvisible;
 
 
     @FindBy(xpath = "//p[@class='text-sm']")
-    public WebElement passwordChangeMessage;
+    private WebElement passwordChangeMessage;
 
     @FindBy(xpath = "//button[text()='Submit Email']")
-    public WebElement submitEmailButton;
+    private WebElement submitEmailButton;
 
     @FindBy(xpath = "//button[text()='Login with Google']")
-    public WebElement googleLogin;
+    private WebElement googleLogin;
 
     @FindBy(xpath = "/html/body/pre")
-    public WebElement googleErrorMessage;
+    private WebElement googleErrorMessage;
 
     @FindBy(xpath = "//button[text()='Login with Mobile number']")
-    public WebElement loginWithMobileButton;
+    private WebElement loginWithMobileButton;
 
     @FindBy(xpath = "//input[@type='tel']")
-    public WebElement telNumberInput;
+    private WebElement telNumberInput;
 
     @FindBy(xpath = "//button[text()='Send OTP']")
-    public WebElement sendOPT;
+    private WebElement sendOPT;
 
 
     @FindBy(xpath = "//div[@style='display: flex; align-items: center;']//input")
-    public List<WebElement> optCodeNumberList;
+    private List<WebElement> optCodeNumberList;
 
     @FindBy(xpath = "//button[text()='Verify Code']")
-    public WebElement verifyCodeButton;
+    private WebElement verifyCodeButton;
 
 
     public void logIn(String email, String password) {
@@ -84,6 +88,7 @@ public class LoginPage {
     }
 
     public boolean isProfileImageDisplayed() {
+        logger.info("Profile Image is Displayed");
         boolean flag = false;
 
         if (profileImage.isDisplayed()) {
@@ -95,20 +100,23 @@ public class LoginPage {
 
     public void forgotPasswordClick() {
         ReusableMethods.clickElement(forgotPassword);
+        logger.info("forgot Password Clicked");
     }
 
     public void logoutbuttonClick() {
-
+        logger.info("logout button Clickee");
         ReusableMethods.clickElement(logoutButton);
     }
 
     public void sendPassword() {
         passwordField.sendKeys(ConfigReader.getProperty("loginPassword"));
+        logger.info("password sent");
     }
 
 
     public boolean isEyeImageDisplayed() {
         boolean flag = false;
+        logger.info("EyeImageDisplayed");
 
         if (isPasswordInvisible.isDisplayed()) {
             flag = true;
@@ -120,16 +128,18 @@ public class LoginPage {
     public void sendEmail() {
         Actions action = new Actions(Driver.getDriver());
         action.click(emailForgot).sendKeys(ConfigReader.getProperty("loginEmail")).perform();
-
+        logger.info("Email sent");
     }
 
 
     public void submitEmailClick() {
         ReusableMethods.clickElement(submitEmailButton);
+        logger.info("Email is Clicked");
     }
 
     public boolean passwordChangeSuccessfully() {
         boolean flag = false;
+        logger.info("password Changed Successfully");
 
         if (passwordChangeMessage.isDisplayed()) {
             flag = true;
@@ -140,11 +150,12 @@ public class LoginPage {
 
     public void googleLoginClick() {
         ReusableMethods.clickElement(googleLogin);
+        logger.info("google Login Clicked");
     }
 
-    public boolean googleErroorMessageIsdisplayed() {
+    public boolean googleErrorMessageIsdisplayed() {
         boolean flag = false;
-
+        logger.info("Erroor Message Is displayed");
         if (googleErrorMessage.isDisplayed()) {
             flag = true;
 
@@ -154,18 +165,19 @@ public class LoginPage {
 
     public void loginWithMobileButtonClick() {
         ReusableMethods.clickElement(loginWithMobileButton);
-
+        logger.info("login With Mobile ButtonClick");
     }
 
 
     public void sendTelNumber() {
         Actions action = new Actions(Driver.getDriver());
         action.click(telNumberInput).sendKeys(ConfigReader.getProperty("telNumber")).perform();
-
+   logger.info("Tel number sent");
     }
 
     public void sendOPTClick() {
         ReusableMethods.clickElement(sendOPT);
+        logger.info("OPT sent");
     }
 
     public void sendOPTCode() {
@@ -190,16 +202,49 @@ public class LoginPage {
 
     public void verifyCodeButtonClick() {
         ReusableMethods.clickElement(verifyCodeButton);
-
+       logger.info("verify Code Button Clicked");
 
     }
+
+
+
+
+
+
 
     public WebElement getLogInButton() {
         return logInButton;
     }
 
 
+
+
+    public boolean isLoggedOut() {
+        AllPages page = new AllPages();
+        logger.info("LoggedOut");
+        boolean isLoggedOut;
+        try {
+            isLoggedOut = page.pickBazarHomePage().isJoinButtonDisplayed();
+
+        } catch (Exception e) {
+            isLoggedOut = false;
+
+        }
+        return isLoggedOut;
+    }
+
+
+
+
 }
+
+
+
+
+
+
+}
+
 
 
 

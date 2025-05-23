@@ -26,7 +26,7 @@ public class AllPages {
     private LoginProfilePage loginProfilePage;
     private BooksPage booksPage;
     private LoginPage loginPage;
-
+    private RegisterPage registerPage;
 
     //-------------------------------------------------
 
@@ -186,5 +186,17 @@ public class AllPages {
         return loginPage;
 
     }
+
+    public RegisterPage registerPage(){
+        if (registerPage == null){
+            registerPage =new RegisterPage();
+        }
+        return registerPage;
+
+    }
+
+
+
+
 
 }
