@@ -197,6 +197,8 @@ public class LoginPage {
     public WebElement getLogInButton() {
         return logInButton;
     }
+
+
 }
 
 

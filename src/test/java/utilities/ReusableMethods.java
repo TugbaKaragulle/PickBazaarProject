@@ -1,11 +1,14 @@
 package utilities;
 
+import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.qameta.allure.Allure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.AllPages;
 import pages.HomePage;
 
 import java.time.Duration;
@@ -18,7 +21,9 @@ public class ReusableMethods {
 //--------------------------------------------------------------
     ////BU method waitForVisibility methodunu çağırırken sadece element parametresiyle çağırır, isDisplayed methodunu true/false return eder
     public static boolean   isWebElementDisplayed(WebElement element) {
-        return ReusableMethods.waitForVisibility(getDriver(), element, 10).isDisplayed();
+        boolean isDisplayed = ReusableMethods.waitForVisibility(getDriver(), element, 10).isDisplayed();
+        logger.info( element.getText() + " element görüntülendi mi: " + isDisplayed);
+        return isDisplayed;
     }
     // Waits for the visibility of a specific element
     public static WebElement waitForVisibility(WebDriver driver, WebElement element, int timeoutSeconds) {
@@ -40,6 +45,10 @@ public class ReusableMethods {
     public static void clickElement(WebElement element) {
         ReusableMethods.waitForClickability(element,10).click();
     }
+    public static void clickElementByJS(WebElement element) {
+        JavascriptUtils.clickElementByJS(element);
+        }
+
     // Waits until a specific element is clickable
     public static WebElement waitForClickability( WebElement element, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds));
