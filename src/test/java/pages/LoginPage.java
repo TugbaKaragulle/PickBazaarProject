@@ -71,7 +71,7 @@ public class LoginPage {
     @FindBy(xpath = "//div[@style='display: flex; align-items: center;']//input")
     public List<WebElement> optCodeNumberList;
 
-    @FindBy(xpath ="//button[text()='Verify Code']")
+    @FindBy(xpath = "//button[text()='Verify Code']")
     public WebElement verifyCodeButton;
 
 
@@ -169,8 +169,6 @@ public class LoginPage {
     }
 
 
-
-
     public void sendOPTCode() {
         Actions action = new Actions(Driver.getDriver());
 
@@ -190,33 +188,35 @@ public class LoginPage {
         }
     }
 
-        public boolean isLoggedOut() {
-            AllPages page = new AllPages();
-            boolean isLoggedOut;
-            try {
-                isLoggedOut = page.pickBazarHomePage().isJoinButtonDisplayed();
-
-            } catch (Exception e) {
-                isLoggedOut = false;
-
-            }
-            return isLoggedOut;
-        }
-
-
-
 
     public void verifyCodeButtonClick() {
         ReusableMethods.clickElement(verifyCodeButton);
 
 
-}
+    }
 
     public WebElement getLogInButton() {
         return logInButton;
     }
+
+
+    public boolean isLoggedOut() {
+        AllPages page = new AllPages();
+        boolean isLoggedOut;
+        try {
+            isLoggedOut = page.pickBazarHomePage().isJoinButtonDisplayed();
+
+        } catch (Exception e) {
+            isLoggedOut = false;
+
+        }
+        return isLoggedOut;
+    }
+
+
+
+
+
+
+
 }
-
-
-
-
