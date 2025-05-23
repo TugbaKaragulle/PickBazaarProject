@@ -71,7 +71,7 @@ public class LoginPage {
     @FindBy(xpath = "//div[@style='display: flex; align-items: center;']//input")
     public List<WebElement> optCodeNumberList;
 
-    @FindBy(xpath ="//button[text()='Verify Code']")
+    @FindBy(xpath = "//button[text()='Verify Code']")
     public WebElement verifyCodeButton;
 
 
@@ -192,7 +192,7 @@ public class LoginPage {
         ReusableMethods.clickElement(verifyCodeButton);
 
 
-}
+    }
 
     public WebElement getLogInButton() {
         return logInButton;
