@@ -1,16 +1,23 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import tests.BasketPageTest;
 import utilities.Driver;
 import utilities.JavascriptUtils;
+import utilities.ReusableMethods;
 
 import java.util.List;
 
 import static utilities.ReusableMethods.clickElement;
 
 public class MakeUpPage {
+
+    AllPages page = new AllPages();
+    Logger logger = LogManager.getLogger(MakeUpPage.class);
 
     public MakeUpPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -80,8 +87,11 @@ public class MakeUpPage {
         clickElement(minusIconList.get(index));
     }
 
-    public WebElement getNumberOfProductAddedToBasket(int index) {
-        return numberOfProductAddedToBasket.get(index);
+    public int getNumberOfProductAddedToBasket(int index) {
+
+        int numberOfProduct = ReusableMethods.convertElementTextIntoInteger(page.makeUpPage().numberOfProductAddedToBasket.get(index));
+        logger.info("Makeup sayfasında " + index+ " .indexteki ürünün sepete eklenen adeti: " + numberOfProduct);
+        return numberOfProduct;
     }
 
     public WebElement addProductIntoBasketwithJS(AllPages page, int index, int times) {

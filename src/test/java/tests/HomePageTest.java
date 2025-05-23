@@ -3,6 +3,7 @@ package tests;
 import io.qameta.allure.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,6 +15,7 @@ import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 import static utilities.ReusableMethods.*;
 
+@Feature("Home Page Testleri")
 public class HomePageTest {
 
     Logger logger = LogManager.getLogger(HomePageTest.class);
@@ -33,11 +35,12 @@ public class HomePageTest {
 
         page.pickBazarHomePage().clickDropDownMenuOption(optionData);
         softAssert.assertTrue(waitForVisibilityOfTitle(optionData),optionData +" sayfası açılamadı");
-        logger.info( "Menuden "+ optionData + " seçeneğine tıklandı, "+ getDriver().getTitle() +" title ile doğrulama yapıldı ");
+        Allure.step( "Menuden "+ optionData + " seçeneğine tıklandı, "+ getDriver().getTitle() +" title ile doğrulama yapıldı ");
 
         softAssert.assertAll();
         Driver.closeDriver();
     }
+
     @Test( dataProvider = "dropDownMenuOptionsData", groups = {"smoke","US_003"})
     @Owner("Fatma")
     @Description("TC_003_02_Ana ekranda  Shelf dropdown menudeki seceneklerin tıklanabilirlik testi")
@@ -50,7 +53,7 @@ public class HomePageTest {
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
         softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuOptionClickable(optionData)," "+optionData+" tıklanamadı ");
-        logger.info( optionData + " seçeneğinin tıklanabilirliği doğrulandı");
+        Allure.step( optionData + " seçeneğinin tıklanabilirliği doğrulandı");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -81,9 +84,9 @@ public class HomePageTest {
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
         softAssert.assertTrue(page.pickBazarHomePage().isGrocerySelectedDropDownValue(),"Grocery seçili gelmedi");
-        logger.info("Dropdown menüde Grocery seçili olduğu doğrulandı");
+        Allure.step("Dropdown menüde Grocery seçili olduğu doğrulandı");
         softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuOptionDisplayed(optionData),optionData+" görüntülenemedi");
-        logger.info("Dropdown menüde " +optionData+" görüntülendi");
+        Allure.step("Dropdown menüde " +optionData+" görüntülendi");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -102,8 +105,6 @@ public class HomePageTest {
                 { "bookspage_url" }
         };
     }
-
-
     //--------------------------------US_002-------------------------------------------------------------------------//
     @Test( dataProvider = "urlData", groups = {"smoke","US_002"})
     @Owner("Fatma")
@@ -120,7 +121,7 @@ public class HomePageTest {
         String currentUrl = getDriver().getCurrentUrl();
         String expectedUrl= ConfigReader.getProperty("pickbazar_url");
         softAssert.assertTrue(waitForUrlContains(expectedUrl)," "+data+" ekranından Homepage ekranına gidilemedi");
-        logger.info(data +" sayfasında PickBazar butonu tıklandı ve Home Page ekrani açıldı. ");
+        Allure.step(data +" sayfasında PickBazar butonu tıklandı ve Home Page ekrani açıldı. ");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -140,9 +141,9 @@ public class HomePageTest {
 
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
         softAssert.assertTrue( page.pickBazarHomePage().isGroceryProductFrameDisplayed() ,"Grocery ürünleri olduğu frame görüntülenemedi");
-        logger.info("Ekranin Sag tarafinda Grocery ürünleri olduğu frame görüntülenir");
+        Allure.step( "Ekranin Sag tarafinda Grocery ürünleri olduğu frame görüntülenir");
         softAssert.assertTrue( page.pickBazarHomePage().isGroceryMenuFrameDisplayed() ,"Grocery menü frame görüntülenemedi");
-        logger.info("Ekranin Sol tarafinda Grocery menü listesinin olduğu frame görüntülenir");
+        Allure.step("Ekranin Sol tarafinda Grocery menü listesinin olduğu frame görüntülenir");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -159,13 +160,13 @@ public class HomePageTest {
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
         softAssert.assertTrue(page.pickBazarHomePage().isExpressDeliveryImageDisplayed()  ,"Express Delivery frame görüntülenemedi");
-        logger.info("Express Delivery frame, Save Now button sekilde geldiği görüntülendi" );
+        Allure.step("Express Delivery frame, Save Now button sekilde geldiği görüntülendi" );
 
         softAssert.assertTrue(page.pickBazarHomePage().isCashOnDeliveryImageDeliveryImageDisplayed() , "Cash On Delivery frame görüntülenemedi");
-        logger.info("Cash On Delivery frame, Save Now button sekilde geldigi görüntülendi");
+        Allure.step("Cash On Delivery frame, Save Now button sekilde geldigi görüntülendi");
 
         softAssert.assertTrue(page.pickBazarHomePage().isGiftVoucherImageDeliveryImageDisplayed(), "Gift Voucher frame görüntülenemedi" );
-        logger.info("Gift Voucher frame, Shop Cuopons button sekilde geldigi görüntülendi");
+        Allure.step("Gift Voucher frame, Shop Cuopons button sekilde geldigi görüntülendi");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -184,16 +185,16 @@ public class HomePageTest {
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
         softAssert.assertTrue(page.pickBazarHomePage().isPickBazarLogoDisplayed(), "Logo görüntülenemedi");
-        logger.info("PickBazar logosu görüntülendi");
+        Allure.step("PickBazar logosu görüntülendi");
 
         softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuDisplayed(), "Drop down menu görüntülenemedi.");
-        logger.info("Sol üstte dropdown menü görüntülendi");
+        Allure.step("Sol üstte dropdown menü görüntülendi");
 
         softAssert.assertTrue(page.pickBazarHomePage().isGrocerySelectedDropDownValue(), "Grocery seçili olarak görüntülenemedi");
-        logger.info("Sol üstte dropdown menü otomatik olarak Grocery secili geldiği görüntülendi");
+        Allure.step("Sol üstte dropdown menü otomatik olarak Grocery secili geldiği görüntülendi");
 
         softAssert.assertTrue(page.pickBazarHomePage().isShopsButtonDisplayed(),"Shop butonu görüntülenemedi");
-        logger.info("Shops button dogru sekilde geldigi görüntülendi");
+        Allure.step("Shops button dogru sekilde geldigi görüntülendi");
 
         softAssert.assertAll();
         Driver.closeDriver();

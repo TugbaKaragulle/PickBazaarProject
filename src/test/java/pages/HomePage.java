@@ -1,8 +1,12 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import tests.BasketPageTest;
+import tests.HomePageTest;
 import utilities.Driver;
 import utilities.JavascriptUtils;
 
@@ -14,6 +18,7 @@ import static utilities.ReusableMethods.*;
 
 public class HomePage {
 
+    Logger logger = LogManager.getLogger(HomePage.class);
 
     public HomePage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -141,6 +146,7 @@ public class HomePage {
 
     public boolean isGroceryMenuFrameDisplayed() {
         scrollIntoViewJS(menuFrame);
+        logger.info("Menu Frame ine scroll yapıldı");
         return menuFrame.isDisplayed();
     }
     /**
@@ -174,34 +180,42 @@ public class HomePage {
 //***********************************************************  Click Methods  ********************************************************************************//
     public void clickShopsButton() {
         clickElement(shopsButton);
+        logger.info("Shops buttona tıklandı.");
     }
 
     public void clickFAQButton() {
         clickElement(FAQButton);
+        logger.info("FAQ butonuna tıklandı.");
     }
 
     public void clickOffersButton() {
         clickElement(offersButton);
+        logger.info("Offers butonuna tıklandı.");
     }
 
     public void clickContactButton() {
         clickElement(contactButton);
+        logger.info("Contact buttona tıklandı.");
     }
 
     public void clickJoinButton() {
         clickElement(joinButton);
+        logger.info("Join buttona tıklandı.");
     }
 
     public void clickDropDownMenu() {
         clickElement(dropDownMenu);
+        logger.info("Drowdown menü tıklandı.");
     }
 
     public void clickPickBazarLogo() {
         clickElement(pickBazarLogo);
+        logger.info("Pickbazar butonuna tıklandı.");
     }
 
     public void clickSearchButton() {
         clickElement(searchButton);
+        logger.info("Search butonuna tıklandı.");
     }
 
     /**
