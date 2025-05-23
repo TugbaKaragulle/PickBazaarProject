@@ -6,7 +6,7 @@
         <listener class-name="utilities.AllureListerner"> </listener>
     </listeners>
 
-    <parameter name="browser" value="firefox"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
 
     <test verbose="2" preserve-order="true" name="US Test">
         <groups>
