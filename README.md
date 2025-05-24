@@ -3,6 +3,9 @@
  📌 Project Overview
 This project is created to automatically test the web interface of the PickBazar e-commerce platform. Manual test steps have been automated and a structured test framework has been built. (https://shop.clarusway.net/)
 
+![image](https://github.com/user-attachments/assets/ad2c9a70-0991-4321-9e8b-08db37cf4f70)
+
+
  🧰 Libraries and Frameworks
 
 - **Selenium** – Web automation framework for simulating user interactions in browsers.
@@ -12,7 +15,7 @@ This project is created to automatically test the web interface of the PickBazar
 
  🛠 Tools Used
 
-- IDE:** IntelliJ IDEA
+- IDE: IntelliJ IDEA
 - Reporting:** Allure Report
 
  ✅ Key Features
