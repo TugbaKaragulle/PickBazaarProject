@@ -18,7 +18,8 @@ This project is created to automatically test the web interface of the PickBazar
  🛠 Tools Used
 
 - IDE: IntelliJ IDEA
-- Reporting: Allure Report
+- Reporting: Allure Report (for test methods)
+- Logging: Log4j (for page classes) 
 
  ![image](https://github.com/user-attachments/assets/19cebbf7-7b99-489f-9899-d772c50636a9)
  ![image](https://github.com/user-attachments/assets/d68c2dfb-7f08-414a-9d33-dd3cd70373bb)
@@ -49,6 +50,10 @@ src
 │       └── utilities
 
 
+📜 Test Method Structure
 
+Used this base structure as a startup in eact test method
+
+![image](https://github.com/user-attachments/assets/172c90a6-05bf-4c8a-bbaf-7e3e7ea957ee)
 
 
