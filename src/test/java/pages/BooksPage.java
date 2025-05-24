@@ -25,7 +25,7 @@ public class BooksPage {
         PageFactory.initElements(getDriver(), this);
     }
 
-    //TODO*************************** Locates ************************
+    //*************************** Locates ************************
 
     @FindBy(xpath = "//div[@class='swiper-slide swiper-slide-active swiper-slide-duplicate-next swiper-slide-duplicate-prev']//img")
     private WebElement banner;
@@ -99,7 +99,7 @@ public class BooksPage {
     private List<WebElement> authorNames;
 
 
-    //TODO***************************** Getter Methods *******************
+    //***************************** Getter Methods *******************
 
     public WebElement getBanner() {
         return banner;
@@ -193,12 +193,12 @@ public class BooksPage {
         return last5AuthorNames;
     }
 
-    //TODO************************ Variables ***************************
+    //************************ Variables ***************************
 
     AllPages allPages = new AllPages();
-    Actions actions = new Actions(getDriver());
     private String bestSellingtitle = "Best Selling Products";
     Logger logger = LogManager.getLogger(BooksTest.class);
+    boolean result;
 
 
     //TODO********************** Variables getter **********************
@@ -209,121 +209,167 @@ public class BooksPage {
     //TODO********************* Reusable Methods ***********************
 
     public void clickAsMuchAsYouWant(WebElement element, int clickCount) {
+        logger.info("Clicking on the element.");
         for (int i = 0; i < clickCount; i++) {
             ReusableMethods.waitForVisibility(getDriver(), element, 10);
-            JavascriptUtils.clickElementByJS(element);//element.click();
+            JavascriptUtils.clickElementByJS(element);
         }
     }
 
-    //TODO*********************** Methods ******************************
+    //*********************** Methods ******************************
 
     public boolean isBannerDisplayed() {
         logger.info("Navigating to the homepage.");
-        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-        allPages.pickBazarHomePage().clickDropDownMenuOption("Books");
-        logger.info("Verifying that the banner with 'Sale UP TO 20% OFF' and 'Shop Now' is visible.");
-        return banner.isDisplayed();
+        try {
+            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+            allPages.pickBazarHomePage().clickDropDownMenuOption("Books");
+            result = banner.isDisplayed();
+            logger.info("Verifying that the banner with 'Sale UP TO 20% OFF' and 'Shop Now' is visible --> "+result);
+            return result;
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
+        }
     }
 
     public boolean bestSellingProductsField(String title) {
         logger.info("Navigating to the homepage.");
-        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-        allPages.pickBazarHomePage().clickDropDownMenuOption("Books");
-        List<String> titles = new ArrayList<>();
-        for (WebElement each : mainTitles) {
-            titles.add(each.getText());
+        try {
+            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+            logger.info("Clicked on 'Books' category in the dropdown menu.");
+            allPages.pickBazarHomePage().clickDropDownMenuOption("Books");
+            List<String> titles = new ArrayList<>();
+            for (WebElement each : mainTitles) {
+                String text = each.getText();
+                logger.info("Found title: '" + text + "'");
+                titles.add(text);
+            }
+            result = titles.contains(title);
+            logger.info("Verifying that the 'Best Selling Products' section is visible --> "+result);
+            return result;
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
         }
-        logger.info("Verifying that the 'Best Selling Products' section is visible.");
-        return titles.contains(title);
     }
 
     public void scrollToElement(WebElement element) {
         logger.info("Navigating to the homepage.");
-        getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-        allPages.pickBazarHomePage().clickDropDownMenuOption("Books");
-        logger.info("Scrolling to the test area.");
-        JavascriptUtils.scrollIntoViewJS(element);
-        // actions.scrollToElement(element).perform();
-        ReusableMethods.waitForVisibilityOfTitle("Pickbazar | Books");
+        try {
+            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+            allPages.pickBazarHomePage().clickDropDownMenuOption("Books");
+            logger.info("Scrolling to the test area.");
+            JavascriptUtils.scrollIntoViewJS(element);
+            logger.info("Waiting for the page title to be visible.");
+            ReusableMethods.waitForVisibilityOfTitle("Pickbazar | Books");
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+        }
     }
 
     public boolean areElementsDisplayed(List<WebElement> elements, WebElement element, String logMessage) {
 
-        scrollToElement(element);
-        logger.info("Verifying that " + logMessage + " are visible.");
-
-        for (WebElement each : elements) {
-            ReusableMethods.waitForVisibility(getDriver(), each, 10);
-            if (!each.isDisplayed()) {
-                return false;
+        try {
+            scrollToElement(element);
+            logger.info("Verifying that " + logMessage + " are visible.");
+            for (WebElement each : elements) {
+                ReusableMethods.waitForVisibility(getDriver(), each, 10);
+                result = each.isDisplayed();
+                if (!result) {
+                    return false;
+                }
             }
+            return result;
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
         }
-        return true;
     }
 
     public boolean areAuthorPhotosDisplayed() {
         logger.info("Scrolling to 'Top Authors' section.");
-        scrollToElement(topAuthorsTitle);
+        try {
+            scrollToElement(topAuthorsTitle);
 
-        for (WebElement each : first5AuthorPhotos) {
-            ReusableMethods.waitForVisibility(getDriver(), each, 10);
-            if (!each.isDisplayed()) {
-                return false;
+            for (WebElement each : first5AuthorPhotos) {
+                ReusableMethods.waitForVisibility(getDriver(), each, 10);
+                result = each.isDisplayed();
+                if (!result) {
+                    return false;
+                }
             }
-        }
-        logger.info("Clicking the scroll arrow 3 times.");
-        clickAsMuchAsYouWant(authorScrollArrowRight, 3);
-        logger.info("Verifying that author photos are visible.");
-        for (WebElement each2 : last5AuthorPhotos) {
-            ReusableMethods.waitForVisibility(getDriver(), each2, 10);
-            if (!each2.isDisplayed()) {
-                return false;
+            logger.info("Clicking the scroll arrow 3 times.");
+            clickAsMuchAsYouWant(authorScrollArrowRight, 3);
+            logger.info("Verifying that author photos are visible.");
+            for (WebElement each2 : last5AuthorPhotos) {
+                ReusableMethods.waitForVisibility(getDriver(), each2, 10);
+                result = each2.isDisplayed();
+                if (!result) {
+                    return false;
+                }
             }
+            return true;
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
         }
-        return true;
     }
 
     public boolean areAuthorNamesDisplayed() {
         logger.info("Scrolling to 'Top Authors' section.");
-        scrollToElement(topAuthorsTitle);
+        try {
+            scrollToElement(topAuthorsTitle);
 
-        for (WebElement each : first5AuthorNames) {
-            ReusableMethods.waitForVisibility(getDriver(), each, 10);
-            if (!each.isDisplayed()) {
-                return false;
+            for (WebElement each : first5AuthorNames) {
+                ReusableMethods.waitForVisibility(getDriver(), each, 10);
+                if (!each.isDisplayed()) {
+                    return false;
+                }
             }
-        }
-        logger.info("Clicking the scroll arrow 3 times.");
-        clickAsMuchAsYouWant(authorScrollArrowRight, 3);
-        logger.info("Verifying that author names are visible.");
-        for (WebElement each2 : last5AuthorNames) {
-            ReusableMethods.waitForVisibility(getDriver(), each2, 10);
-            if (!each2.isDisplayed()) {
-                return false;
+            logger.info("Clicking the scroll arrow 3 times.");
+            clickAsMuchAsYouWant(authorScrollArrowRight, 3);
+            logger.info("Verifying that author names are visible.");
+            for (WebElement each2 : last5AuthorNames) {
+                ReusableMethods.waitForVisibility(getDriver(), each2, 10);
+                result = each2.isDisplayed();
+                if (!result) {
+                    return false;
+                }
             }
+            return true;
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
         }
-        return true;
     }
 
     public boolean isWhichBookSectionDisplayed(List<WebElement> elements, WebElement element, String logMessage) {
         logger.info("Scrolling to 'Which Books You Like To See?' section.");
-        scrollToElement(element);
-        logger.info("Clicking on the scroll arrow.");
-        clickAsMuchAsYouWant(whichBookScrollArrow, 1);
-        logger.info("Verifying that the book " + logMessage + " are displayed.");
-        for (WebElement each : elements) {
-            ReusableMethods.waitForVisibility(getDriver(), each, 10);
-            if (!each.isDisplayed()) {
-                return false;
+        try {
+            scrollToElement(element);
+            logger.info("Clicking on the scroll arrow.");
+            clickAsMuchAsYouWant(whichBookScrollArrow, 1);
+            logger.info("Verifying that the book " + logMessage + " are displayed.");
+            for (WebElement each : elements) {
+                logger.info("Waiting for visibility of element");
+                ReusableMethods.waitForVisibility(getDriver(), each, 10);
+                result = each.isDisplayed();
+                if (!result) {
+                    return false;
+                }
             }
+            return true;
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
         }
-        return true;
     }
 
     public boolean isTitleVisible(WebElement element) {
         scrollToElement(element);
-        logger.info("Verifying that the section title is visible.");
-        return ReusableMethods.isWebElementDisplayed(element);
+        result = ReusableMethods.isWebElementDisplayed(element);
+        logger.info("Verifying that the section title is visible -->" + result);
+        return result;
     }
 
 }

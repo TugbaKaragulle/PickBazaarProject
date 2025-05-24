@@ -19,10 +19,8 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
         Allure.step("Verifying that the banner with 'Sale UP TO 20% OFF' and 'Shop Now' is visible.", () -> {
             softAssert.assertTrue(allPages.booksPage().isBannerDisplayed(), "Banner with 'Sale UP TO 20% OFF' is not visible."); });
-
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -35,11 +33,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
         Allure.step("Verifying that the 'Best Selling Products' section is visible.", () -> {
             softAssert.assertTrue(allPages.booksPage().bestSellingProductsField(allPages.booksPage().getBestSellingtitle()),
                     "'Best Selling Products' section is not visible."); });
-
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -52,11 +48,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
         Allure.step("Verifying that product images are visible.", () -> {
             softAssert.assertTrue(allPages.booksPage().areElementsDisplayed(allPages.booksPage().getPopularProductImages(),
                     allPages.booksPage().getPopularProductTitle(), "product images"),"Product images are not visible."); });
-
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -69,11 +63,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
         Allure.step("Verifying that product names are visible.", () -> {
             softAssert.assertTrue(allPages.booksPage().areElementsDisplayed(allPages.booksPage().getPopularProductBookNames(),
                     allPages.booksPage().getPopularProductTitle(), "product names"), "Product names are not visible."); });
-
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -86,11 +78,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
-        Allure.step("Verifying that product prices are visible.", () -> {
+        Allure.step("Verifying that product prices are visible.");
             softAssert.assertTrue(allPages.booksPage().areElementsDisplayed(allPages.booksPage().getPopularPruductPrice(),
-                    allPages.booksPage().getPopularProductTitle(), "product prices"),"Product prices are not visible."); });
-
+                    allPages.booksPage().getPopularProductTitle(), "product prices"),"Product prices are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -103,11 +93,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
-        Allure.step("Verifying that the section title is visible.", () -> {
+        Allure.step("Verifying that the section title is visible.");
             softAssert.assertTrue(allPages.booksPage().isTitleVisible(allPages.booksPage().getWhichBookTitle()),
-                    "'Which Books You Like To See?' title is not visible."); });
-
+                    "'Which Books You Like To See?' title is not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -120,11 +108,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
-        Allure.step("Verifying that the book images are displayed.", () -> {
+        Allure.step("Verifying that the book images are displayed.");
             softAssert.assertTrue(allPages.booksPage().isWhichBookSectionDisplayed(allPages.booksPage().getWhichBookImages(),
-                    allPages.booksPage().getWhichBookTitle(), "images"), "Book images are not visible."); });
-
+                    allPages.booksPage().getWhichBookTitle(), "images"), "Book images are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -137,11 +123,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
-        Allure.step("Verifying that the book titles are displayed.", () -> {
+        Allure.step("Verifying that the book titles are displayed.");
             softAssert.assertTrue(allPages.booksPage().isWhichBookSectionDisplayed(allPages.booksPage().getWhichBookNames(),
-                    allPages.booksPage().getWhichBookTitle(), "names"), "Book names are not visible."); });
-
+                    allPages.booksPage().getWhichBookTitle(), "names"), "Book names are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -156,11 +140,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
-        Allure.step("Verifying that new book images are visible.", () -> {
+        Allure.step("Verifying that new book images are visible.");
             softAssert.assertTrue(allPages.booksPage().areElementsDisplayed(allPages.booksPage().getNewArrivalBooksImg(),
-                    allPages.booksPage().getNewArrivalTitle(), "new book images"), "New book images are not visible."); });
-
+                    allPages.booksPage().getNewArrivalTitle(), "new book images"), "New book images are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -173,11 +155,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
-        Allure.step("Verifying that new book titles are visible.", () -> {
+        Allure.step("Verifying that new book titles are visible.");
             softAssert.assertTrue(allPages.booksPage().areElementsDisplayed(allPages.booksPage().getNewArrivalBookNames(),
-                    allPages.booksPage().getNewArrivalTitle(), "new book titles"),"New book titles are not visible."); });
-
+                    allPages.booksPage().getNewArrivalTitle(), "new book titles"),"New book titles are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -190,11 +170,9 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
-        Allure.step("Verifying that new book prices are visible.", () -> {
+        Allure.step("Verifying that new book prices are visible.");
             softAssert.assertTrue(allPages.booksPage().areElementsDisplayed(allPages.booksPage().getNewArrivalBooksPrice(),
-                    allPages.booksPage().getNewArrivalTitle(), "new book prices"), "New book prices are not visible."); });
-
+                    allPages.booksPage().getNewArrivalTitle(), "new book prices"), "New book prices are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -207,10 +185,8 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
-        Allure.step("Verifying that author photos are visible.", () -> {
-            softAssert.assertTrue(allPages.booksPage().areAuthorPhotosDisplayed(),"Author photos are not visible.");});
-
+        Allure.step("Verifying that author photos are visible.");
+            softAssert.assertTrue(allPages.booksPage().areAuthorPhotosDisplayed(),"Author photos are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -223,10 +199,8 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
-        Allure.step("Verifying that author names are visible.", () -> {
-            softAssert.assertTrue(allPages.booksPage().areAuthorNamesDisplayed(),"Author names are not visible.");});
-
+        Allure.step("Verifying that author names are visible.");
+            softAssert.assertTrue(allPages.booksPage().areAuthorNamesDisplayed(),"Author names are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
