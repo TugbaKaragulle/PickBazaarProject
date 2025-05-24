@@ -1,30 +1,22 @@
 package tests;
 
 import io.qameta.allure.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.ITestContext;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
-import static utilities.Driver.getDriver;
-import static utilities.Driver.setupBrowser;
+import static utilities.Driver.*;
 import static utilities.ReusableMethods.*;
 
 @Feature("Home Page Testleri")
 public class HomePageTest {
 
-    Logger logger = LogManager.getLogger(HomePageTest.class);
-
-
     //--------------------------------US_003-------------------------------------------------------------------------//
     @Test( dataProvider = "dropDownMenuOptionsData", groups = {"smoke","US_003"})
     @Owner("Fatma")
-    @Description("TC_003_03_Ana ekranda Shelf dropdown menudeki seçeneklerden ilgili sayfaların açılma testi")
+    @Story("TC_003_03_Ana ekranda Shelf dropdown menudeki seçeneklerden ilgili sayfaların açılma testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_003_03(ITestContext context,String  optionData) {
 
@@ -43,7 +35,7 @@ public class HomePageTest {
 
     @Test( dataProvider = "dropDownMenuOptionsData", groups = {"smoke","US_003"})
     @Owner("Fatma")
-    @Description("TC_003_02_Ana ekranda  Shelf dropdown menudeki seceneklerin tıklanabilirlik testi")
+    @Story("TC_003_02_Ana ekranda  Shelf dropdown menudeki seceneklerin tıklanabilirlik testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_003_02(ITestContext context,String  optionData) {
 
@@ -74,7 +66,7 @@ public class HomePageTest {
     }
     @Test( dataProvider = "dropDownMenuOptionsData", groups = {"smoke","US_003"})
     @Owner("Fatma")
-    @Description("TC_003_01_Ana ekranda  Shelf dropdown menu testi")
+    @Story("TC_003_01_Ana ekranda  Shelf dropdown menu testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_003_01(ITestContext context,String  optionData) {
 
@@ -108,7 +100,7 @@ public class HomePageTest {
     //--------------------------------US_002-------------------------------------------------------------------------//
     @Test( dataProvider = "urlData", groups = {"smoke","US_002"})
     @Owner("Fatma")
-    @Description("TC_002_01_PickBazar butonu görüntülenip, calistigi görülmelidir")
+    @Story("TC_002_01_PickBazar butonu görüntülenip, calistigi görülmelidir")
     @Severity(SeverityLevel.NORMAL)
     public void TC_002_01(ITestContext context,String data) {
 
@@ -131,7 +123,7 @@ public class HomePageTest {
 
     @Test(groups = {"smoke","US_001"})
     @Owner("Fatma")
-    @Description("TC_001_03_Home page ekraninda Scroll down yapıldığında Grocery ürünleri ve menü testi")
+    @Story("TC_001_03_Home page ekraninda Scroll down yapıldığında Grocery ürünleri ve menü testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_001_03(ITestContext context){
 
@@ -150,7 +142,7 @@ public class HomePageTest {
     }
     @Test(groups = {"smoke","US_001"})
     @Owner("Fatma")
-    @Description("TC_001_02_Home page ekraninda frame testi")
+    @Story("TC_001_02_Home page ekraninda frame testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_001_02(ITestContext context) throws InterruptedException {
 
@@ -175,7 +167,7 @@ public class HomePageTest {
 
     @Test(groups = {"smoke","US_001"})
     @Owner("Fatma")
-    @Description("TC_001_01_Home page ekraninda UI testi")
+    @Story("TC_001_01_Home page ekraninda UI testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_001_01(ITestContext context) throws InterruptedException {
 

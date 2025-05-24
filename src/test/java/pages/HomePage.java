@@ -156,11 +156,10 @@ public class HomePage {
      */
     public boolean isDropDownMenuOptionDisplayed(String optionName) {
 
-        //ilk adımda dropdownmenu açılır
         clickDropDownMenu();
 
-        //ikinci adımda string değerine göre methodu çağırılır
-        return switch (optionName) {
+        //string değerine göre ilgili method çağırılır
+        boolean isDisplayed = switch (optionName) {
             case "Grocery" -> isWebElementDisplayed(groceryOptionInDropDownMenu);
             case "Bakery" -> isWebElementDisplayed(bakeryOptionInDropDownMenu);
             case "Makeup" -> isWebElementDisplayed(makeupOptionInDropDownMenu);
@@ -171,10 +170,9 @@ public class HomePage {
             case "Books" -> isWebElementDisplayed(booksOptionInDropDownMenu);
             default -> isWebElementDisplayed(pickBazarLogo);
         };
+        logger.info( optionName +" DropDownMenuOption görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
-//***********************************************************  End of Display Methods*************************************************************************//
-
-
 
 
 //***********************************************************  Click Methods  ********************************************************************************//
@@ -225,9 +223,7 @@ public class HomePage {
      */
     public void clickDropDownMenuOption(String optionName) {
 
-        //ilk adımda dropdownmenu açılır
         clickDropDownMenu();
-
         //ikinci adımda string değerine göre clickElement methodu çağırılır
         switch (optionName) {
             case "Grocery" -> clickElement(groceryOptionInDropDownMenu);
@@ -255,11 +251,9 @@ public class HomePage {
      */
     public boolean isDropDownMenuOptionClickable(String optionName) {
 
-        //ilk adımda dropdownmenu açılır
         clickDropDownMenu();
-
-        //ikinci adımda string değerine göre clickElement methodu çağırılır
-        return switch (optionName) {
+        // string değerine göre clickElement methodu çağırılır
+        boolean isClickable =  switch (optionName) {
             case "Grocery" -> waitForClickability(groceryOptionInDropDownMenu);
             case "Bakery" -> waitForClickability(bakeryOptionInDropDownMenu);
             case "Makeup" -> waitForClickability(makeupOptionInDropDownMenu);
@@ -270,17 +264,25 @@ public class HomePage {
             case "Books" -> waitForClickability(booksOptionInDropDownMenu);
             default -> waitForClickability(pickBazarLogo);
         };
+
+        logger.info( optionName +" DropDownMenuOption tıklanabilir mi? " + isClickable );
+        return isClickable;
     }
     public boolean isProductFrameVisible() {
         JavascriptUtils.scrollIntoViewJS(getProductFrame());
-         return isWebElementDisplayed(productFrame);
+        boolean isDisplayed = isWebElementDisplayed(productFrame);
+        logger.info("Product Frame görüntülendi mi? : " + isDisplayed);
+        return isDisplayed;
     }
     public void sendKeysSearchTextArea(String text) {
         searchTextInput.sendKeys(text);
+        logger.info("Search satırına text yazıldı: " + text );
     }
 
     public boolean isGrocerySelectedDropDownValue() {
-        return dropDownMenu.getText().equals("Grocery");
+        boolean isGrocerySelected = dropDownMenu.getText().equals("Grocery");
+        logger.info("Dropdown menude Grocery default seçili mi? : " + isGrocerySelected);
+        return isGrocerySelected;
     }
 
 
