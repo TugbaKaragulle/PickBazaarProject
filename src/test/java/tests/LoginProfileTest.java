@@ -26,9 +26,9 @@ public class LoginProfileTest {
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
 
-        Allure.step("Verifying that the user sees their points after login.", () -> {
+        Allure.step("Verifying that the user sees their points after login.");
             softAssert.assertTrue(allPages.loginProfilePage().profilePoints(),
-                    "Customer cannot see their points on the profile page."); });
+                    "Customer cannot see their points on the profile page.");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -44,10 +44,10 @@ public class LoginProfileTest {
         setupBrowser(context);
 
         try {
-            Allure.step("Verifying that clicking on the '" + data + "' menu item opens the correct page.", () -> {
+            Allure.step("Verifying that clicking on the '" + data + "' menu item opens the correct page.");
                 softAssert.assertTrue(
                         allPages.loginProfilePage().profileDropDownMenu(data),
-                        testCaseNo + " FAILED: The page '" + data + "' could not be opened"); });
+                        testCaseNo + " FAILED: The page '" + data + "' could not be opened");
         } catch (Exception e) {
             softAssert.fail(testCaseNo + " is failed due to an " + e.getMessage() + " exception.");
         } finally {
@@ -75,9 +75,9 @@ public class LoginProfileTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
 
-        Allure.step("Verifying that the user is logged out and the 'Join' button is visible.", () -> {
+        Allure.step("Verifying that the user is logged out and the 'Join' button is visible.");
             softAssert.assertTrue(allPages.loginProfilePage().verifyLogoutWorks(),
-                    "'Join' button is not visible after logging out."); });
+                    "'Join' button is not visible after logging out.");
 
         softAssert.assertAll();
         Driver.closeDriver();

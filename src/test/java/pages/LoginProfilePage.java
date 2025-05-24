@@ -7,7 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
-import tests.BooksTest;
+import tests.LoginProfileTest;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
@@ -81,7 +81,7 @@ public class LoginProfilePage {
     String actualText;
     AllPages allPages = new AllPages();
     Actions actions = new Actions(getDriver());
-    Logger logger = LogManager.getLogger(BooksTest.class);
+    Logger logger = LogManager.getLogger(LoginProfileTest.class);
 
 
 //TODO***************************************** Test Methods ******************************************************
