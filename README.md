@@ -14,9 +14,6 @@ This project is created to automatically test the web interface of the PickBazar
 - **Log4J** – Logging test steps and results.
 
   ![image](https://github.com/user-attachments/assets/152d94c5-dc30-4c41-9c7c-0276013e5ade)
-  ![image](https://github.com/user-attachments/assets/3f8968e9-083a-4703-81db-2a12841feaf7)
-  ![image](https://github.com/user-attachments/assets/4de2650d-16c6-450d-84f1-630393e11434)
-
 
  🛠 Tools Used
 
@@ -32,6 +29,8 @@ This project is created to automatically test the web interface of the PickBazar
 - Clear reporting and logging for debugging
 - Scalable and maintainable structure following Page Object Model
 - Parallel test execution using TestNG
+
+  ![image](https://github.com/user-attachments/assets/9ac606e5-6a93-43cf-96a4-beacc700d084)
 
  🚀 How to Run
 
