@@ -40,6 +40,7 @@ This project is created to automatically test the web interface of the PickBazar
 3. Execute test cases using Maven or TestNG.
 4. View test results via Allure Report.
 
+
  📄 Folder Structure
 
 src
@@ -48,16 +49,45 @@ src
 │       ├── pages
 │       ├── tests
 │       └── utilities
+│   └── resources
+
+
+
+
+📜 Pages Package Structure
+
+- AllPages Class easies access to all page classes to be used during testing from a single place
+- This structure guanties each page created as a singleton instance
+  ![image](https://github.com/user-attachments/assets/5f5dccd3-b2ae-4421-a3be-b2aca2dafc9b)
+
+- Used Logger interface for logging each action step within methods
+- Implemented Page Object Model (POM) with PageFactory and @FindBy annotations to locate and initialize web elements efficiently.
+- Encapsulated all the WebElements as private members
+- Provided public getter methods for controlled access to elements when needed in test classes
+- Called methods from utilites package -> ex. clickElement() , isWebElementDisplayed()  to reduce duplication
 
 
 📜 Test Method Structure
 
-- Followed this consistent structure as a startup in eact test method
-- Utilized SoftAssert, to enable multiple assertion within a single test
+- Followed a consistent structure as a startup in eact test method
 - Applied Allure annotaions to imporve reporting quality and provide detailed reports 
       @Feature, @Story, @Owner, @Severity, @description
 - Included Groups for grouped test executions by .xml files
-- 
-![image](https://github.com/user-attachments/assets/172c90a6-05bf-4c8a-bbaf-7e3e7ea957ee)
+- Utilized SoftAssert, to enable multiple assertion within a single test
+  
+  ![image](https://github.com/user-attachments/assets/fe791725-d391-4a26-af99-072626aff10b)
+
+
+
+📜 An example Test Flow  ( TC_018_01)
+
+- The browser is launched (Chrome/Firefox, controlled via ITestContext)
+- The user is navigated to the specified URL
+- The necessary pages are accessed through the AllPages object
+- A product is added to the basket on the product page
+- The basket is opened, and it is checked whether the product is in the basket
+- Validation is performed using SoftAssert
+
+![image](https://github.com/user-attachments/assets/ca380005-f52f-403e-bf69-0a2aa4513cc3)
 
 
