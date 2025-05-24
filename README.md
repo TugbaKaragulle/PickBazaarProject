@@ -50,6 +50,7 @@ This project is created to automatically test the web interface of the PickBazar
 
 - AllPages Class easies access to all page classes to be used during testing from a single place
 - This structure guanties each page created as a singleton instance
+  
   ![image](https://github.com/user-attachments/assets/5f5dccd3-b2ae-4421-a3be-b2aca2dafc9b)
 
 - Used Logger interface for logging each action step within methods
@@ -89,6 +90,7 @@ This project is created to automatically test the web interface of the PickBazar
 
 
 📜 Utilites Package Structure
+![image](https://github.com/user-attachments/assets/383d2948-798e-4d4b-9756-a22fe3a15f8a)
 
 -
 
