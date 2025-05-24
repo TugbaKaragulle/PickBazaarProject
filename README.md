@@ -42,13 +42,11 @@ This project is created to automatically test the web interface of the PickBazar
  📄 Folder Structure
 
 src
-│
 ├── test
-│ └── java
-│ ├── pages
-│ ├── tests 
-│ └── utilities 
-
+│   └── java
+│       ├── pages
+│       ├── tests
+│       └── utilities
 
 
 
