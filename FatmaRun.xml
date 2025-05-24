@@ -16,9 +16,6 @@
         </groups>
         <classes>
             <class name="tests.BasketPageTest">
-                <methods>
-                    <include name="TC_018_16"> </include>
-                </methods>
             </class>
         </classes>
     </test>

@@ -10,7 +10,9 @@ import java.io.IOException;
 
 public class AllureListerner implements ISuiteListener, ITestListener {
 
-
+    /**
+     * Called when a test fails. Takes a screenshot and attaches it to the Allure report.
+     */
     public void onTestFailure(ITestResult result) {
         WebDriver driver = Driver.getDriver();
         if (driver == null) return;
@@ -27,8 +29,6 @@ public class AllureListerner implements ISuiteListener, ITestListener {
      * Testler tamamlandığında, işletim sistemine göre uygun komutla
      * Allure raporlarını otomatik olarak başlatır. Terminalden allure serve gerek kalmaz
      */
-
-
     public void onFinish(ISuite suite) {
         try {
             String os = System.getProperty("os.name").toLowerCase();

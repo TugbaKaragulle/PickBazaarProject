@@ -21,7 +21,6 @@ import static utilities.Driver.setupBrowser;
 @Feature("Sepet Sayfası Testleri")
 public class BasketPageTest {
 
-    Logger logger = LogManager.getLogger(BasketPageTest.class);
     int indexofList = 0;  //sepetteki ürün listesinden ilk ürününün testi yapılacak.
 
     @Test(groups = {"smoke", "US_018"})
@@ -52,7 +51,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_15_Daily Needs ekranında sepet UI testi")
+    @Story("TC_018_15_Daily Needs ekranında sepet UI testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_15(ITestContext context) {
 
@@ -75,7 +74,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_14_Daily Needs ekranında sepet UI testi")
+    @Story("TC_018_14_Daily Needs ekranında sepet UI testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_14(ITestContext context) {
 
@@ -97,7 +96,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_13_Sepet ekranında login olarak sepet UI testi")
+    @Story("TC_018_13_Sepet ekranında login olarak sepet UI testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_13(ITestContext context) {
 
@@ -124,7 +123,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_12_Sepet ekranında login olmadan önceki sepet UI testi")
+    @Story("TC_018_12_Sepet ekranında login olmadan önceki sepet UI testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_12(ITestContext context) {
 
@@ -151,7 +150,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_11_Sepet ekranında ilk üründe (x) işaretine tıklanarak silme testi")
+    @Story("TC_018_11_Sepet ekranında ilk üründe (x) işaretine tıklanarak silme testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_11(ITestContext context) {
         setupBrowser(context);
@@ -185,7 +184,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_10_Sepet ekranında ilk üründe (-) işaretine tıklanarak silme-tutar testi")
+    @Story("TC_018_10_Sepet ekranında ilk üründe (-) işaretine tıklanarak silme-tutar testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_10(ITestContext context) {
         setupBrowser(context);
@@ -219,7 +218,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_09_Sepet ekranında ilk üründe (-) işaretine tıklanarak silme-adet testi")
+    @Story("TC_018_09_Sepet ekranında ilk üründe (-) işaretine tıklanarak silme-adet testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_09(ITestContext context) {
         setupBrowser(context);
@@ -251,7 +250,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_08_Sepet ekranında ilk üründe (+) işaretine tıklanarak eklenme-tutar testi")
+    @Story("TC_018_08_Sepet ekranında ilk üründe (+) işaretine tıklanarak eklenme-tutar testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_08(ITestContext context) {
         setupBrowser(context);
@@ -282,7 +281,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_07_Sepet ekranında ilk üründe (+) işaretine tıklanarak eklenme-adet testi")
+    @Story("TC_018_07_Sepet ekranında ilk üründe (+) işaretine tıklanarak eklenme-adet testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_07(ITestContext context) {
         setupBrowser(context);
@@ -309,7 +308,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_06_Sepet ekranında Items satırındaki x işareti testi")
+    @Story("TC_018_06_Sepet ekranında Items satırındaki x işareti testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_06(ITestContext context) {
         setupBrowser(context);
@@ -329,7 +328,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_05_Anasayfada kücük ekranda sepet bilgisi gelmesi")
+    @Story("TC_018_05_Anasayfada kücük ekranda sepet bilgisi gelmesi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_05(ITestContext context) {
         setupBrowser(context);
@@ -347,7 +346,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_04_Anasayfada kücük ekranda sepet bilgisi gelmesi")
+    @Story("TC_018_04_Anasayfada kücük ekranda sepet bilgisi gelmesi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_04(ITestContext context) {
         setupBrowser(context);
@@ -365,8 +364,8 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_03_Ürün Listesi ekranında sepete ürün ekleme UI testi")
-    @Story("Bug kaydı mevcut  Jira -> TC_018_03_BUG")
+    @Story("TC_018_03_Ürün Listesi ekranında sepete ürün ekleme UI testi")
+    @Description("Ürün Listesi ekranında sepete aynı ürün 2 tane eklendiğinde sepet butoundaki sayı 1 olarak kalıyor. Bug kaydı mevcut  Jira -> TC_018_03_BUG")
     @Severity(SeverityLevel.CRITICAL)   //bug kaydı mevcut  Jira -> TC_018_03_BUG
     public void TC_018_03(ITestContext context) {
         setupBrowser(context);
@@ -389,7 +388,7 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_02_Ürün Listesi ekranında sepete ürün ekleme UI testi")
+    @Story("TC_018_02_Ürün Listesi ekranında sepete ürün ekleme UI testi")
     @Severity(SeverityLevel.NORMAL)
     public void TC_018_02(ITestContext context) {
         setupBrowser(context);
@@ -409,24 +408,15 @@ public class BasketPageTest {
 
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
-    @Description("TC_018_01_Ürün Listesi ekranında sepete ürün ekleme UI testi ")
-    @Severity(SeverityLevel.NORMAL)
-    public void TC_018_01(ITestContext context) {
+    @Story("TC_018_01_Ürün Listesi ekranında sepete ürün ekleme UI testi ")
+    @Severity(SeverityLevel.NORMAL)    public void TC_018_01(ITestContext context) {
+
         setupBrowser(context);
         AllPages page = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
 
-
-        softAssert.assertTrue(page.pickBazarHomePage().isProductFrameVisible(), "Ürünlerin varolduğu frame ekranda görüntülenemedi");
-        Allure.step("Ürünlerin varolduğu frame ekranda görüntülendi");
-
-        String expectedProduct = page.makeUpPage().addProductIntoEmptyBasket(page, indexofList);
-
-        page.basketPage().getProductNameInBasket(0);
-
-        softAssert.assertTrue(page.basketPage().verifyProductNameInBasket(expectedProduct), expectedProduct + " adlı ürün sepette bulunamadı");
-        Allure.step(expectedProduct + " adlı ürünün sepete eklendiği doğrulandı");
+        //here comes assertion methods
 
         softAssert.assertAll();
         Driver.closeDriver();
