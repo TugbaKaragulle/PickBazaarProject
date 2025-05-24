@@ -52,8 +52,12 @@ src
 
 📜 Test Method Structure
 
-Used this base structure as a startup in eact test method
-
+- Followed this consistent structure as a startup in eact test method
+- Utilized SoftAssert, to enable multiple assertion within a single test
+- Applied Allure annotaions to imporve reporting quality and provide detailed reports 
+      @Feature, @Story, @Owner, @Severity, @description
+- Included Groups for grouped test executions by .xml files
+- 
 ![image](https://github.com/user-attachments/assets/172c90a6-05bf-4c8a-bbaf-7e3e7ea957ee)
 
 
