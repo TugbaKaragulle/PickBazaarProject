@@ -43,20 +43,7 @@ This project is created to automatically test the web interface of the PickBazar
 
  📄 Folder Structure
 
-src
-├── test
-│   └── java
-│       ├── pages
-│       ├── tests
-│       └── utilities
-│   └── resources
-
-
-
-
-
-
-
+![image](https://github.com/user-attachments/assets/9c72c371-5995-4077-8541-6f00a2d4ed59)
 
 
 📜 Pages Package Structure
@@ -86,7 +73,6 @@ src
 - Utilized SoftAssert, to enable multiple assertion within a single test
   
   ![image](https://github.com/user-attachments/assets/fe791725-d391-4a26-af99-072626aff10b)
-
 
 
 📜 An example Test Flow  ( TC_018_01)
