@@ -1,8 +1,6 @@
 package tests;
 
 import io.qameta.allure.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,7 +12,6 @@ import static utilities.Driver.setupBrowser;
 //***
 
 public class LoginProfileTest {
-    Logger logger = LogManager.getLogger(LoginProfileTest.class);
 
 
     @Test(groups = "regression")
@@ -25,11 +22,9 @@ public class LoginProfileTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
         Allure.step("Verifying that the user sees their points after login.");
             softAssert.assertTrue(allPages.loginProfilePage().profilePoints(),
                     "Customer cannot see their points on the profile page.");
-
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -42,7 +37,6 @@ public class LoginProfileTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
-
         try {
             Allure.step("Verifying that clicking on the '" + data + "' menu item opens the correct page.");
                 softAssert.assertTrue(
@@ -55,7 +49,6 @@ public class LoginProfileTest {
             softAssert.assertAll();
         }
     }
-
     @DataProvider(name = "urlData")
     public Object[][] urlData() {
         return new Object[][]{
@@ -74,11 +67,9 @@ public class LoginProfileTest {
         setupBrowser(context);
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
-
         Allure.step("Verifying that the user is logged out and the 'Join' button is visible.");
             softAssert.assertTrue(allPages.loginProfilePage().verifyLogoutWorks(),
                     "'Join' button is not visible after logging out.");
-
         softAssert.assertAll();
         Driver.closeDriver();
     }
