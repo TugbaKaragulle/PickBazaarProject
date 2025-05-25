@@ -94,8 +94,8 @@ This project is created to automatically test the web interface of the PickBazar
 ![image](https://github.com/user-attachments/assets/383d2948-798e-4d4b-9756-a22fe3a15f8a)
 
 - AllureListener is a TestNG listener that integrates Allure reporting into the test lifecycle.
- * Captures and attaches screenshots to Allure reports when a test fails.
- * Automatically launches the Allure report viewer at the end of the test suite.
+  * Captures and attaches screenshots to Allure reports when a test fails.
+  * Automatically launches the Allure report viewer at the end of the test suite.
    
 - ConfigReader
   * Loads properties from "configuration.properties" at class loading time.
