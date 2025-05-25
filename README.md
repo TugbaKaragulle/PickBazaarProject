@@ -113,23 +113,7 @@ This project is created to automatically test the web interface of the PickBazar
     * Provides reusable helper methods for Selenium WebDriver interactions.
     * Includes wait operations, element interaction and screenshot support.
 
-  * Captures and attaches screenshots to Allure reports when a test fails.
-  * Automatically launches the Allure report viewer at the end of the test suite.
-   
-- ConfigReader
-  * Loads properties from "configuration.properties" at class loading time.
 
-- Driver
-  * Manages WebDriver instances in a thread-safe manner.
-  * Supports different browsers (Chrome, Firefox, Edge, Headless Chrome) using ThreadLocal.
-
-- JavascriptUtils
-  * Performs JavaScript-based interactions with web elements in Selenium WebDriver.
-  * Provides reusable static methods for actions such as clicking, scrolling, manipulating DOM elements, changing styles.
- 
-- ReusableMethods
-  * Provides reusable helper methods for Selenium WebDriver interactions.
-  * Includes wait operations, element interaction and screenshot support.
 
 
 
