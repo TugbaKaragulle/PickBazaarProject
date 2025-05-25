@@ -90,7 +90,6 @@ This project is created to automatically test the web interface of the PickBazar
 
 
 📜 Utilites Package Structure
-![image](https://github.com/user-attachments/assets/383d2948-798e-4d4b-9756-a22fe3a15f8a)
 
--
+![image](https://github.com/user-attachments/assets/383d2948-798e-4d4b-9756-a22fe3a15f8a)
 
