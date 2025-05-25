@@ -59,6 +59,7 @@ public class MakeUpPage {
 
     private void clickCartButton(int indexOfList) {
         clickElement(CartButtonList.get(indexOfList));
+        logger.info(CartButtonList.get(indexOfList).getText() + " butonuna tıklandı");
     }
 
     public String addAProductIntoBasketWithPlusIcon(AllPages page, int indexOfList) {
@@ -72,6 +73,7 @@ public class MakeUpPage {
 
     public void clickPlusIcon(int index) {
         clickElement(plusIconList.get(index));
+        logger.info(plusIconList.get(index).getText() + " butonuna tıklandı");
     }
 
     public void addProductIntoBasket(int index) {
@@ -81,10 +83,12 @@ public class MakeUpPage {
     private void emptyBasket() {
         for (WebElement w : minusIconList)
             clickElement(w);
+        logger.info("Sepetteki ürünler silindi");
     }
 
     public void deleteProductWithMinusButton(int index) {
         clickElement(minusIconList.get(index));
+        logger.info(minusIconList.get(index).getText() + " butonuna tıklandı, sepetten bir ürün silinecek");
     }
 
     public int getNumberOfProductAddedToBasket(int index) {

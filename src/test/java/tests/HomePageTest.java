@@ -14,7 +14,7 @@ import static utilities.ReusableMethods.*;
 public class HomePageTest {
 
     //--------------------------------US_003-------------------------------------------------------------------------//
-    @Test( dataProvider = "dropDownMenuOptionsData", groups = {"smoke","US_003"})
+    @Test( dataProvider = "dropDownMenuOptionsData", groups = {"regression","US_003"})
     @Owner("Fatma")
     @Story("TC_003_03_Ana ekranda Shelf dropdown menudeki seçeneklerden ilgili sayfaların açılma testi")
     @Severity(SeverityLevel.NORMAL)
@@ -33,7 +33,7 @@ public class HomePageTest {
         Driver.closeDriver();
     }
 
-    @Test( dataProvider = "dropDownMenuOptionsData", groups = {"smoke","US_003"})
+    @Test( dataProvider = "dropDownMenuOptionsData", groups = {"regression","US_003"})
     @Owner("Fatma")
     @Story("TC_003_02_Ana ekranda  Shelf dropdown menudeki seceneklerin tıklanabilirlik testi")
     @Severity(SeverityLevel.NORMAL)
@@ -64,7 +64,7 @@ public class HomePageTest {
                 { "Books" }
         };
     }
-    @Test( dataProvider = "dropDownMenuOptionsData", groups = {"smoke","US_003"})
+    @Test( dataProvider = "dropDownMenuOptionsData", groups = {"regression","US_003"})
     @Owner("Fatma")
     @Story("TC_003_01_Ana ekranda  Shelf dropdown menu testi")
     @Severity(SeverityLevel.NORMAL)
@@ -98,7 +98,7 @@ public class HomePageTest {
         };
     }
     //--------------------------------US_002-------------------------------------------------------------------------//
-    @Test( dataProvider = "urlData", groups = {"smoke","US_002"})
+    @Test( dataProvider = "urlData", groups = {"regression","US_002"})
     @Owner("Fatma")
     @Story("TC_002_01_PickBazar butonu görüntülenip, calistigi görülmelidir")
     @Severity(SeverityLevel.NORMAL)
