@@ -1,12 +1,12 @@
- PickBazar Test Automation
+PickBazar Test Automation
 
- 📌 Project Overview
+📌 Project Overview
 This project is created to automatically test the web interface of the PickBazar e-commerce platform. Manual test steps have been automated and a structured test framework has been built. (https://shop.clarusway.net/)
 
 ![image](https://github.com/user-attachments/assets/ad2c9a70-0991-4321-9e8b-08db37cf4f70)
 
 
- 🧰 Libraries and Frameworks
+🧰 Libraries and Frameworks
 
 - **Selenium** – Web automation framework for simulating user interactions in browsers.
 - **Maven** – Project build and dependency management.
@@ -15,16 +15,16 @@ This project is created to automatically test the web interface of the PickBazar
 
 ![image](https://github.com/user-attachments/assets/152d94c5-dc30-4c41-9c7c-0276013e5ade)
 
- 🛠 Tools Used
+🛠 Tools Used
 
 - IDE: IntelliJ IDEA
 - Reporting: Allure Report (for test methods)
-- Logging: Log4j (for page classes) 
+- Logging: Log4j (for page classes)
 
- ![image](https://github.com/user-attachments/assets/19cebbf7-7b99-489f-9899-d772c50636a9)
- ![image](https://github.com/user-attachments/assets/d68c2dfb-7f08-414a-9d33-dd3cd70373bb)
+![image](https://github.com/user-attachments/assets/19cebbf7-7b99-489f-9899-d772c50636a9)
+![image](https://github.com/user-attachments/assets/d68c2dfb-7f08-414a-9d33-dd3cd70373bb)
 
- ✅ Key Features
+✅ Key Features
 
 - Automated tests for various user journeys
 - Clear reporting and logging for debugging
@@ -33,7 +33,7 @@ This project is created to automatically test the web interface of the PickBazar
 
   ![image](https://github.com/user-attachments/assets/9ac606e5-6a93-43cf-96a4-beacc700d084)
 
- 🚀 How to Run
+🚀 How to Run
 
 1. Clone the repository.
 2. Open the project with IntelliJ IDEA.
@@ -41,7 +41,7 @@ This project is created to automatically test the web interface of the PickBazar
 4. View test results via Allure Report.
 
 
- 📄 Folder Structure
+📄 Folder Structure
 
 ![image](https://github.com/user-attachments/assets/9c72c371-5995-4077-8541-6f00a2d4ed59)
 
@@ -50,7 +50,7 @@ This project is created to automatically test the web interface of the PickBazar
 
 - AllPages Class easies access to all page classes to be used during testing from a single place
 - This structure guanties each page created as a singleton instance
-  
+
   ![image](https://github.com/user-attachments/assets/5f5dccd3-b2ae-4421-a3be-b2aca2dafc9b)
 
 - Used Logger interface for logging each action step within methods
@@ -58,21 +58,21 @@ This project is created to automatically test the web interface of the PickBazar
 - Encapsulated all the WebElements as private members
 - Provided public getter methods for controlled access to elements when needed in test classes
 - Called methods from utilites package -> ex. clickElement() , isWebElementDisplayed()  to reduce duplication
-![image](https://github.com/user-attachments/assets/b9441555-fb0f-4b09-82ec-020e8f2e1ef4)
-![image](https://github.com/user-attachments/assets/760f5ebb-e9a2-46dc-b7cc-27c8a8a9b93b)
-![image](https://github.com/user-attachments/assets/d52d3f04-4d54-41cf-b6eb-db634aa3841e)
-![image](https://github.com/user-attachments/assets/4f5da15b-0d69-4c4c-9a28-a6dbba402845)
+  ![image](https://github.com/user-attachments/assets/b9441555-fb0f-4b09-82ec-020e8f2e1ef4)
+  ![image](https://github.com/user-attachments/assets/760f5ebb-e9a2-46dc-b7cc-27c8a8a9b93b)
+  ![image](https://github.com/user-attachments/assets/d52d3f04-4d54-41cf-b6eb-db634aa3841e)
+  ![image](https://github.com/user-attachments/assets/4f5da15b-0d69-4c4c-9a28-a6dbba402845)
 
 
 📜 Test Package Structure
 
 - Each page has its own test class, a test class has multiple test methods for each test case
 - Followed a consistent structure as a startup in eact test method
-- Applied Allure annotaions to imporve reporting quality and provide detailed reports 
-      @Feature, @Story, @Owner, @Severity, @description
+- Applied Allure annotaions to imporve reporting quality and provide detailed reports
+  @Feature, @Story, @Owner, @Severity, @description
 - Included Groups for grouped test executions by .xml files
 - Utilized SoftAssert, to enable multiple assertion within a single test
-  
+
   ![image](https://github.com/user-attachments/assets/fe791725-d391-4a26-af99-072626aff10b)
 
 
@@ -94,6 +94,25 @@ This project is created to automatically test the web interface of the PickBazar
 ![image](https://github.com/user-attachments/assets/383d2948-798e-4d4b-9756-a22fe3a15f8a)
 
 - AllureListener is a TestNG listener that integrates Allure reporting into the test lifecycle.
+
+    * Captures and attaches screenshots to Allure reports when a test fails.
+    * Automatically launches the Allure report viewer at the end of the test suite.
+
+- ConfigReader
+    * Loads properties from "configuration.properties" at class loading time.
+
+- Driver
+    * Manages WebDriver instances in a thread-safe manner.
+    * Supports different browsers (Chrome, Firefox, Edge, Headless Chrome) using ThreadLocal.
+
+- JavascriptUtils
+    * Performs JavaScript-based interactions with web elements in Selenium WebDriver.
+    * Provides reusable static methods for actions such as clicking, scrolling, manipulating DOM elements, changing styles.
+
+- ReusableMethods
+    * Provides reusable helper methods for Selenium WebDriver interactions.
+    * Includes wait operations, element interaction and screenshot support.
+
   * Captures and attaches screenshots to Allure reports when a test fails.
   * Automatically launches the Allure report viewer at the end of the test suite.
    
@@ -111,6 +130,7 @@ This project is created to automatically test the web interface of the PickBazar
 - ReusableMethods
   * Provides reusable helper methods for Selenium WebDriver interactions.
   * Includes wait operations, element interaction and screenshot support.
+
 
 
 

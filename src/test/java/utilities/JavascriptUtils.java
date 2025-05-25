@@ -1,5 +1,7 @@
 package utilities;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
@@ -7,10 +9,13 @@ import static utilities.Driver.getDriver;
 
 public class JavascriptUtils  {
 
+    static Logger logger = LogManager.getLogger(JavascriptUtils.class);
+
     // Belirtilen WebElement'i JavaScript kullanarak tıklar.
     public static void clickElementByJS(WebElement element) {
         JavascriptExecutor jsexecutor = ((JavascriptExecutor) getDriver());
         jsexecutor.executeScript("arguments[0].click();", element);
+        logger.info(element.getText() + " adlı elemente tıklandı.");
     }
 
     // JavaScript kullanarak sayfa başlığını alır.
@@ -36,6 +41,8 @@ public class JavascriptUtils  {
     public static void scrollIntoViewJS(WebElement element) {
         JavascriptExecutor jsexecutor = (JavascriptExecutor) getDriver();
         jsexecutor.executeScript("arguments[0].scrollIntoView();", element);
+        logger.info("İlgili elemente scroll yapıldı.");
+
     }
 
     // Belirtilen WebElement'in arkaplan rengini değiştirir ve ardından eski rengine geri döner, bir tür "flash" efekti oluşturur.

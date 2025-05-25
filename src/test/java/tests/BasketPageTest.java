@@ -409,19 +409,30 @@ public class BasketPageTest {
     @Test(groups = {"smoke", "US_018"})
     @Owner("Fatma")
     @Story("TC_018_01_Ürün Listesi ekranında sepete ürün ekleme UI testi ")
-    @Severity(SeverityLevel.NORMAL)    public void TC_018_01(ITestContext context) {
+    @Severity(SeverityLevel.NORMAL)
+        public void TC_018_01(ITestContext context) {
+            setupBrowser(context);
+            AllPages page = new AllPages();
+            SoftAssert softAssert = new SoftAssert();
+            Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
 
-        setupBrowser(context);
-        AllPages page = new AllPages();
-        SoftAssert softAssert = new SoftAssert();
-        Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
 
-        //here comes assertion methods
+            softAssert.assertTrue(page.pickBazarHomePage().isProductFrameVisible(), "Ürünlerin varolduğu frame ekranda görüntülenemedi");
+            Allure.step("Ürünlerin varolduğu frame ekranda görüntülendi");
 
-        softAssert.assertAll();
-        Driver.closeDriver();
+            String expectedProduct = page.makeUpPage().addProductIntoEmptyBasket(page, indexofList);
+
+            page.basketPage().getProductNameInBasket(0);
+
+            softAssert.assertTrue(page.basketPage().verifyProductNameInBasket(expectedProduct), expectedProduct + " adlı ürün sepette bulunamadı");
+            Allure.step(expectedProduct + " adlı ürünün sepete eklendiği doğrulandı");
+
+            softAssert.assertAll();
+            Driver.closeDriver();
+        }
+
+
+
+
     }
-
-
-}
 
