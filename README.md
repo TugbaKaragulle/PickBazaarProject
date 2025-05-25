@@ -94,6 +94,7 @@ This project is created to automatically test the web interface of the PickBazar
 ![image](https://github.com/user-attachments/assets/383d2948-798e-4d4b-9756-a22fe3a15f8a)
 
 - AllureListener is a TestNG listener that integrates Allure reporting into the test lifecycle.
+
     * Captures and attaches screenshots to Allure reports when a test fails.
     * Automatically launches the Allure report viewer at the end of the test suite.
 
@@ -111,6 +112,25 @@ This project is created to automatically test the web interface of the PickBazar
 - ReusableMethods
     * Provides reusable helper methods for Selenium WebDriver interactions.
     * Includes wait operations, element interaction and screenshot support.
+
+  * Captures and attaches screenshots to Allure reports when a test fails.
+  * Automatically launches the Allure report viewer at the end of the test suite.
+   
+- ConfigReader
+  * Loads properties from "configuration.properties" at class loading time.
+
+- Driver
+  * Manages WebDriver instances in a thread-safe manner.
+  * Supports different browsers (Chrome, Firefox, Edge, Headless Chrome) using ThreadLocal.
+
+- JavascriptUtils
+  * Performs JavaScript-based interactions with web elements in Selenium WebDriver.
+  * Provides reusable static methods for actions such as clicking, scrolling, manipulating DOM elements, changing styles.
+ 
+- ReusableMethods
+  * Provides reusable helper methods for Selenium WebDriver interactions.
+  * Includes wait operations, element interaction and screenshot support.
+
 
 
 
