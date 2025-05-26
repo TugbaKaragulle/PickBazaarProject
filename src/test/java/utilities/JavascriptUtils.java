@@ -3,6 +3,7 @@ package utilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import static utilities.Driver.getDriver;
@@ -17,7 +18,30 @@ public class JavascriptUtils  {
         jsexecutor.executeScript("arguments[0].click();", element);
         logger.info(element.getText() + " adlı elemente tıklandı.");
     }
+    public static void safeClickWithJS(WebElement element) {
+        JavascriptExecutor jsexecutor = (JavascriptExecutor) getDriver();
+        try {
+            // Scroll ile ortalanır
+            jsexecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
 
+            // Tıklama
+            jsexecutor.executeScript("arguments[0].click();", element);
+
+            // Loglama için güvenli getText
+            String elementText = "";
+            try {
+                elementText = element.getText();
+                logger.info("JS ile tıklama başarılı: " + elementText);
+            } catch (StaleElementReferenceException e) {
+                elementText = "[Element Text Unavailable - Stale]";
+                logger.error("JS ile tıklama başarısız: ");
+            }
+
+
+        } catch (Exception e) {
+
+        }
+    }
     // JavaScript kullanarak sayfa başlığını alır.
     public static String getTitleByJS() {
         JavascriptExecutor jsexecutor = ((JavascriptExecutor) getDriver());

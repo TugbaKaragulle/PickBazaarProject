@@ -51,7 +51,9 @@ public class ReusableMethods {
     public static void clickElement(WebElement element) {
         ReusableMethods.waitForClickability(element, 10).click();
     }
-
+    public static void clickElementForFirefoxError(WebElement element) {
+        ReusableMethods.waitForClickabilityForFirefoxError(element, 10).click();
+    }
     /**
      * Clicks the element using JavaScriptExecutor.
      */
@@ -64,6 +66,21 @@ public class ReusableMethods {
      */
     public static WebElement waitForClickability(WebElement element, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds));
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public static WebElement waitForClickabilityForFirefoxError(WebElement element, int timeoutSeconds) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSeconds));
+
+        for (int i = 0; i < 3; i++) {  // 3 kez deneme hakkı
+            try {
+                return wait.until(ExpectedConditions.elementToBeClickable(element));
+            } catch (StaleElementReferenceException e) {
+                try {
+                    Thread.sleep(500); // Küçük bir bekleme süresi
+                } catch (InterruptedException ignored) {}
+            }
+        }
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 

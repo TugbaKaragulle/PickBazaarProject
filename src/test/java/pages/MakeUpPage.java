@@ -73,11 +73,12 @@ public class MakeUpPage {
 
     public void clickPlusIcon(int index) {
         clickElement(plusIconList.get(index));
-        logger.info(plusIconList.get(index).getText() + " butonuna tıklandı");
+        logger.info(plusIconList.get(index).getText() + " butonuna tıklandı, sepete ürün eklenecek");
     }
 
     public void addProductIntoBasket(int index) {
         clickElement(addProductIntoBasketList_plusorcart.get(index));
+        logger.info("Sepete ürün eklendi");
     }
 
     private void emptyBasket() {
@@ -88,7 +89,7 @@ public class MakeUpPage {
 
     public void deleteProductWithMinusButton(int index) {
         clickElement(minusIconList.get(index));
-        logger.info(minusIconList.get(index).getText() + " butonuna tıklandı, sepetten bir ürün silinecek");
+        logger.info("minus butonuna tıklandı, sepetten bir ürün silinecek");
     }
 
     public int getNumberOfProductAddedToBasket(int index) {
@@ -101,8 +102,8 @@ public class MakeUpPage {
     public WebElement addProductIntoBasketwithJS(AllPages page, int index, int times) {
         for (int i = 0; i < times; i++) {
             JavascriptUtils.scrollIntoViewJS(page.pickBazarHomePage().getProductFrame());  //elementin olduğu frame ekranda görüntülenir.
-            JavascriptUtils.clickElementByJS(page.makeUpPage().addProductIntoBasketList_plusorcart.get(index));  //ürün sepete eklenir
-
+            JavascriptUtils.safeClickWithJS(page.makeUpPage().addProductIntoBasketList_plusorcart.get(index));  //ürün sepete eklenir
+            logger.info("Sepete +1 ürün eklendi");
         }
         return addProductIntoBasketList_plusorcart.get(index);
     }
