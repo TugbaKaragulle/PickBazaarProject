@@ -12,9 +12,9 @@ public class AllPages {
     private  MakeUpPage makeUpPage;
     private CheckoutPage checkoutPage;
     private Logger logger;
-    private ShopsPage shopsPage;
+    public ShopsPage shopsPage;
     private OffersPage offersPage;
-    private  FaqPage faqPage;
+    public FaqPage faqPage;
     private ContactPage contactPage;
     private HomePageProfile homePageProfile;
     private BagsPage bagsPage;
