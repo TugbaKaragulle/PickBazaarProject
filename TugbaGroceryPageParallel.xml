@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" thread-count="3" parallel="methods">
+    <listeners>
+        <listener class-name="utilities.AllureListerner"> </listener>
+    </listeners>
+    <test verbose="2" preserve-order="true"
+          name="Parallel Test">
+        <parameter name="browser" value="chrome"> </parameter>
+        <classes>
+            <class name="tests.GroceryTest">
+                <methods>
+                    <include name="TC_08_17"/>
+                    <include name="TC_08_18"/>
+                    <include name="TC_08_19"/>
+                    <include name="TC_08_20"/>
+                    <include name="TC_08_21"/>
+                    <include name="TC_08_22"/>
+                    <include name="TC_08_23"/>
+                    <include name="TC_08_24"/>
+                    <include name="TC_08_25"/>
+                    <include name="TC_08_26"/>
+                    <include name="TC_08_27"/>
+                    <include name="TC_08_28"/>
+                    <include name="TC_08_29"/>
+                    <include name="TC_08_30"/>
+                    <include name="TC_08_31"/>
+                    <include name="TC_08_32"/>
+                    <include name="TC_08_33"/>
+                    <include name="TC_08_34"/>
+                    <include name="TC_08_35"/>
+                    <include name="TC_08_36"/>
+                    <include name="TC_08_37"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
