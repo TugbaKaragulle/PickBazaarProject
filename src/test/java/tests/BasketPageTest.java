@@ -110,7 +110,6 @@ public class BasketPageTest {
         Allure.step("Makeup Page sayfası açıldı");
 
         page.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-//todo  bu testi xml üzerinden firefox ile çalıştırdığımda kalıyor, nasıl düzeltebilirim??
         page.basketPage().openBasketPanel();
         ReusableMethods.waitForSeconds(5);
         Allure.step("Makeup ekranında  sepet paneli açıldı");
