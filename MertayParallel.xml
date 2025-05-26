@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="tests" thread-count="1">
+    <listeners>
+        <listener class-name="utilities.AllureListerner"></listener>
+    </listeners>
+    <test verbose="1" preserve-order="true"
+          name="OrderStatusPageTest.java"  >
+        <classes >
+            <class name="tests.OrderStatusPageTest" >
+                <methods>
+                    <include name="TC_020_04">
+
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test >
+<!--    <test verbose="1" preserve-order="true"-->
+<!--          name="FurniturePageTest.java">-->
+<!--        <parameter name="browser" value="firefox"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="tests.FurniturePageTest"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test verbose="1" preserve-order="true"-->
+<!--          name="BagsPageTest.java">-->
+<!--        <classes>-->
+<!--            <class name="tests.BagsPageTest"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>

@@ -11,10 +11,9 @@ public class AllPages {
     private BasketPage basketPage;
     private  MakeUpPage makeUpPage;
     private CheckoutPage checkoutPage;
-    private Logger logger;
-    public ShopsPage shopsPage;
+    private ShopsPage shopsPage;
     private OffersPage offersPage;
-    public FaqPage faqPage;
+    private  FaqPage faqPage;
     private ContactPage contactPage;
     private HomePageProfile homePageProfile;
     private BagsPage bagsPage;
@@ -27,7 +26,7 @@ public class AllPages {
     private LoginProfilePage loginProfilePage;
     private BooksPage booksPage;
     private LoginPage loginPage;
-
+    private RegisterPage registerPage;
 
     //-------------------------------------------------
 
@@ -187,5 +186,17 @@ public class AllPages {
         return loginPage;
 
     }
+
+    public RegisterPage registerPage(){
+        if (registerPage == null){
+            registerPage =new RegisterPage();
+        }
+        return registerPage;
+
+    }
+
+
+
+
 
 }

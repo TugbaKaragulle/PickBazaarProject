@@ -49,6 +49,13 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.25.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -65,15 +72,21 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version> <!-- Güncel sürüm -->
                 <configuration>
-                    <!--                    suite xml files istedigimiz xml Files'i calistirmamizi saglar. -->
-<!--                    <suiteXmlFiles>-->
-<!--                        <suiteXmlFile>ParallelCrossBrowser.xml</suiteXmlFile> &lt;!&ndash; Regression.xml'in yolunu ver &ndash;&gt;-->
-<!--                    </suiteXmlFiles>-->
-                    <!--                    include kismi ise istedigimiz methodu calistirmamizi saglar.-->
-                    <includes>
-                        <include>**/*US01_LoginTest.java</include>
-                    </includes>
+<!--                                        suite xml files istedigimiz xml Files'i calistirmamizi saglar. -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>TugbaParallelCross.xml</suiteXmlFile> <!-- Regression.xml'in yolunu ver -->
+                    </suiteXmlFiles>
+<!--                                        include kismi ise istedigimiz methodu calistirmamizi saglar.-->
+<!--                    <includes>-->
+<!--                        <include>**/*US01_LoginTest.java</include>-->
+<!--                    </includes>-->
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.11.2</version>
             </plugin>
 
         </plugins>

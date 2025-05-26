@@ -1,30 +1,33 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import tests.BasketPageTest;
+import tests.HomePageTest;
 import utilities.Driver;
-import utilities.ReusableMethods;
+import utilities.JavascriptUtils;
 
 import java.util.List;
 
-import static utilities.Driver.getDriver;
 import static utilities.JavascriptUtils.*;
 import static utilities.ReusableMethods.*;
 
 
 public class HomePage {
 
+    Logger logger = LogManager.getLogger(HomePage.class);
 
     public HomePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
 
-//-------------------------------HomePage Locates--------------------------------------------------------------//
+//**********************************************************  HomePage Locates  ******************************************************************************//
 
-    //------------top left side of homepage------------
+    //-----------------top left side of homepage------------
     @FindBy(css = "a.inline-flex.mx-auto.lg\\:mx-0")
     private WebElement pickBazarLogo;
     @FindBy(id = "headlessui-menu-button-1")
@@ -46,7 +49,7 @@ public class HomePage {
     @FindBy(css = "div>a[href='/books']")
     private WebElement booksOptionInDropDownMenu;
 
-    //------------top right side of homepage------------
+    //-------------------top right side of homepage---------------
     @FindBy(css = "div>ul>li>a[href='/shops']")
     private WebElement shopsButton;
     @FindBy(css = "div>ul>li>a[href='/offers']")
@@ -61,7 +64,7 @@ public class HomePage {
     private WebElement joinButton;
 
 
-    //------------middle of homepage------------
+    //------------------------middle of homepage-------------------------
     @FindBy(css = "div>h1.text-2xl.font-bold.tracking-tight.text-heading")
     private WebElement h1TagText;    //Groceries Delivered in 90 Minute
     @FindBy(css = "div>p.text-sm.text-heading")
@@ -81,22 +84,22 @@ public class HomePage {
     @FindBy(css = "div.swiper-wrapper>div>span>img")
     private List<WebElement> deliveryImagesList;
     @FindBy(css = "div>div.grid")
-    private WebElement groceryProductFrame;
+    private WebElement productFrame;
     @FindBy(css = "div>div.px-5>ul")
-    private WebElement groceryMenuFrame;
+    private WebElement menuFrame;
 
 
-//-------------------------------Display Methods--------------------------------------------------------------//
+//********************************************************   Display Methods *********************************************************************************//
 
-    public boolean isPickBazarLogoDisplayed(WebDriver driver) {
+    public boolean isPickBazarLogoDisplayed() {
         return isWebElementDisplayed(pickBazarLogo);
     }
 
-    public boolean isSearchTextInputDisplayed(WebDriver driver) {
+    public boolean isSearchTextInputDisplayed() {
         return isWebElementDisplayed(searchTextInput);
     }
 
-    public boolean isSearchButtonDisplayed(WebDriver driver) {
+    public boolean isSearchButtonDisplayed() {
         return isWebElementDisplayed(searchButton);
     }
 
@@ -137,62 +140,90 @@ public class HomePage {
     }
 
     public boolean isGroceryProductFrameDisplayed() {
-        scrollIntoViewJS(groceryProductFrame);
-        return groceryProductFrame.isDisplayed();
+        scrollIntoViewJS(productFrame);
+        return productFrame.isDisplayed();
     }
 
     public boolean isGroceryMenuFrameDisplayed() {
-        scrollIntoViewJS(groceryMenuFrame);
-        return groceryMenuFrame.isDisplayed();
+        scrollIntoViewJS(menuFrame);
+        logger.info("Menu Frame ine scroll yapıldı");
+        return menuFrame.isDisplayed();
+    }
+    /**
+     * Dropdown Menuden String parametresi göndererek ilgili Option seçeneklerine tıklar
+     *
+     * @param optionName
+     */
+    public boolean isDropDownMenuOptionDisplayed(String optionName) {
+
+        clickDropDownMenu();
+
+        //string değerine göre ilgili method çağırılır
+        boolean isDisplayed = switch (optionName) {
+            case "Grocery" -> isWebElementDisplayed(groceryOptionInDropDownMenu);
+            case "Bakery" -> isWebElementDisplayed(bakeryOptionInDropDownMenu);
+            case "Makeup" -> isWebElementDisplayed(makeupOptionInDropDownMenu);
+            case "Bags" -> isWebElementDisplayed(bagsOptionInDropDownMenu);
+            case "Clothing" -> isWebElementDisplayed(clothingOptionInDropDownMenu);
+            case "Furniture" -> isWebElementDisplayed(furnitureOptionInDropDownMenu);
+            case "Daily Needs" -> isWebElementDisplayed(dailyNeedsOptionInDropDownMenu);
+            case "Books" -> isWebElementDisplayed(booksOptionInDropDownMenu);
+            default -> isWebElementDisplayed(pickBazarLogo);
+        };
+        logger.info( optionName +" DropDownMenuOption görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
 
-//-------------------------------End of Display Methods--------------------------------------------------------------//
-
-
-//-------------------------------click Methods--------------------------------------------------------------//
-
+//***********************************************************  Click Methods  ********************************************************************************//
     public void clickShopsButton() {
         clickElement(shopsButton);
+        logger.info("Shops buttona tıklandı.");
     }
 
     public void clickFAQButton() {
         clickElement(FAQButton);
+        logger.info("FAQ butonuna tıklandı.");
     }
 
     public void clickOffersButton() {
         clickElement(offersButton);
+        logger.info("Offers butonuna tıklandı.");
     }
 
     public void clickContactButton() {
         clickElement(contactButton);
+        logger.info("Contact buttona tıklandı.");
     }
 
     public void clickJoinButton() {
         clickElement(joinButton);
+        logger.info("Join buttona tıklandı.");
     }
 
     public void clickDropDownMenu() {
         clickElement(dropDownMenu);
+        logger.info("Drowdown menü tıklandı.");
     }
 
     public void clickPickBazarLogo() {
         clickElement(pickBazarLogo);
+        logger.info("Pickbazar butonuna tıklandı.");
     }
 
     public void clickSearchButton() {
         clickElement(searchButton);
+        logger.info("Search butonuna tıklandı.");
     }
 
     /**
      * Dropdown Menuden String parametresi göndererek ilgili Option seçeneklerine tıklar
+     *
      * @param optionName
      */
     public void clickDropDownMenuOption(String optionName) {
 
-        //ilk adımda dropdownmenu açılır
         clickDropDownMenu();
-
         //ikinci adımda string değerine göre clickElement methodu çağırılır
         switch (optionName) {
             case "Grocery" -> clickElement(groceryOptionInDropDownMenu);
@@ -205,23 +236,58 @@ public class HomePage {
             case "Books" -> clickElement(booksOptionInDropDownMenu);
             default -> clickElement(pickBazarLogo);
         }
+
     }
 
+//********************************************************** End of Click Methods  ************************************************************************** //
 
-//-------------------------------End of Click Methods--------------------------------------------------------------//
 
 
+    /**
+     * Dropdown Menuden String parametresi göndererek ilgili Option seçeneklerinin tıklanabilirliğini test eder.
+     *
+     * @param optionName
+     * @return
+     */
+    public boolean isDropDownMenuOptionClickable(String optionName) {
+
+        clickDropDownMenu();
+        // string değerine göre clickElement methodu çağırılır
+        boolean isClickable =  switch (optionName) {
+            case "Grocery" -> waitForClickability(groceryOptionInDropDownMenu);
+            case "Bakery" -> waitForClickability(bakeryOptionInDropDownMenu);
+            case "Makeup" -> waitForClickability(makeupOptionInDropDownMenu);
+            case "Bags" -> waitForClickability(bagsOptionInDropDownMenu);
+            case "Clothing" -> waitForClickability(clothingOptionInDropDownMenu);
+            case "Furniture" -> waitForClickability(furnitureOptionInDropDownMenu);
+            case "Daily Needs" -> waitForClickability(dailyNeedsOptionInDropDownMenu);
+            case "Books" -> waitForClickability(booksOptionInDropDownMenu);
+            default -> waitForClickability(pickBazarLogo);
+        };
+
+        logger.info( optionName +" DropDownMenuOption tıklanabilir mi? " + isClickable );
+        return isClickable;
+    }
+    public boolean isProductFrameVisible() {
+        JavascriptUtils.scrollIntoViewJS(getProductFrame());
+        boolean isDisplayed = isWebElementDisplayed(productFrame);
+        logger.info("Product Frame görüntülendi mi? : " + isDisplayed);
+        return isDisplayed;
+    }
     public void sendKeysSearchTextArea(String text) {
         searchTextInput.sendKeys(text);
+        logger.info("Search satırına text yazıldı: " + text );
     }
-
 
     public boolean isGrocerySelectedDropDownValue() {
-        return dropDownMenu.getText().equals("Grocery");
+        boolean isGrocerySelected = dropDownMenu.getText().equals("Grocery");
+        logger.info("Dropdown menude Grocery default seçili mi? : " + isGrocerySelected);
+        return isGrocerySelected;
     }
 
 
-    //-------------------------------getter Methods--------------------------------------------------------------//
+
+//*********************************************************** getter Methods-********************************************************************** //
     public WebElement getPickBazarLogo() {
         return pickBazarLogo;
     }
@@ -236,6 +302,50 @@ public class HomePage {
 
     public WebElement getOffersButton() {
         return offersButton;
+    }
+
+    public WebElement getGroceryOptionInDropDownMenu() {
+        return groceryOptionInDropDownMenu;
+    }
+
+    public WebElement getBakeryOptionInDropDownMenu() {
+        return bakeryOptionInDropDownMenu;
+    }
+
+    public WebElement getMakeupOptionInDropDownMenu() {
+        return makeupOptionInDropDownMenu;
+    }
+
+    public WebElement getBagsOptionInDropDownMenu() {
+        return bagsOptionInDropDownMenu;
+    }
+
+    public WebElement getClothingOptionInDropDownMenu() {
+        return clothingOptionInDropDownMenu;
+    }
+
+    public WebElement getFurnitureOptionInDropDownMenu() {
+        return furnitureOptionInDropDownMenu;
+    }
+
+    public WebElement getDailyNeedsOptionInDropDownMenu() {
+        return dailyNeedsOptionInDropDownMenu;
+    }
+
+    public WebElement getBooksOptionInDropDownMenu() {
+        return booksOptionInDropDownMenu;
+    }
+
+    public WebElement getGiftVoucherImage() {
+        return giftVoucherImage;
+    }
+
+    public WebElement getProductFrame() {
+        return productFrame;
+    }
+
+    public WebElement getMenuFrame() {
+        return menuFrame;
     }
 
     public WebElement getFAQButton() {
@@ -285,6 +395,7 @@ public class HomePage {
     public WebElement getShopsButton() {
         return shopsButton;
     }
+
 
 
 }

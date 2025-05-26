@@ -1,14 +1,19 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
+import tests.LoginProfileTest;
 import utilities.ConfigReader;
+import utilities.Driver;
 import utilities.ReusableMethods;
-
 import static utilities.Driver.getDriver;
+import static utilities.ReusableMethods.clickElement;
+
+//***
 
 public class LoginProfilePage {
 
@@ -16,16 +21,7 @@ public class LoginProfilePage {
         PageFactory.initElements(getDriver(), this);
     }
 
-    //***************************************** @FindBy *********************************************************************
-
-@FindBy(id = "email")
-    private  WebElement email;
-
-@FindBy(id = "password")
-    private  WebElement password;
-
-@FindBy(xpath = "//button[text()='Login']")
-private WebElement loginButton;
+//***************************************** @FindBy *************************************************
 
 @FindBy (xpath = "//img[@alt='user name']")
     private WebElement profilSilueti;
@@ -48,19 +44,98 @@ private WebElement loginButton;
 @FindBy(xpath = "//button[text()='Logout']")
     private WebElement logout;
 
-//******************************************Getter Methods********************************************************+
+//**************************************** Class Level Variables And Objects *********************************
 
-    public WebElement getEmail() {
-        return email;
+    String exceptedText;
+    String actualText;
+    AllPages allPages = new AllPages();
+    Actions actions = new Actions(getDriver());
+    Logger logger = LogManager.getLogger(LoginProfileTest.class);
+
+
+//***************************************** Test Methods ******************************************************
+
+    public boolean profilePoints() {
+        try {
+            allPages.booksPage().navigateToHomePage();
+            logger.info("Logging into the page with valid credentials.");
+            allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+            logger.info("Clicking on the profile silhouette.");
+            clickElement(profilSilueti);
+            exceptedText ="0";
+            logger.info("Customer sees their points on the profile page.");
+            ReusableMethods.waitForVisibility(getDriver(),points,10);
+            actualText= points.getText();
+            return actualText.contains(exceptedText);
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
+        }
     }
 
-    public WebElement getPassword() {
-        return password;
+    public boolean profileDropDownMenu(String data) {
+        try {
+            allPages.booksPage().navigateToHomePage();
+            logger.info("Logging into the page with valid credentials.");
+            allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+
+            WebElement element = null ;
+
+            switch (data) {
+                case "profile":
+                    element = profile;
+                    break;
+                case "orders":
+                    element = myOrders;
+                    break;
+                case "wishlists":
+                    element = myWishlist;
+                    break;
+                case "checkout":
+                    element = checkout;
+                    break;
+                default:
+                    logger.error("Geçersiz data : " + data);
+                    return false;
+            }
+
+            logger.info("Clicking profile silhouette to open the dropdown menu.");
+            clickElement(profilSilueti);
+            logger.info("Waiting for '" + data + "' menu item to be clickable.");
+            ReusableMethods.waitForClickability(element);
+            logger.info("Clicking on the '" + data + "' menu item.");
+            clickElement(element);
+
+            ReusableMethods.waitForUrlContains(data);
+            String currentUrl = getDriver().getCurrentUrl();
+            logger.info("Current URL after click: " + currentUrl);
+            return currentUrl.contains(data);
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
+        }
     }
 
-    public WebElement getLoginButton() {
-        return loginButton;
+    public boolean verifyLogoutWorks(){
+        try {
+            allPages.booksPage().navigateToHomePage();
+            logger.info("Logging into the page with valid credentials.");
+            allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
+            logger.info("Clicking on the profile silhouette.");
+            clickElement(profilSilueti);
+            logger.info("Waiting until the 'Logout' menu item becomes clickable.");
+            ReusableMethods.waitForClickability(logout);
+            logger.info("Clicking on the 'Logout' menu item.");
+            clickElement(logout);
+            logger.info("Checking if the 'Join' button is visible after clicking logout");
+            return ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getJoinButton());
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
+        }
     }
+
+    //******************************************Getter Methods***************************************************
 
     public WebElement getProfilSilueti() {
         return profilSilueti;
@@ -89,78 +164,4 @@ private WebElement loginButton;
     public WebElement getLogout() {
         return logout;
     }
-
-//**************************************** Class Level Variables And Objects *****************************************
-
-    String exceptedText;
-    String actualText;
-    AllPages allPages = new AllPages();
-    Actions actions = new Actions(getDriver());
-
-//****************************************** My Reausable Methods ******************************************************
-
-
-public boolean isUrlContainsKeyWord(String keyword, WebElement element){
-    allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-
-    actions.click(profilSilueti).perform();
-    ReusableMethods.waitForClickability(element);
-    actions.moveToElement(element).click().perform();
-    String actualUrl = getDriver().getCurrentUrl();
-    return actualUrl.contains(keyword);
-}
-
-//***************************************** Test Methods ***********************************************************
-
-public boolean profilePoints() { //TODO login methodu Sengul hnm'dan al
-    allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-    ReusableMethods.clickElement(profilSilueti);
-    exceptedText ="0";
-    ReusableMethods.waitForVisibility(getDriver(),points,10);
-    actualText= points.getText();
-    return actualText.contains(exceptedText);
-}
-
-
-    public boolean profileDropDownMenu(String data) {
-        allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-
-        WebElement element = null;
-
-        switch (data) {
-            case "profile":
-                element = profile;
-                break;
-            case "orders":
-                element = myOrders;
-                break;
-            case "wishlists":
-                element = myWishlist;
-                break;
-            case "checkout":
-                element = checkout;
-                break;
-            default:
-                Assert.fail("Geçersiz data : " + data);
-        }
-
-        actions.click(profilSilueti).perform(); //siluete tiklar, menuye girmk icin
-        ReusableMethods.waitForClickability(element);
-        actions.moveToElement(element).perform();
-        element.click();
-
-        ReusableMethods.waitForUrlContains(data);
-        String currentUrl = getDriver().getCurrentUrl();
-        return currentUrl.contains(data);
-    }
-
-    public boolean verifyLogoutWorks(){ //TODO login methodu Sengul hnm'dan al
-        allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
-        actions.click(profilSilueti).perform();
-        ReusableMethods.waitForClickability(logout);
-        actions.moveToElement(logout).click().perform();
-        return ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getJoinButton());
-    }
-
-
 }
