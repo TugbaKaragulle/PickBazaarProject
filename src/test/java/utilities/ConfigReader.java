@@ -8,9 +8,7 @@ import java.util.Properties;
  * Loads properties from "configuration.properties" at class loading time.
  */
 public class ConfigReader {
-
     private static Properties properties; // Yapılandırma verilerini saklamak için Properties nesnesi oluşturuluyor.
-
     static {
         String filePath = "configuration.properties"; // Yapılandırma dosyasının yolu belirleniyor.
         try {

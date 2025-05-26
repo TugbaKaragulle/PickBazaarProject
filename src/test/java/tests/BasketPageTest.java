@@ -1,24 +1,15 @@
 package tests;
 
 import io.qameta.allure.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AllPages;
 import utilities.ConfigReader;
 import utilities.Driver;
-import utilities.JavascriptUtils;
 import utilities.ReusableMethods;
-
-import javax.swing.*;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 
 @Feature("Sepet Sayfası Testleri")
@@ -423,7 +414,6 @@ public class BasketPageTest {
             Allure.step("Ürünlerin varolduğu frame ekranda görüntülendi");
 
             String expectedProduct = page.makeUpPage().addProductIntoEmptyBasket(page, indexofList);
-
             page.basketPage().getProductNameInBasket(0);
 
             softAssert.assertTrue(page.basketPage().verifyProductNameInBasket(expectedProduct), expectedProduct + " adlı ürün sepette bulunamadı");
