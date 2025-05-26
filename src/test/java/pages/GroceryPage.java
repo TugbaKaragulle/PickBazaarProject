@@ -8,7 +8,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import tests.GroceryTest;
-import utilities.ConfigReader;
 import utilities.JavascriptUtils;
 import utilities.ReusableMethods;
 
@@ -17,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static utilities.Driver.getDriver;
+import static utilities.ReusableMethods.clickElement;
 import static utilities.ReusableMethods.isWebElementDisplayed;
 //***
 
@@ -66,7 +66,7 @@ public class GroceryPage {
     @FindBy(xpath = "//img[@alt='Product gallery 737']")
     private WebElement productBigFotoIndex3;
 
-    @FindBy(xpath = "//div[@class='product-gallery-next absolute top-2/4 z-10 -mt-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-border-200 border-opacity-70 bg-light text-heading shadow-xl transition-all duration-200 hover:bg-gray-100 ltr:-right-4 rtl:-left-4 md:-mt-5 md:h-9 md:w-9 ltr:md:-right-5 rtl:md:-left-5']")
+    @FindBy(xpath = "//div[contains(@class, 'product-gallery-next') and contains(@class, '-right-4')]")
     private WebElement photoChange;
 
     //**************************************** Class Level Variables And Objects ***********************************
@@ -87,10 +87,55 @@ public class GroceryPage {
 
     //***************************************** Test Methods *********************************************************
 
-    public boolean isElementTextEquals(WebElement element, String expectedText, String logMessage) {
-        logger.info("Navigating to the homepage.");
+
+    public boolean productDescriptionforLongText(String longText) {
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+            navigateToGroceryPage();
+            logger.info("Clicking on the product in the list.");
+            clickElement(productsList.getFirst());
+            logger.info("Waiting for the 'Read More' button to be clickable.");
+            ReusableMethods.waitForClickability(readMoreButton, 10);
+            logger.info("Clicking the 'Read More' button");
+            clickElement(readMoreButton);
+            String actualText = productDescription.getDomProperty("textContent").trim();
+            result = actualText.equals(longText);
+            logger.info("Verifying the long product description appears.");
+            logger.info("Result of verification --> " + result);
+            return result;
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
+        }
+    }
+
+    public void navigateToGroceryPage(){
+        allPages.booksPage().navigateToHomePage();
+        logger.info("Selecting 'Grocery' category from the dropdown menu.");
+        allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
+    }
+
+    public boolean productDescriptionforShortText(String shortText) {
+        try {
+            navigateToGroceryPage();
+            clickElement(productsList.getFirst());
+            ReusableMethods.waitForClickability(readMoreButton, 10);
+            clickElement(readMoreButton);
+            ReusableMethods.waitForClickability(lessButton, 10);
+            clickElement(lessButton);
+            String actualText = productDescription.getDomProperty("textContent").trim();
+            result = actualText.equals(shortText);
+            logger.info("Checking if 'Less' button is clickable and short text appears again.");
+            logger.info("Result of verification --> " + result);
+            return result;
+        } catch (Exception e) {
+            logger.error("Test failed - Exception caught", e);
+            return false;
+        }
+    }
+
+    public boolean isElementTextEquals(WebElement element, String expectedText, String logMessage) {
+        try {
+            navigateToGroceryPage();
             logger.info("Waiting for the element to be visible");
             ReusableMethods.isWebElementDisplayed(element);
             String actualText = element.getText();
@@ -106,11 +151,8 @@ public class GroceryPage {
     }
 
     public boolean verifyElementsInListVisible(List<WebElement> elements, String logMessage) {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Selecting 'Grocery' category from the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
+            navigateToGroceryPage();
             logger.info("Scrolling to the element in the list.");
             JavascriptUtils.scrollIntoViewJS(elements.get(1));
             logger.info("Waiting for visibility of the element.");
@@ -134,9 +176,8 @@ public class GroceryPage {
     }
 
     public boolean isGroceryClickable() {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+            allPages.booksPage().navigateToHomePage();
             result = ReusableMethods.waitForClickability(allPages.pickBazarHomePage().getDropDownMenu());
             logger.info("Verifying if the grocery button is clickable on homepage --> " + result);
             return result;
@@ -147,11 +188,8 @@ public class GroceryPage {
     }
 
     public boolean isGroceryLinkContains() {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Clicking on 'Grocery' option in the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
+            navigateToGroceryPage();
             logger.info("Waiting for the URL to contain the word 'grocery'.");
             ReusableMethods.waitForUrlContains("grocery");
             String actualUrl = getDriver().getCurrentUrl();
@@ -164,19 +202,17 @@ public class GroceryPage {
         }
     }
 
-    public boolean verifyProductsAppearAfterSearch(String products) {
-        logger.info("Navigating to the homepage.");
+    public boolean isProductVisibleAfterSearch(String products) {
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Clicking on 'Grocery' option in the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
+            navigateToGroceryPage();
             logger.info("Searching for product: " + products);
             allPages.pickBazarHomePage().sendKeysSearchTextArea(products + Keys.ENTER);
+            logger.info("Scrolling to the first product");
             actions.scrollToElement(productsList.getFirst());
-            logger.info("Waiting for visibility of the product '" + products + "' in the list");
-            ReusableMethods.waitForVisibility(getDriver(), productsList.getFirst(), 10);
-            actualProductName = productsList.getFirst().getText().toLowerCase();
-            result = actualProductName.contains(products.toLowerCase());
+            logger.info("Waiting for visibility of the product '" + products + "'" );
+            ReusableMethods.waitForVisibility(getDriver(), productsList.getFirst(), 10); //ürün görünür olana kadar bekledikten sonra
+            actualProductName = productsList.getFirst().getText().toLowerCase();// arama sonrasi cikan ilk ürünün ismini aliyorm
+            result = actualProductName.contains(products.toLowerCase()); //
             logger.info("Verified that the product " + products + " is displayed --> " + result);
             return result;
         } catch (Exception e) {
@@ -190,7 +226,7 @@ public class GroceryPage {
         try {
             for (WebElement menu : ScrollDownOnTheLeft) {
                 if (menu.getText().equalsIgnoreCase(title)) {
-                    menu.click();
+                    clickElement(menu);
                 }
             }
             return title;
@@ -201,11 +237,8 @@ public class GroceryPage {
     }
 
     public boolean verifySubmenuInMainMenu(String text, List<String> expectedSubMenu, String logMessage) {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Clicking on 'Grocery' dropdown menu option.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
+            navigateToGroceryPage();
             logger.info("Clicking on left menu item with title: '" + text + "'");
             clickLeftMenuByTitle(text);
             List<String> actualSubMenu = new ArrayList<>();
@@ -225,9 +258,8 @@ public class GroceryPage {
     }
 
     public boolean VerifyproductCount() { //Ürün sayisinin 30 oldugunu dogrular
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+            navigateToGroceryPage();
             result = productsList.size() == 30;
             logger.info("Checking if there are max 30 products before clicking 'Load More'.");
             logger.info("Result of verification --> " + result);
@@ -239,17 +271,14 @@ public class GroceryPage {
     }
 
     public boolean countOfProductWithLoadMoreButton() {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Clicking the 'Grocery' option from the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
+            navigateToGroceryPage();
             logger.info("Scrolling to the 'Load More' button.");
             actions.scrollToElement(loadMoreButton).perform();
             logger.info("Waiting for the 'Load More' button to become clickable.");
             ReusableMethods.waitForClickability(loadMoreButton);
             logger.info("Clicking the 'Load More' button.");
-            loadMoreButton.click();
+            clickElement(loadMoreButton);
             logger.info("Waiting for the product count to increase beyond 30.");
             ReusableMethods.waitForProductCountToIncrease(productsList, 30);
             result = productsList.size() > 30;
@@ -263,12 +292,9 @@ public class GroceryPage {
     }
 
     public boolean verifyReadMoreButtonIsClickable() {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Clicking the 'Grocery' option from the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
-            productsList.getFirst().click();
+            navigateToGroceryPage();
+            clickElement(productsList.getFirst());
             logger.info("Checking if 'Read More' button is clickable.");
             result = ReusableMethods.waitForClickability(readMoreButton);
             logger.info("Result of verification --> " + result);
@@ -279,56 +305,9 @@ public class GroceryPage {
         }
     }
 
-    //Read more'a tiklayinca uzun aciklamanin geldigini dogrular
-    public boolean productDescriptionforLongText(String longText) {
-        logger.info("Navigating to the homepage.");
-        try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Clicking the 'Grocery' option from the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
-            productsList.getFirst().click();
-            ReusableMethods.waitForClickability(readMoreButton, 10);
-            readMoreButton.click();
-            String actualText = productDescription.getDomProperty("textContent").trim();
-            result = actualText.equals(longText);
-            logger.info("Verifying the long product description appears.");
-            logger.info("Result of verification --> " + result);
-            return result;
-        } catch (Exception e) {
-            logger.error("Test failed - Exception caught", e);
-            return false;
-        }
-    }
-
-    //Less'e tiklayinca aciklamanin kisaldigini dogrular
-    public boolean productDescriptionforShortText(String shortText) {
-        logger.info("Navigating to the homepage.");
-        try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Clicking the 'Grocery' option from the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
-            productsList.getFirst().click();
-            ReusableMethods.waitForClickability(readMoreButton, 10);
-            readMoreButton.click();
-            ReusableMethods.waitForClickability(lessButton, 10);
-            lessButton.click();
-            String actualText = productDescription.getDomProperty("textContent").trim();
-            result = actualText.equals(shortText);
-            logger.info("Checking if 'Less' button is clickable and short text appears again.");
-            logger.info("Result of verification --> " + result);
-            return result;
-        } catch (Exception e) {
-            logger.error("Test failed - Exception caught", e);
-            return false;
-        }
-    }
-
     public boolean isSearchButtonDisplayedOnGroceryPage() {
-        logger.info("Navigating to the homepage.");
+        navigateToGroceryPage();
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Clicking on 'Grocery' option in the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
             boolean result = isWebElementDisplayed(allPages.pickBazarHomePage().getSearchButton());
             logger.info("Verifying if the search button is visible ");
             logger.info("Result of verification --> " + result);
@@ -340,11 +319,8 @@ public class GroceryPage {
     }
 
     public boolean isImageDisplayed(WebElement element, String logMessage) {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Selecting 'Grocery' category from the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
+            navigateToGroceryPage();;
             logger.info("Waiting until the web element is visible on the page");
             ReusableMethods.isWebElementDisplayed(element);
             boolean result = ReusableMethods.waitForVisibility(getDriver(), element, 10).isDisplayed();
@@ -357,11 +333,8 @@ public class GroceryPage {
     }
 
     public boolean isSearchFrameDisplayed() {
-        logger.info("Navigating to the homepage.");
+         navigateToGroceryPage();
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Selecting 'Grocery' category from the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
             logger.info("Waiting until the web element is visible on the page");
             ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame());
             boolean result = ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getSearhAreaFrame());
@@ -374,12 +347,9 @@ public class GroceryPage {
     }
 
     public boolean areSmallImagesVisible() {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Selecting 'Grocery' category from the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
-            productsList.getFirst().click();
+            navigateToGroceryPage();
+            clickElement(productsList.getFirst());
             for (WebElement each : productSmallfotos) {
                 if (!each.isDisplayed()) {
                     return false;
@@ -394,12 +364,9 @@ public class GroceryPage {
     }
 
     public boolean isProductPhotoFunctionalityWorking() {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            logger.info("Selecting 'Grocery' category from the dropdown menu.");
-            allPages.pickBazarHomePage().clickDropDownMenuOption("Grocery");
-            productsList.getFirst().click();
+            navigateToGroceryPage();
+            clickElement(productsList.getFirst());
             List<WebElement> bigPhotos = Arrays.asList(getProductBigFotoIndex1(), getProductBigFotoIndex2(), getProductBigFotoIndex3());
 
             for (int i = 1; i <= 3; i++) {

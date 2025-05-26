@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.AllPages;
 import utilities.Driver;
+
 import static utilities.Driver.setupBrowser;
 //***
 
@@ -170,6 +171,7 @@ public class BooksTest {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
+
         Allure.step("Verifying that new book prices are visible.");
             softAssert.assertTrue(allPages.booksPage().areElementsDisplayed(allPages.booksPage().getNewArrivalBooksPrice(),
                     allPages.booksPage().getNewArrivalTitle(), "new book prices"), "New book prices are not visible.");
@@ -186,7 +188,7 @@ public class BooksTest {
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
         Allure.step("Verifying that author photos are visible.");
-            softAssert.assertTrue(allPages.booksPage().areAuthorPhotosDisplayed(),"Author photos are not visible.");
+            softAssert.assertTrue(allPages.booksPage().checkAuthorSectionItems(allPages.booksPage().getFirst5AuthorPhotos(),allPages.booksPage().getLast5AuthorPhotos()),"Author photos are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
@@ -200,7 +202,7 @@ public class BooksTest {
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
         Allure.step("Verifying that author names are visible.");
-            softAssert.assertTrue(allPages.booksPage().areAuthorNamesDisplayed(),"Author names are not visible.");
+            softAssert.assertTrue(allPages.booksPage().checkAuthorSectionItems(allPages.booksPage().getFirst5AuthorNames(),allPages.booksPage().getLast5AuthorNames()),"Author names are not visible.");
         softAssert.assertAll();
         Driver.closeDriver();
     }
