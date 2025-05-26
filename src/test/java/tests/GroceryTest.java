@@ -17,7 +17,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Verify that the grocery button is clickable on homepage")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_008_01(ITestContext context) {
+    public void TC_08_01(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -32,7 +32,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Verify that the grocery URL contains the word 'grocery'")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_008_02(ITestContext context) {
+    public void TC_08_02(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -47,7 +47,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Verify that the text 'Groceries Delivered in 90 Minute' is visible")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_008_03(ITestContext context) {
+    public void TC_08_03(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -63,7 +63,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Verify that the text 'Get your healthy foods & snacks delivered at your doorsteps all day everyday' is visible")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_008_04(ITestContext context) {
+    public void TC_08_04(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -80,7 +80,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Verify that the search frame is displayed")
     @Severity(SeverityLevel.CRITICAL)
-    public void TC_008_05(ITestContext context) {
+    public void TC_08_05(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -94,7 +94,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Verify that the search button is visible on grocery page")
     @Severity(SeverityLevel.CRITICAL)
-    public void TC_008_06(ITestContext context) {
+    public void TC_08_06(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -115,8 +115,8 @@ public class GroceryTest {
         setupBrowser(context);
         Allure.step("Verified that the product " + products + " is displayed");
         try {
-            softAssert.assertTrue(allPages.groceryPage().verifyProductsAppearAfterSearch(products));
-        } catch (IndexOutOfBoundsException e) {
+            softAssert.assertTrue(allPages.groceryPage().isProductVisibleAfterSearch(products),testCaseNo + " : " + products + " not found");
+        } catch (Exception e) {
             softAssert.fail(testCaseNo + " : " + products + " not found");
         }
         softAssert.assertAll();
@@ -157,7 +157,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Checks if the image in 'Cash On Delivery' frame is visible")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_08_17_01(ITestContext context) {
+    public void TC_08_18(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -171,7 +171,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Checks if the image in Gift Voucher frame is visible")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_08_17_02(ITestContext context) {
+    public void TC_08_19(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -185,7 +185,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Checks if grocery products are visible on the right side of the page")
     @Severity(SeverityLevel.CRITICAL)
-    public void TC_08_18(ITestContext context) {
+    public void TC_08_20(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -201,7 +201,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Checks if prices are visible under the grocery products")
     @Severity(SeverityLevel.CRITICAL)
-    public void TC_08_18_01(ITestContext context) {
+    public void TC_08_21(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -217,7 +217,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Verifies that 'Fruits & Vegetables' menu has 'Fruits' and 'Vegetables' sub-items")
     @Severity(SeverityLevel.CRITICAL)
-    public void TC_08_19(ITestContext context) {
+    public void TC_08_22(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -232,7 +232,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Verifies that 'Meat & Fish' menu has 'Fresh Fish' and 'Meat' sub-items")
     @Severity(SeverityLevel.CRITICAL)
-    public void TC_08_20(ITestContext context) {
+    public void TC_08_23(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -246,7 +246,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Description("Verifies that 'Snacks' menu has all expected sub-items")
     @Severity(SeverityLevel.CRITICAL)
-    public void TC_08_21(ITestContext context) {
+    public void TC_08_24(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -260,7 +260,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify 'Pet Care' menu contains expected sub-items")
-    public void TC_08_22(ITestContext context) {
+    public void TC_08_25(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -274,7 +274,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify 'Home & Cleaning' menu contains expected sub-items")
-    public void TC_08_23(ITestContext context) {
+    public void TC_08_26(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -288,7 +288,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify 'Dairy' menu contains expected sub-items")
-    public void TC_08_24(ITestContext context) {
+    public void TC_08_27(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -302,7 +302,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify 'Cooking' menu contains expected sub-items")
-    public void TC_08_25(ITestContext context) {
+    public void TC_08_28(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -316,7 +316,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify 'Breakfast' menu contains expected sub-items")
-    public void TC_08_26(ITestContext context) {
+    public void TC_08_29(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -330,7 +330,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify 'Health & Beauty' menu contains expected sub-items")
-    public void TC_08_27(ITestContext context) {
+    public void TC_08_30(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -345,7 +345,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify there are max 30 products before clicking 'Load More'")
-    public void TC_08_28(ITestContext context) {
+    public void TC_08_31(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -359,7 +359,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Click 'Load More' and check product count increases")
-    public void TC_08_28_01(ITestContext context) {
+    public void TC_08_32(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -373,7 +373,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.NORMAL)
     @Description("Check if 'Read More' button is clickable")
-    public void TC_08_29(ITestContext context) {
+    public void TC_08_33(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -387,7 +387,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify long product description appears after clicking 'Read More'")
-    public void TC_08_29_01(ITestContext context) {
+    public void TC_08_34(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -401,7 +401,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.NORMAL)
     @Description("Click 'Less' and verify short description appears again")
-    public void TC_08_29_02(ITestContext context) {
+    public void TC_08_35(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
@@ -416,7 +416,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify small images under product are visible")
-    public void TC_08_30_verifySmallImagesAreVisible(ITestContext context) {
+    public void TC_08_36_verifySmallImagesAreVisible(ITestContext context) {
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);
         AllPages allPages = new AllPages();
@@ -433,7 +433,7 @@ public class GroceryTest {
     @Owner("Tugba")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify small images match big image when clicked")
-    public void TC_08_31_verifySmallImagesMatchBigPhotos(ITestContext context) {
+    public void TC_08_37_verifySmallImagesMatchBigPhotos(ITestContext context) {
         AllPages allPages = new AllPages();
         SoftAssert softAssert = new SoftAssert();
         setupBrowser(context);

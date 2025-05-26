@@ -6,12 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
 import tests.LoginProfileTest;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
 import static utilities.Driver.getDriver;
+import static utilities.ReusableMethods.clickElement;
 
 //***
 
@@ -56,13 +56,12 @@ public class LoginProfilePage {
 //***************************************** Test Methods ******************************************************
 
     public boolean profilePoints() {
-    logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+            allPages.booksPage().navigateToHomePage();
             logger.info("Logging into the page with valid credentials.");
             allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
             logger.info("Clicking on the profile silhouette.");
-            ReusableMethods.clickElement(profilSilueti);
+            clickElement(profilSilueti);
             exceptedText ="0";
             logger.info("Customer sees their points on the profile page.");
             ReusableMethods.waitForVisibility(getDriver(),points,10);
@@ -75,10 +74,8 @@ public class LoginProfilePage {
     }
 
     public boolean profileDropDownMenu(String data) {
-        logger.info("Navigating to the homepage.");
         try {
-            getDriver().get(ConfigReader.getProperty("pickbazar_url"));
-            SoftAssert softAssert = new SoftAssert();
+            allPages.booksPage().navigateToHomePage();
             logger.info("Logging into the page with valid credentials.");
             allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
 
@@ -103,36 +100,33 @@ public class LoginProfilePage {
             }
 
             logger.info("Clicking profile silhouette to open the dropdown menu.");
-            actions.click(profilSilueti).perform();
+            clickElement(profilSilueti);
             logger.info("Waiting for '" + data + "' menu item to be clickable.");
             ReusableMethods.waitForClickability(element);
-            actions.moveToElement(element).perform();
             logger.info("Clicking on the '" + data + "' menu item.");
-            element.click();
+            clickElement(element);
 
             ReusableMethods.waitForUrlContains(data);
             String currentUrl = getDriver().getCurrentUrl();
             logger.info("Current URL after click: " + currentUrl);
-            assert currentUrl != null; // contains sari renkti, intellij tavsiye etti.
             return currentUrl.contains(data);
         } catch (Exception e) {
             logger.error("Test failed - Exception caught", e);
             return false;
         }
-    } //TODO
+    }
 
     public boolean verifyLogoutWorks(){
-        logger.info("Navigating to the homepage.");
         try {
-            Driver.getDriver().get(ConfigReader.getProperty("pickbazar_url"));
+            allPages.booksPage().navigateToHomePage();
             logger.info("Logging into the page with valid credentials.");
             allPages.loginPage().logIn(ConfigReader.getProperty("loginPageEmail"), ConfigReader.getProperty("loginPagePassword"));
             logger.info("Clicking on the profile silhouette.");
-            actions.click(profilSilueti).perform();
+            clickElement(profilSilueti);
             logger.info("Waiting until the 'Logout' menu item becomes clickable.");
             ReusableMethods.waitForClickability(logout);
             logger.info("Clicking on the 'Logout' menu item.");
-            actions.moveToElement(logout).click().perform();
+            clickElement(logout);
             logger.info("Checking if the 'Join' button is visible after clicking logout");
             return ReusableMethods.isWebElementDisplayed(allPages.pickBazarHomePage().getJoinButton());
         } catch (Exception e) {

@@ -43,7 +43,7 @@ public class LoginProfileTest {
                         allPages.loginProfilePage().profileDropDownMenu(data),
                         testCaseNo + " FAILED: The page '" + data + "' could not be opened");
         } catch (Exception e) {
-            softAssert.fail(testCaseNo + " is failed due to an " + e.getMessage() + " exception.");
+            softAssert.fail(testCaseNo + " is failed due to an " + e );
         } finally {
             Driver.closeDriver();
             softAssert.assertAll();
