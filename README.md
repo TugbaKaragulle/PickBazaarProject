@@ -31,8 +31,6 @@ This project is created to automatically test the web interface of the PickBazar
 - Scalable and maintainable structure following Page Object Model
 - Parallel test execution using TestNG
 
-  ![image](https://github.com/user-attachments/assets/9ac606e5-6a93-43cf-96a4-beacc700d084)
-
 🚀 How to Run
 
 1. Clone the repository.
