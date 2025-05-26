@@ -163,7 +163,7 @@ public class BasketPage {
     }
 
     private void clickPlusIcon(int indexOfList) {
-        clickElement(incrementItemNumberList.get(indexOfList));
+        clickElementForFirefoxError(incrementItemNumberList.get(indexOfList));
     }
 
     private void clickMinusIcon(int indexOfList) {

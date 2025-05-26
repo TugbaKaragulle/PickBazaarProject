@@ -15,6 +15,9 @@ import utilities.ReusableMethods;
 
 import javax.swing.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static utilities.Driver.getDriver;
 import static utilities.Driver.setupBrowser;
 
@@ -415,7 +418,7 @@ public class BasketPageTest {
             AllPages page = new AllPages();
             SoftAssert softAssert = new SoftAssert();
             Driver.getDriver().get(ConfigReader.getProperty("makeuppage_url"));
-
+            Allure.step("Test çalıştırılma zamanı: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
             softAssert.assertTrue(page.pickBazarHomePage().isProductFrameVisible(), "Ürünlerin varolduğu frame ekranda görüntülenemedi");
             Allure.step("Ürünlerin varolduğu frame ekranda görüntülendi");
