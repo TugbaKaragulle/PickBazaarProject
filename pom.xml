@@ -74,7 +74,7 @@
                 <configuration>
 <!--                                        suite xml files istedigimiz xml Files'i calistirmamizi saglar. -->
                     <suiteXmlFiles>
-                        <suiteXmlFile>TugbaParallelCross.xml</suiteXmlFile> <!-- Regression.xml'in yolunu ver -->
+                        <suiteXmlFile>Smoke.xml</suiteXmlFile> <!-- Regression.xml'in yolunu ver -->
                     </suiteXmlFiles>
 <!--                                        include kismi ise istedigimiz methodu calistirmamizi saglar.-->
 <!--                    <includes>-->

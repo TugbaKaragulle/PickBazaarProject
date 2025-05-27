@@ -42,21 +42,21 @@ public class FaqPageTest {
 
         AllPages allPages = new AllPages();
         ReusableMethods.clickElement(allPages.pickBazarHomePage().getFAQButton());
-        allPages.faqPage = allPages.faqPage();
+
 
         // Index belirleme
         int index = getIndexByTestCaseId(testCaseId);
 
         // Soru kontrolü
         if (expectedQuestionText != null) {
-            String actualQuestion = allPages.faqPage.getQuestionText(index);
+            String actualQuestion = allPages.faqPage().getQuestionText(index);
             logger.info("Soru başlığı: {}", actualQuestion);
             softAssert.assertEquals(actualQuestion, expectedQuestionText, "Soru başlığı eşleşmeli");
 
             logger.info("Toggle açılıyor, index: {}", index);
-            allPages.faqPage.clickToggle(index);
+            allPages.faqPage().clickToggle(index);
 
-            boolean isVisibleAfterOpen = allPages.faqPage.isAnswerVisible(index);
+            boolean isVisibleAfterOpen = allPages.faqPage().isAnswerVisible(index);
             logger.info("Toggle açıldıktan sonra cevap görünürlüğü: {}", isVisibleAfterOpen);
             softAssert.assertTrue(isVisibleAfterOpen, "Toggle açılınca cevap görünmeli");
         }
@@ -64,13 +64,13 @@ public class FaqPageTest {
         // Cevap metni kontrolü
         if (expectedAnswerText != null) {
             logger.info("Toggle açılıyor, index: {}", index);
-            allPages.faqPage.clickToggle(index);
+            allPages.faqPage().clickToggle(index);
 
-            String actualAnswer = allPages.faqPage.getAnswerText(index);
+            String actualAnswer = allPages.faqPage().getAnswerText(index);
             logger.info("Cevap metni: {}", actualAnswer);
             softAssert.assertEquals(actualAnswer, expectedAnswerText, "Cevap metni eşleşmeli");
 
-            boolean isVisibleAfterOpen = allPages.faqPage.isAnswerVisible(index);
+            boolean isVisibleAfterOpen = allPages.faqPage().isAnswerVisible(index);
             logger.info("Toggle açıldıktan sonra cevap görünürlüğü: {}", isVisibleAfterOpen);
             softAssert.assertTrue(isVisibleAfterOpen, "Toggle açılınca cevap görünmeli");
         }
