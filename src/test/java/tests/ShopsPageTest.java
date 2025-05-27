@@ -461,7 +461,7 @@ public class ShopsPageTest {
 
         logger.info(testCaseId + ": İlk uygun ürüne tıklanıyor.");
         if (shopName.equalsIgnoreCase("Clothing Shop")) {
-            allPages.shopsPage.tryAddToCartFirstAvailableProduct("Clothing Shop");
+            allPages.shopsPage().tryAddToCartFirstAvailableProduct("Clothing Shop");
 
         } else {
             allPages.shopsPage().clickFirstAvailableProduct();
@@ -472,7 +472,7 @@ public class ShopsPageTest {
 
         logger.info(testCaseId + ": Sepet butonuna tıklanıyor.");
         allPages.shopsPage().clickCartButton();
-           if (allPages.shopsPage.isAddedMessageVisible()) {
+           if (allPages.shopsPage().isAddedMessageVisible()) {
             System.out.println("Ürün başarıyla sepete eklendi.");
         } else {
             System.out.println("Ürün sepete eklenirken hata oluştu veya mesaj görüntülenmedi.");
@@ -531,10 +531,10 @@ public class ShopsPageTest {
                 testCaseId + ": Shop URL beklenenden farklı!");
 
         logger.info(testCaseId + ": Uygun ürüne tıklanıyor.");
-        ReusableMethods.clickElement(allPages.shopsPage.getClothingProductCart());
+        ReusableMethods.clickElement(allPages.shopsPage().getClothingProductCart());
 
         logger.info(testCaseId + ": Ürün detay sayfasında 'Add To Shopping Cart' butonuna tıklanıyor.");
-        ReusableMethods.clickElement(allPages.shopsPage.getClothingAddToCart());
+        ReusableMethods.clickElement(allPages.shopsPage().getClothingAddToCart());
 
         logger.info(testCaseId + ": Sepet butonuna tıklanıyor.");
         allPages.shopsPage().clickCartButton();
@@ -601,7 +601,7 @@ public class ShopsPageTest {
 
         logger.info(testCaseId + ": İlk uygun ürüne tıklanıyor.");
         if (shopName.equalsIgnoreCase("Clothing Shop")) {
-            allPages.shopsPage.tryAddToCartFirstAvailableProduct("Clothing Shop");
+            allPages.shopsPage().tryAddToCartFirstAvailableProduct("Clothing Shop");
 
         } else {
             allPages.shopsPage().clickFirstAvailableProduct();
@@ -612,7 +612,7 @@ public class ShopsPageTest {
 
         logger.info(testCaseId + ": Sepet butonuna tıklanıyor.");
         allPages.shopsPage().clickCartButton();
-        if (allPages.shopsPage.isAddedMessageVisible()) {
+        if (allPages.shopsPage().isAddedMessageVisible()) {
             System.out.println("Ürün başarıyla sepete eklendi.");
         } else {
             System.out.println("Ürün sepete eklenirken hata oluştu veya mesaj görüntülenmedi.");
@@ -678,10 +678,10 @@ public class ShopsPageTest {
                 testCaseId + ": Shop URL beklenenden farklı!");
 
         logger.info(testCaseId + ": Uygun ürüne tıklanıyor.");
-        ReusableMethods.clickElement(allPages.shopsPage.getClothingProductCart());
+        ReusableMethods.clickElement(allPages.shopsPage().getClothingProductCart());
 
         logger.info(testCaseId + ": Ürün detay sayfasında 'Add To Shopping Cart' butonuna tıklanıyor.");
-        ReusableMethods.clickElement(allPages.shopsPage.getClothingAddToCart());
+        ReusableMethods.clickElement(allPages.shopsPage().getClothingAddToCart());
 
         logger.info(testCaseId + ": Sepet butonuna tıklanıyor.");
         allPages.shopsPage().clickCartButton();
@@ -761,7 +761,7 @@ public class ShopsPageTest {
         logger.info(testCaseId + ": İlk uygun ürüne tıklanıyor.");
         if (shopName.equalsIgnoreCase("Clothing Shop")) {
             logger.info(testCaseId + ": Clothing Shop ürünü sepete ekleniyor.");
-            allPages.shopsPage.tryAddToCartFirstAvailableProduct("Clothing Shop");
+            allPages.shopsPage().tryAddToCartFirstAvailableProduct("Clothing Shop");
         } else {
             logger.info(testCaseId + ": Diğer shop ürünü seçiliyor.");
             allPages.shopsPage().clickFirstAvailableProduct();
@@ -773,7 +773,7 @@ public class ShopsPageTest {
         logger.info(testCaseId + ": Sepet butonuna tıklanıyor.");
         allPages.shopsPage().clickCartButton();
 
-        if (allPages.shopsPage.isAddedMessageVisible()) {
+        if (allPages.shopsPage().isAddedMessageVisible()) {
             logger.info(testCaseId + ": Ürün başarıyla sepete eklendi mesajı görünüyor.");
             System.out.println("Ürün başarıyla sepete eklendi.");
         } else {
@@ -957,10 +957,10 @@ public class ShopsPageTest {
                 testCaseId + ": Shop URL beklenenden farklı!");
 
         logger.info(testCaseId + ": Uygun ürüne tıklanıyor.");
-        ReusableMethods.clickElement(allPages.shopsPage.getClothingProductCart());
+        ReusableMethods.clickElement(allPages.shopsPage().getClothingProductCart());
 
         logger.info(testCaseId + ": Ürün detay sayfasında 'Add To Shopping Cart' butonuna tıklanıyor.");
-        ReusableMethods.clickElement(allPages.shopsPage.getClothingAddToCart());
+        ReusableMethods.clickElement(allPages.shopsPage().getClothingAddToCart());
 
         logger.info(testCaseId + ": Sepet butonuna tıklanıyor.");
         allPages.shopsPage().clickCartButton();
@@ -1055,10 +1055,10 @@ public class ShopsPageTest {
                 testCaseId + ": Shop URL beklenenden farklı!");
 
         logger.info(testCaseId + ": Uygun ürüne tıklanıyor.");
-        ReusableMethods.clickElement(allPages.shopsPage.getClothingProductCart());
+        ReusableMethods.clickElement(allPages.shopsPage().getClothingProductCart());
 
         logger.info(testCaseId + ": Ürün detay sayfasında 'Add To Shopping Cart' butonuna tıklanıyor.");
-        ReusableMethods.clickElement(allPages.shopsPage.getClothingAddToCart());
+        ReusableMethods.clickElement(allPages.shopsPage().getClothingAddToCart());
 
         logger.info(testCaseId + ": Sepet butonuna tıklanıyor.");
         allPages.shopsPage().clickCartButton();
