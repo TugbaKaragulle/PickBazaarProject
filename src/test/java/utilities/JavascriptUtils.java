@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
-
 import static utilities.Driver.getDriver;
 
 public class JavascriptUtils  {
@@ -18,6 +17,7 @@ public class JavascriptUtils  {
         jsexecutor.executeScript("arguments[0].click();", element);
         logger.info(element.getText() + " adlı elemente tıklandı.");
     }
+
     public static void safeClickWithJS(WebElement element) {
         JavascriptExecutor jsexecutor = (JavascriptExecutor) getDriver();
         try {

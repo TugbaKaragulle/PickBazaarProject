@@ -14,14 +14,14 @@ import java.time.Duration;
  */
 public class Driver {
 
-
-
     // ThreadLocal to maintain a separate WebDriver instance per thread
     private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
+
     public static ThreadLocal<String> browserThread = new ThreadLocal<>();
 
     // Private constructor to prevent instantiation
     private Driver() { }
+
     /**
      * Returns the WebDriver instance for the current thread.
      * Creates a new instance if none exists.
@@ -58,6 +58,7 @@ public class Driver {
         // Return the WebDriver instance specific to the current thread
         return driverThread.get();
     }
+
     /**
      * Reads the browser parameter from TestNG context and sets it for the thread.
      *
@@ -76,6 +77,7 @@ public class Driver {
     public static void setBrowser(String browserName) {
         browserThread.set(browserName);
     }
+
     /**
      * Quits and removes the WebDriver instance for the current thread to clean up resources.
      */

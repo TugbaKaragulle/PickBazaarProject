@@ -51,6 +51,7 @@ public class ReusableMethods {
     public static void clickElement(WebElement element) {
         ReusableMethods.waitForClickability(element, 10).click();
     }
+
     public static void clickElementForFirefoxError(WebElement element) {
         ReusableMethods.waitForClickabilityForFirefoxError(element, 10).click();
     }
@@ -124,6 +125,7 @@ public class ReusableMethods {
             System.err.println("Sleep was interrupted");
         }
     }
+
     /**
      * Tries to wait for element clickability and returns boolean.
      */
@@ -135,6 +137,7 @@ public class ReusableMethods {
             return false;
         }
     }
+
     /**
      * Waits for the current URL to contain the given string.
      */
@@ -146,6 +149,7 @@ public class ReusableMethods {
             return false;
         }
     }
+
     /**
      * Waits for the page title to contain the given string.
      */
@@ -153,6 +157,7 @@ public class ReusableMethods {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.titleContains(string));
     }
+
     /**
      * Waits until product list size increases beyond the given count.
      */
@@ -167,6 +172,7 @@ public class ReusableMethods {
             return false;
         }
     }
+
     /**
      * Captures a screenshot and attaches it to Allure report.
      */
@@ -213,6 +219,7 @@ public class ReusableMethods {
         logger.info(message);
         Allure.step("[ERROR] " + message);
     }
+
     /**
      * Takes a screenshot and attaches it to Allure with a given name.
      */
