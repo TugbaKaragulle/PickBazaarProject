@@ -77,7 +77,7 @@
                 <version>3.0.0-M1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>FatmaListenerRun.xml</suiteXmlFile>
+                        <suiteXmlFile>HomePage.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -89,7 +89,7 @@
     <profiles>
         <!-- C02UseConfigReader Profile -->
         <profile>
-            <id>FatmaListenerRun</id>
+            <id>HomePage</id>
             <build>
 
                 <plugins>
@@ -100,7 +100,7 @@
                         <version>3.0.0-M1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <include>FatmaListenerRun.xml</include>
+                                <include>HomePage.xml</include>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
