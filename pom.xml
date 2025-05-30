@@ -58,6 +58,10 @@
 
     </dependencies>
 
+         <profiles>
+        <!-- RegressionRunner Profile -->
+        <profile>
+            <id>RegressionRunner</id>
     <build>
         <plugins>
             <!-- Allure Report Plugin -->
@@ -85,5 +89,10 @@
         </plugins>
 
     </build>
+                  </profile>
+
+
+    </profiles>
+
 
 </project>
