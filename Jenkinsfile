@@ -18,7 +18,7 @@ pipeline {
     }
     post {
         unstable {
-            mail to: 'yasinanil.67@gmail.com',
+            mail to: 'fatmapostaci@gmail.com',
                  subject: "Build Unstable",
                  body: "Build is unstable due to test failures."
         }
