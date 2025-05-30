@@ -61,7 +61,7 @@
          <profiles>
         <!-- RegressionRunner Profile -->
         <profile>
-            <id>RegressionRunner</id>
+            <id>Tugba</id>
     <build>
         <plugins>
             <!-- Allure Report Plugin -->
