@@ -8,6 +8,11 @@
           name="US_001">
         <classes>
             <class name="tests.HomePageTest">
+                <methods>
+                    <include name="TC_001_01"/>
+                    <include name="TC_001_02"/>
+                    <include name="TC_001_03"/>
+                </methods>
             </class>
         </classes>
     </test>
