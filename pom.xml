@@ -58,10 +58,6 @@
 
     </dependencies>
 
-    <profiles>
-        <!-- RegressionRunner Profile -->
-        <profile>
-            <id>Tugba</id>
             <build>
                 <plugins>
                     <!-- Allure Report Plugin -->
@@ -71,19 +67,40 @@
                         <version>2.11.2</version>
                     </plugin>
 
+
+
+
+            <!-- Surefire plugin used to run tests in parallel -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>FatmaListenerRun.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- C02UseConfigReader Profile -->
+        <profile>
+            <id>FatmaListenerRun</id>
+            <build>
+
+                <plugins>
+                    <!-- Surefire plugin used to run tests in parallel, parallel execution settings are configured. -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.2.5</version> <!-- Güncel sürüm -->
+                        <version>3.0.0-M1</version>
                         <configuration>
-                            <!--                                        suite xml files istedigimiz xml Files'i calistirmamizi saglar. -->
                             <suiteXmlFiles>
-                                <suiteXmlFile>TugbaGroceryPageParallel.xml</suiteXmlFile> <!-- Regression.xml'in yolunu ver -->
+                                <include>FatmaListenerRun.xml</include> <!-- Specify the Runner class to run here -->
                             </suiteXmlFiles>
-                            <!--                                        include kismi ise istedigimiz methodu calistirmamizi saglar.-->
-                            <!--                    <includes>-->
-                            <!--                        <include>**/*US01_LoginTest.java</include>-->
-                            <!--                    </includes>-->
                         </configuration>
                     </plugin>
                 </plugins>
@@ -91,8 +108,9 @@
             </build>
         </profile>
 
-
     </profiles>
+
+
 
 
 </project>
