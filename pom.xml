@@ -58,19 +58,19 @@
 
     </dependencies>
 
-            <build>
-                <plugins>
-                    <!-- Allure Report Plugin -->
-                    <plugin>
-                        <groupId>io.qameta.allure</groupId>
-                        <artifactId>allure-maven</artifactId>
-                        <version>2.11.2</version>
-                    </plugin>
+    <build>
+        <plugins>
 
 
+            <!-- Allure Report Plugin -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.11.2</version>
+            </plugin>
 
 
-            <!-- Surefire plugin used to run tests in parallel -->
+            <!-- Surefire plugin used to run tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -79,9 +79,10 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>FatmaListenerRun.xml</suiteXmlFile>
                     </suiteXmlFiles>
-
                 </configuration>
             </plugin>
+
+
         </plugins>
     </build>
 
@@ -92,25 +93,24 @@
             <build>
 
                 <plugins>
-                    <!-- Surefire plugin used to run tests in parallel, parallel execution settings are configured. -->
-                    <plugin>
+
+                      <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.0.0-M1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <include>FatmaListenerRun.xml</include> <!-- Specify the Runner class to run here -->
+                                <include>FatmaListenerRun.xml</include>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
+
                 </plugins>
 
             </build>
         </profile>
 
     </profiles>
-
-
 
 
 </project>
