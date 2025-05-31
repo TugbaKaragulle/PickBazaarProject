@@ -75,8 +75,8 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuOptionDisplayed(optionData),optionData+" görüntülenemedi");
-        Allure.step("Dropdown menüde " +optionData+" görüntülendi");
+        softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuOptionDisplayed(optionData),optionData+" goruntulenemedi");
+        Allure.step("Dropdown menüde " +optionData+" goruntulendi");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -147,7 +147,7 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue( page.pickBazarHomePage().isGroceryMenuFrameDisplayed() ,"Grocery menü frame görüntülenemedi");
+        softAssert.assertTrue( page.pickBazarHomePage().isGroceryMenuFrameDisplayed() ,"Grocery menü frame goruntulenemedi");
         Allure.step("Ekranin Sol tarafinda Grocery menü listesinin olduğu frame görüntülenir");
 
         softAssert.assertAll();
@@ -164,7 +164,7 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue( page.pickBazarHomePage().isGroceryProductFrameDisplayed() ,"Grocery ürünleri olduğu frame görüntülenemedi");
+        softAssert.assertTrue( page.pickBazarHomePage().isGroceryProductFrameDisplayed() ,"Grocery ürünleri olduğu frame goruntulenemedi");
         Allure.step( "Ekranin Sag tarafinda Grocery ürünleri olduğu frame görüntülenir");
 
         softAssert.assertAll();
@@ -181,8 +181,8 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();//??
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue(page.pickBazarHomePage().isGiftVoucherImageDeliveryImageDisplayed(), "Gift Voucher frame görüntülenemedi" );
-        Allure.step("Gift Voucher frame, Shop Cuopons button sekilde geldigi görüntülendi");
+        softAssert.assertTrue(page.pickBazarHomePage().isGiftVoucherImageDeliveryImageDisplayed(), "Gift Voucher frame goruntulenemedi" );
+        Allure.step("Gift Voucher frame, Shop Cuopons button sekilde geldigi goruntulendi");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -198,8 +198,8 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();//??
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue(page.pickBazarHomePage().isCashOnDeliveryImageDeliveryImageDisplayed() , "Cash On Delivery frame görüntülenemedi");
-        Allure.step("Cash On Delivery frame, Save Now button sekilde geldigi görüntülendi");
+        softAssert.assertTrue(page.pickBazarHomePage().isCashOnDeliveryImageDeliveryImageDisplayed() , "Cash On Delivery frame goruntulenemedi");
+        Allure.step("Cash On Delivery frame, Save Now button sekilde geldigi goruntulendi");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -215,8 +215,8 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();//??
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue(page.pickBazarHomePage().isExpressDeliveryImageDisplayed()  ,"Express Delivery frame görüntülenemedi");
-        Allure.step("Express Delivery frame, Save Now button sekilde geldiği görüntülendi" );
+        softAssert.assertTrue(page.pickBazarHomePage().isExpressDeliveryImageDisplayed()  ,"Express Delivery frame goruntulenemedi");
+        Allure.step("Express Delivery frame, Save Now button sekilde geldiği goruntulendi" );
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -233,8 +233,8 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();//??
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue(page.pickBazarHomePage().isShopsButtonDisplayed(),"Shop butonu görüntülenemedi");
-        Allure.step("Shops button dogru sekilde geldigi görüntülendi");
+        softAssert.assertTrue(page.pickBazarHomePage().isShopsButtonDisplayed(),"Shop butonu goruntulenemedi");
+        Allure.step("Shops button dogru sekilde geldigi goruntulendi");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -250,8 +250,8 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();//??
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue(page.pickBazarHomePage().isGrocerySelectedDropDownValue(), "Grocery seçili olarak görüntülenemedi");
-        Allure.step("Sol üstte dropdown menü otomatik olarak Grocery secili geldiği görüntülendi");
+        softAssert.assertTrue(page.pickBazarHomePage().isGrocerySelectedDropDownValue(), "Grocery seçili olarak goruntulenemedi");
+        Allure.step("Sol üstte dropdown menü otomatik olarak Grocery secili geldiği goruntulendi");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -267,8 +267,8 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();//??
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuDisplayed(), "Drop down menu görüntülenemedi.");
-        Allure.step("Sol üstte dropdown menü görüntülendi");
+        softAssert.assertTrue(page.pickBazarHomePage().isDropDownMenuDisplayed(), "Drop down menu goruntulenemedi.");
+        Allure.step("Sol üstte dropdown menü goruntulendi");
 
         softAssert.assertAll();
         Driver.closeDriver();
@@ -284,8 +284,8 @@ public class HomePageTest {
         SoftAssert softAssert = new SoftAssert();//??
         getDriver().get(ConfigReader.getProperty("pickbazar_url"));
 
-        softAssert.assertTrue(page.pickBazarHomePage().isPickBazarLogoDisplayed(), "Logo görüntülenemedi");
-        Allure.step("PickBazar logosu görüntülendi");
+        softAssert.assertTrue(page.pickBazarHomePage().isPickBazarLogoDisplayed(), "Logo goruntulenemedi");
+        Allure.step("PickBazar logosu goruntulendi");
 
         softAssert.assertAll();
         Driver.closeDriver();

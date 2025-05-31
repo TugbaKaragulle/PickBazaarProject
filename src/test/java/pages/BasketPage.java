@@ -69,20 +69,20 @@ public class BasketPage {
 
     public void openBasketPanel() {
         clickElementByJS(basketPanelSliderButton );//ekranın sağındaki Sepet görüntüleme ikonuna tıklar
-        logger.info("Ekranda sağdaki küçük Sepet ikonuna tıklandı");
+        logger.info("Ekranda sağdaki küçük Sepet ikonuna tiklandi");
     }
 
     public void closeBasketPage() {
 
         clickElement(closeButton);
-        logger.info("Sepet panelinde X butonuna tıklandı, Sepet paneli kapatıldı");
+        logger.info("Sepet panelinde X butonuna tıklandı, Sepet paneli kapatildi");
     }
 
     public boolean verifyProductNameInBasket(String productName) {
 
         for (WebElement w : productNameListInBasket) {
             if (w.getText().trim().equals(productName.trim())) {
-                logger.info(w.getText()+" adlı ürünün sepete eklendiği doğrulandı. İsim doğrulaması yapıldı" );
+                logger.info(w.getText()+" adlı urunun sepete eklendigi dogrulandi. Isim dogrulamasi yapildi" );
                 return true;
             }
         }
@@ -93,24 +93,24 @@ public class BasketPage {
 
         int numberOfItems = ReusableMethods.convertElementTextIntoInteger(numberOfItemsInBasketButton);
         if (numberOfItems == 0){
-            logger.info("Sepetteki ürün sayısının 0 olduğu doğrulandı.");
+            logger.info("Sepetteki urun sayısının 0 oldugu dogrulandi.");
             return true;
         }
         else {
-            logger.info("Sepette ürün bulunuyor.");
+            logger.info("Sepette urun bulunuyor.");
             return false;
         }
     }
 
     public int getPriceOfOneProduct(int index) {
         int price = ReusableMethods.convertElementTextIntoInteger(priceOfOneProductList.get(index));
-        logger.info("Ürün tutarı: " + price);
+        logger.info("urun tutarı: " + price);
         return price;
     }
 
     public int getTotalPriceOfOneProduct(int index) {
         int totalPrice = ReusableMethods.convertElementTextIntoInteger(totalPriceOfOneProductList.get(index));
-        logger.info("Bir üründen alınan toplam tutar: " + totalPrice );
+        logger.info("Bir urunden alınan toplam tutar: " + totalPrice );
         return totalPrice;
     }
 
@@ -119,7 +119,7 @@ public class BasketPage {
 
         try {
             openBasketPanel();
-            logger.info("Sepet paneli açıldı");
+            logger.info("Sepet paneli acildi");
         } catch (Exception e) {
             logger.info("Sepet paneli açık");
         } finally {
@@ -130,12 +130,12 @@ public class BasketPage {
 
     public void addAProductIntoBasketWithPlusIcon( int indexOfList) {
         clickPlusIcon(indexOfList);
-        logger.info(" ( + ) butonuna tıklandı, sepete 1 adet ürün eklenmeli");
+        logger.info(" ( + ) butonuna tiklandi, sepete 1 adet urun eklenmeli");
     }
 
     public void deleteAProductFromBasketWithMinusIcon(int indexofList) {
         clickMinusIcon(indexofList);
-        logger.info(" ( - ) butonuna tıklandı, sepetten 1 adet ürün çıkarılmalı");
+        logger.info(" ( - ) butonuna tiklandi, sepetten 1 adet urun çıkarılmalı");
     }
 
     public boolean deleteAProductFromBasketXButton( int indexofList) {
@@ -143,7 +143,7 @@ public class BasketPage {
         System.out.println("indexofList = " + indexofList);
         String nameOfIndexedProduct = getProductNameInBasket(indexofList); //ürün silinmeden önce ürün adı depolanır
 
-        logger.info("Silinecek ürün = " + nameOfIndexedProduct);
+        logger.info("Silinecek urun = " + nameOfIndexedProduct);
 
         boolean isProductDeleted = false;
         for (WebElement w : getProductNameListInBasket()) {
@@ -152,14 +152,14 @@ public class BasketPage {
             }
         }
         clickXbuttonOfAProduct(indexofList);
-        logger.info("ürün silme = " +isProductDeleted);
+        logger.info("urun silme = " +isProductDeleted);
         return isProductDeleted;
     }
 
 
     private void clickXbuttonOfAProduct(int indexofList) {
         clickElement((deleteProductWithXButton.get(indexofList)));
-        logger.info("Sepet paneline ürün silmek için (X) butonuna tıklandı,");
+        logger.info("Sepet paneline urun silmek için (X) butonuna tiklandi,");
     }
 
     private void clickPlusIcon(int indexOfList) {
@@ -189,7 +189,7 @@ public class BasketPage {
 
     public int getNumberOfItemsInBasketButton() {
         int numberOfItems =  ReusableMethods.convertElementTextIntoInteger(page.basketPage().numberOfItemsInBasketButton);
-        logger.info("Basket butonundaki ürün sayısı: " + numberOfItems);
+        logger.info("Basket butonundaki urun sayısı: " + numberOfItems);
         return numberOfItems;
     }
 
