@@ -92,56 +92,82 @@ public class HomePage {
 //********************************************************   Display Methods *********************************************************************************//
 
     public boolean isPickBazarLogoDisplayed() {
-        return isWebElementDisplayed(pickBazarLogo);
+        boolean isDisplayed = isWebElementDisplayed(pickBazarLogo)  ;
+        logger.info(pickBazarLogo.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isSearchTextInputDisplayed() {
-        return isWebElementDisplayed(searchTextInput);
+        boolean isDisplayed = isWebElementDisplayed(searchTextInput);
+        logger.info(searchTextInput.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isSearchButtonDisplayed() {
-        return isWebElementDisplayed(searchButton);
+        boolean isDisplayed = isWebElementDisplayed(searchButton);
+        logger.info(searchButton.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isDropDownMenuDisplayed() {
-        return isWebElementDisplayed(dropDownMenu);
+        boolean isDisplayed = isWebElementDisplayed(dropDownMenu);
+        logger.info(dropDownMenu.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isShopsButtonDisplayed() {
-        return shopsButton.isDisplayed();
+        boolean isDisplayed = shopsButton.isDisplayed();
+        logger.info(shopsButton.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isOffersButtonDisplayed() {
-        return offersButton.isDisplayed();
+        boolean isDisplayed = offersButton.isDisplayed();
+        logger.info(offersButton.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isFAQButtonDisplayed() {
-        return FAQButton.isDisplayed();
+        boolean isDisplayed = FAQButton.isDisplayed();
+        logger.info(FAQButton.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isBecomeASellerButtonDisplayed() {
-        return becomeASellerButton.isDisplayed();
+        boolean isDisplayed = becomeASellerButton.isDisplayed();
+        logger.info(becomeASellerButton.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isJoinButtonDisplayed() {
-        return joinButton.isDisplayed();
+        boolean isDisplayed = joinButton.isDisplayed();
+        logger.info(joinButton.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isExpressDeliveryImageDisplayed() {
-        return expressDeliveryImage.isDisplayed();
+        boolean isDisplayed = expressDeliveryImage.isDisplayed();
+        logger.info(expressDeliveryImage.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isCashOnDeliveryImageDeliveryImageDisplayed() {
-        return cashOnDeliveryImage.isDisplayed();
+        boolean isDisplayed =  cashOnDeliveryImage.isDisplayed();
+        logger.info(expressDeliveryImage.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isGiftVoucherImageDeliveryImageDisplayed() {
-        return giftVoucherImage.isDisplayed();
+        boolean isDisplayed =  giftVoucherImage.isDisplayed();
+        logger.info(giftVoucherImage.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isGroceryProductFrameDisplayed() {
         scrollIntoViewJS(productFrame);
-        return productFrame.isDisplayed();
+        boolean isDisplayed =  productFrame.isDisplayed();
+        logger.info(productFrame.getText() +" görüntülendi mi? " + isDisplayed );
+        return isDisplayed;
     }
 
     public boolean isGroceryMenuFrameDisplayed() {
@@ -172,6 +198,7 @@ public class HomePage {
         };
         logger.info( optionName +" DropDownMenuOption görüntülendi mi? " + isDisplayed );
         return isDisplayed;
+
     }
 
 

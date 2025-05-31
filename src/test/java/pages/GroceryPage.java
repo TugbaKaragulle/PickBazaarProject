@@ -175,7 +175,7 @@ public class GroceryPage {
         }
     }
 
-    public boolean isGroceryClickable() {
+    public boolean   isGroceryClickable() {
         try {
             allPages.booksPage().navigateToHomePage();
             result = ReusableMethods.waitForClickability(allPages.pickBazarHomePage().getDropDownMenu());
