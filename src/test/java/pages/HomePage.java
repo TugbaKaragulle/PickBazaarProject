@@ -5,8 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import tests.BasketPageTest;
-import tests.HomePageTest;
 import utilities.Driver;
 import utilities.JavascriptUtils;
 
@@ -424,5 +422,9 @@ public class HomePage {
     }
 
 
-
+    public boolean isPickbazarButtonNavitages(String expectedUrl, String actualUrl) {
+        boolean isUrlContains = waitForUrlContains(expectedUrl);
+        logger.info(actualUrl +  " sayfası açıldı mı? " + isUrlContains);
+        return isUrlContains;
+    }
 }
