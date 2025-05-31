@@ -18,7 +18,7 @@ public class HomePageTest {
     @Owner("Fatma")
     @Story("TC_003_04_DataProvider Testi - Ana ekranda Shelf dropdown menudeki seçeneklerden ilgili sayfaların açılma testi")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_003_04(ITestContext context,String  optionData) {
+    public void TC_003_04_DataProvider(ITestContext context,String  optionData) {
 
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -37,7 +37,7 @@ public class HomePageTest {
     @Owner("Fatma")
     @Story("TC_003_03_DataProvider Testi - Ana ekranda  Shelf dropdown menudeki seceneklerin tıklanabilirlik testi")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_003_03(ITestContext context,String  optionData) {
+    public void TC_003_03_DataProvider(ITestContext context,String  optionData) {
 
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -68,7 +68,7 @@ public class HomePageTest {
     @Owner("Fatma")
     @Story("TC_003_02_DataProvider Testi - Ana ekranda  Shelf dropdown menu testi")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_003_02(ITestContext context,String  optionData) {
+    public void TC_003_02_DataProvider(ITestContext context,String  optionData) {
 
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -85,7 +85,7 @@ public class HomePageTest {
     @Owner("Fatma")
     @Story("TC_003_01_DataProvider Testi - Ana ekranda  Shelf dropdown menu testi")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_003_01(ITestContext context,String  optionData) {
+    public void TC_003_01_DataProvider(ITestContext context,String  optionData) {
 
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -117,7 +117,7 @@ public class HomePageTest {
     @Owner("Fatma")
     @Story("TC_002_01_DataProvider Testi - PickBazar butonu görüntülenip, calistigi görülmelidir")
     @Severity(SeverityLevel.NORMAL)
-    public void TC_002_01(ITestContext context,String data) {
+    public void TC_002_01_DataProvider(ITestContext context,String data) {
 
         setupBrowser(context);
         AllPages page = new AllPages();
@@ -127,7 +127,8 @@ public class HomePageTest {
         page.pickBazarHomePage().clickPickBazarLogo();
         String currentUrl = getDriver().getCurrentUrl();
         String expectedUrl= ConfigReader.getProperty("pickbazar_url");
-        softAssert.assertTrue(waitForUrlContains(expectedUrl)," "+data+" ekranından Homepage ekranına gidilemedi");
+        softAssert.assertTrue( page.pickBazarHomePage().isPickbazarButtonNavitages(expectedUrl, data) ," "+data+" ekranından Homepage ekranına gidilemedi" );
+
         Allure.step(data +" sayfasında PickBazar butonu tıklandı ve Home Page ekrani açıldı. ");
 
         softAssert.assertAll();
